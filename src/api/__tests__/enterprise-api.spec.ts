@@ -10,6 +10,16 @@ describe("Enterprise Api", () => {
     expect(axios).toBeTruthy();
   });
 
+  it("should ensure last character to be slash", () => {
+    const api = new EnterpriseApi({
+      baseUrl: "http://test.com",
+    });
+
+    const axios = api.getAxios();
+
+    expect(axios?.defaults?.baseURL).toBe("http://test.com/");
+  });
+
   it("should create base url from options", () => {
     const api = new EnterpriseApi({
       protocol: "https",
@@ -20,15 +30,5 @@ describe("Enterprise Api", () => {
     const axios = api.getAxios();
 
     expect(axios?.defaults?.baseURL).toBe("https://myWebsite.com/tr-tr/");
-  });
-
-  it("should ensure last character to be slash", () => {
-    const api = new EnterpriseApi({
-      baseUrl: "http://test.com",
-    });
-
-    const axios = api.getAxios();
-
-    expect(axios?.defaults?.baseURL).toBe("http://test.com/");
   });
 });
