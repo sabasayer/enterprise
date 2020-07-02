@@ -31,4 +31,26 @@ describe("Enterprise Api", () => {
 
     expect(axios?.defaults?.baseURL).toBe("https://myWebsite.com/tr-tr/");
   });
+
+  it("should create base url withouth protocol and language prefix", () => {
+    const api = new EnterpriseApi({
+      hostName: "myWebsite.com"
+    })
+
+    const axios = api.getAxios();
+
+    expect(axios?.defaults?.baseURL).toBe("//myWebsite.com/");
+  })
+
+  it("should throw error if hostName and baseUrls is empty", () => {
+
+    try {
+
+      const api = new EnterpriseApi({});
+    }
+    catch (e) {
+      expect(e.message).toBe('hostName or baseUrl is required')
+    }
+  })
+ 
 });

@@ -1,8 +1,10 @@
 import { EnterpriseApiOptions } from "./enterprise-api.options";
 import cloneDeep from "lodash.clonedeep";
-import axios, { AxiosInstance } from "axios";
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosPromise } from "axios";
+import { EnterpriseApiHelper } from "./enterprise-api.helper";
+import { IEnterpriseApi } from "./enterprise.api.interfaces";
 
-export class EnterpriseApi {
+export class EnterpriseApi implements IEnterpriseApi {
   private options: EnterpriseApiOptions;
   private axios: AxiosInstance | null = null;
 
@@ -15,11 +17,13 @@ export class EnterpriseApi {
     if (options.baseUrl)
       return this.ensureLastCharacterToBeSlash(options.baseUrl);
 
-    const protocol = options.protocol ? `${options.protocol}:/` : "";
-    const hostName = options.hostName ?? "";
-    const prefix = options.languagePrefix ?? "";
+    if (!options.hostName) throw new Error("hostName or baseUrl is required");
 
-    const baseUrl = [protocol, hostName, prefix].join("/");
+    const protocol = options.protocol ? `${options.protocol}://` : "//";
+    const hostName = options.hostName ? `${options.hostName}/` : "";
+    const prefix = options.languagePrefix ? `${options.languagePrefix}/` : "";
+
+    const baseUrl = `${protocol}${hostName}${prefix}`;
 
     return this.ensureLastCharacterToBeSlash(baseUrl);
   }
@@ -34,6 +38,26 @@ export class EnterpriseApi {
       baseURL: this.createBaseUrl(options),
       headers: options.headers,
     });
+  }
+
+  post(url: string, data?: any, config?: AxiosRequestConfig): AxiosPromise | never {
+    if (!this.axios) throw new Error("axios is not initialized");
+
+    return this.axios?.post(url, data, config);
+  }
+
+  /**
+   * converts data to querystring and appends to url
+   * @param data should only contain one level nested values
+   */
+  get(url: string, data?: Record<string, any>, config?: AxiosRequestConfig) {
+    if (!this.axios) throw new Error("axios is not initialized");
+
+    if (data) {
+      url = EnterpriseApiHelper.createUrl(url, data);
+    }
+
+    return this.axios?.get(url, config);
   }
 
   getAxios(): AxiosInstance | null {
