@@ -66,9 +66,16 @@ export class EnterpriseApi implements IEnterpriseApi {
 
   setOptions(options: EnterpriseApiOptions): void {
     this.options = options;
+    this.initAxios(options)
   }
 
   getOptions(): DeepReadonly<EnterpriseApiOptions> {
     return cloneDeep(this.options);
+  }
+
+  setHeader(key:string,value:string){
+    if (!this.axios) throw new Error("axios is not initialized");
+
+    this.axios.defaults.headers[key] = value;
   }
 }

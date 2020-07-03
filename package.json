@@ -25,5 +25,9 @@
   },
   "files": [
     "dist/**/*"
-  ]
+  ],
+  "prettier": {
+    "tabWidth": 4,
+    "printWidth": 80
+  }
 }
