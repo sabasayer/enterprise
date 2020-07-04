@@ -1,6 +1,6 @@
 import { EnterpriseCollectionOptions } from "./enterprise-collection.options";
 import { EnumProvideFromCacheStrategy } from "./enums/provide-from-cache-strategy.enum";
-import { GetCollectionOptions } from "./get-collection.options";
+import { GetFromCacheCollectionOptions } from "./get-from-cache-collection.options";
 import DataHouse from "../enterprise-data-house";
 import { EnumCacheType } from "@sabasayer/utils";
 import { EnterpriseApi } from "@/api/enterpise-api";
@@ -8,6 +8,7 @@ import { IApiValidationRule } from "../../api/provider/api-request-validation-ru
 import { IApiResponse } from "../../api/provider/api-response.interface";
 import { IApiRequestValidationResult } from "../../api/provider/api-request-validation-result.interface";
 import { EnterpriseDataProvider } from "../../api/provider/enterprise-data-provider";
+import { IApiRequestOptions } from "@/api/provider/api-request-options.interface";
 
 export abstract class EnterpriseCollectionProvider<
     TModel
@@ -24,12 +25,12 @@ export abstract class EnterpriseCollectionProvider<
 
     /**
      * Decides where data will be provided by options
-     * @param getOptions how to compare and get data
+     * @param getFromCacheOptions how to compare and get data
      * @param apiFunc api call function to get from backend
      */
-    async getHandler<TGetRequest>(
+    async get<TGetRequest>(
         getRequest: TGetRequest,
-        getOptions?: GetCollectionOptions
+        getFromCacheOptions?: GetFromCacheCollectionOptions
     ): Promise<IApiResponse<TModel[]> | never> {
         if (!this.options.cacheStrategy) {
             return this.getFromApi(getRequest);
@@ -37,19 +38,19 @@ export abstract class EnterpriseCollectionProvider<
 
         const result = this.getFromCache(
             this.options.cacheStrategy,
-            getOptions
+            getFromCacheOptions
         );
 
         if (getRequest) {
             const isCacheResultLacking = this.isCacheResultLacking(
                 result,
-                getOptions
+                getFromCacheOptions
             );
 
             if (isCacheResultLacking) return this.getFromApi(getRequest);
         }
 
-        this.setCache(result, getOptions?.uniqueCacheKey);
+        this.setCache(result, getFromCacheOptions?.uniqueCacheKey);
 
         return {
             error: false,
@@ -57,9 +58,32 @@ export abstract class EnterpriseCollectionProvider<
         };
     }
 
-    abstract getFromApi<TGetRequest>(
+    async getFromApi<TGetRequest>(
         request: TGetRequest
-    ): Promise<IApiResponse<TModel[]>>;
+    ): Promise<IApiResponse<TModel[]>> {
+        if (!this.options.getRequestOptions)
+            return {
+                error: true,
+                errorMessages: {
+                    "collection-provider-error":
+                        "get request options is absent",
+                },
+            };
+
+        const validationResult = this.validateRequest(
+            this.options.getRequestOptions,
+            request
+        );
+
+        if (!validationResult.valid) {
+            return {
+                error: true,
+                errorMessages: validationResult.errorMessages,
+            };
+        }
+
+        return this.post(this.options.getRequestOptions.url, request);
+    }
 
     //exclude cache functions to another class
 
@@ -77,7 +101,7 @@ export abstract class EnterpriseCollectionProvider<
 
     private isCacheResultLacking(
         result: TModel[],
-        getOptions?: GetCollectionOptions
+        getOptions?: GetFromCacheCollectionOptions
     ): boolean {
         if (!getOptions || !getOptions.ids?.length) return !!result.length;
 
@@ -86,7 +110,7 @@ export abstract class EnterpriseCollectionProvider<
 
     private getFromCache(
         strategy: EnumCacheType,
-        getOptions?: GetCollectionOptions
+        getOptions?: GetFromCacheCollectionOptions
     ): TModel[] {
         const all = this.getAllFromCache(strategy, getOptions);
         return this.filterByCacheProvideStrategy(all, getOptions);
@@ -94,14 +118,14 @@ export abstract class EnterpriseCollectionProvider<
 
     private getAllFromCache(
         strategy: EnumCacheType,
-        getOptions?: GetCollectionOptions
+        getOptions?: GetFromCacheCollectionOptions
     ): TModel[] {
         return DataHouse.get(strategy, this.options.typename, getOptions);
     }
 
     private filterByCacheProvideStrategy(
         all: TModel[],
-        getOptions?: GetCollectionOptions
+        getOptions?: GetFromCacheCollectionOptions
     ): TModel[] {
         const isStrategyColledtionId =
             this.options.provideFromCacheStrategy ===

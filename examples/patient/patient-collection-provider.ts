@@ -4,8 +4,7 @@ import { EnumCacheType } from "@sabasayer/utils";
 import { EnumProvideFromCacheStrategy } from "../../src/data-house/collection/enums/provide-from-cache-strategy.enum";
 import { GetPatientRequest, getPatientRequestOptions } from "./patient.api";
 import { api } from "./main";
-import { IApiResponse } from "../../src/api/provider/api-response.interface";
-import { GetCollectionOptions } from "../../src/data-house/collection/get-collection.options";
+import { GetFromCacheCollectionOptions } from "../../src/data-house/collection/get-from-cache-collection.options";
 
 class PatientCollectionProvider extends EnterpriseCollectionProvider<Patient> {
     constructor() {
@@ -14,32 +13,15 @@ class PatientCollectionProvider extends EnterpriseCollectionProvider<Patient> {
             cacheStrategy: EnumCacheType.SessionStorage,
             idField: "id",
             provideFromCacheStrategy: EnumProvideFromCacheStrategy.CollectionId,
+            getRequestOptions: getPatientRequestOptions,
         });
     }
 
     async get(
         getRequest: GetPatientRequest,
-        getOptions?: GetCollectionOptions
+        getOptions?: GetFromCacheCollectionOptions
     ) {
-        return this.getHandler(getRequest, getOptions);
-    }
-
-    async getFromApi(
-        request: GetPatientRequest
-    ): Promise<IApiResponse<Patient[]>> {
-        const validationResult = this.validateRequest(
-            getPatientRequestOptions,
-            request
-        );
-
-        if (!validationResult.valid) {
-            return {
-                error: true,
-                errorMessages: validationResult.errorMessages,
-            };
-        }
-
-        return this.post(getPatientRequestOptions.url, request);
+        return super.get(getRequest, getOptions);
     }
 }
 
