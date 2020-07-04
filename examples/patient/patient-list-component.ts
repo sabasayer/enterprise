@@ -9,7 +9,7 @@ export class PatientListComponent {
     }
 
     async getData() {
-        const result = await patientCollectionProvider.getFromApi({
+        const result = await patientCollectionProvider.get({
             search: "test",
         });
 
