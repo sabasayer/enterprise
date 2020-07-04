@@ -1,4 +1,4 @@
-import { EnterPriseCollectionProvider } from "../data-house/collection/enterprise-collection-provider";
+import { EnterpriseCollectionProvider } from "../data-house/collection/enterprise-collection-provider";
 import { EnterpriseLogicQueryMessage } from "./enterprise-logic-query-message";
 
 export class EnterpriseLogic<TModel>{

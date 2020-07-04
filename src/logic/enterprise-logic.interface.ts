@@ -1,4 +1,4 @@
-import { EnterPriseCollectionProvider } from "../data-house/collection/enterprise-collection-provider";
+import { EnterpriseCollectionProvider } from "../data-house/collection/enterprise-collection-provider";
 import { EnterpriseViewModelProvider } from "./view-model-provider/enterprise-view-model-provider";
 import { EnterpriseLogicQueryMessage } from "./enterprise-logic-query-message";
 

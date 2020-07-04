@@ -1,5 +1,6 @@
 import { EnumProvideFromCacheStrategy } from "./enums/provide-from-cache-strategy.enum";
 import { EnumCacheType } from "@sabasayer/utils";
+import { IApiRequestOptions } from "../../api/provider/api-request-options.interface";
 
 export interface EnterpriseCollectionOptions<TModel> {
     typename: string
