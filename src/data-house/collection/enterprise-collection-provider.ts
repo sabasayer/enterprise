@@ -10,6 +10,8 @@ import { IApiRequestValidationResult } from "../../api/provider/api-request-vali
 import { EnterpriseDataProvider } from "../../api/provider/enterprise-data-provider";
 import { IApiRequestOptions } from "@/api/provider/api-request-options.interface";
 
+
+
 export abstract class EnterpriseCollectionProvider<
     TModel
 > extends EnterpriseDataProvider {
@@ -85,7 +87,6 @@ export abstract class EnterpriseCollectionProvider<
         return this.post(this.options.getRequestOptions.url, request);
     }
 
-    //exclude cache functions to another class
 
     private setCache(data: TModel[], uniqueCacheKey?: string) {
         if (!this.options.cacheStrategy)
