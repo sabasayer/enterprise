@@ -8,6 +8,6 @@ export interface GetPatientRequest {
 }
 
 export const getPatientRequestOptions: IApiRequestOptions = {
-    url: "patient/getPatients",
+    url: "patient",
     validationRules: [],
 };

@@ -1,6 +1,12 @@
-import {EnterpriseApi} from "../../src/api/enterpise-api"
+import { EnterpriseApi } from "@sabasayer/enterprise"
+import { PatientListComponent } from './patient-list-component';
 
-export const api = new EnterpriseApi({
-    baseUrl:'//api.comed.com.tr',
-    languagePrefix:'tr-tr'
+const api = new EnterpriseApi({
+    baseUrl: 'http://5c50441dee97f600140480bc.mockapi.io'
 });
+
+new PatientListComponent();
+
+export {
+    api
+}

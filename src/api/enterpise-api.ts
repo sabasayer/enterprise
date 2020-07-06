@@ -50,21 +50,21 @@ export class EnterpriseApi implements IEnterpriseApi {
     ): AxiosPromise | never {
         if (!this.axios) throw new Error("axios is not initialized");
 
-        return this.axios?.post(url, data, config);
+        return this.axios.post(url, data, config);
     }
 
     /**
      * converts data to querystring and appends to url
      * @param data should only contain one level nested values
      */
-    get(url: string, data?: Record<string, any>, config?: AxiosRequestConfig) {
+    get(url: string, data?: Record<string, any>, config?: AxiosRequestConfig): AxiosPromise | never {
         if (!this.axios) throw new Error("axios is not initialized");
 
         if (data) {
             url = EnterpriseApiHelper.createUrl(url, data);
         }
 
-        return this.axios?.get(url, config);
+        return this.axios.get(url, config);
     }
 
     getAxios(): AxiosInstance | null {

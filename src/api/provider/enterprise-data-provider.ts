@@ -1,8 +1,8 @@
 import { IApiValidationRule } from "./api-request-validation-rule.interface";
 import { IApiRequestValidationResult } from "./api-request-validation-result.interface";
-import { EnterpriseApi } from "@/api/enterpise-api";
+import { EnterpriseApi } from "../enterpise-api";
 import { IApiRequestOptions } from "./api-request-options.interface";
-import { validateRequest } from "@/api/enterprise-api-validator";
+import { validateRequest } from "../enterprise-api-validator";
 import Axios, {
     AxiosResponse,
     AxiosRequestConfig,
@@ -10,6 +10,8 @@ import Axios, {
     AxiosError,
 } from "axios";
 import { IApiResponse } from "./api-response.interface";
+import { HTTP_SUCCESS_CODES } from "../enterprise-api.const";
+import { EnumRequestMethod } from "../enums/request-method.enum";
 
 export class EnterpriseDataProvider {
     protected api: EnterpriseApi;
@@ -33,13 +35,31 @@ export class EnterpriseDataProvider {
         return validateRequest(requestOptions.validationRules, request);
     }
 
-    protected async post<TResponseModel>(
+    protected async request<TResponseModel>(
         url: string,
         data?: any,
-        config?: AxiosRequestConfig
+        config?: AxiosRequestConfig,
+        method?: EnumRequestMethod
     ): Promise<IApiResponse<TResponseModel>> {
         try {
-            const response = await this.api.post(url, data, config);
+            let response;
+
+            switch (method) {
+                case EnumRequestMethod.GET:
+                    response = await this.api.get(url, data, config);
+                    break;
+                case EnumRequestMethod.PUT:
+                    response = await this.api.post(url, data, config);
+                    break;
+                case EnumRequestMethod.DELETE:
+                    response = await this.api.post(url, data, config);
+                    break;
+                default:
+                    response = await this.api.post(url, data, config);
+                    break
+
+            }
+
             return this.createResult(response);
         } catch (e) {
             const error = e as AxiosError;
@@ -55,7 +75,7 @@ export class EnterpriseDataProvider {
     ): IApiResponse<TResponseModel> {
         const data = response.data;
 
-        if (response.status != 200) {
+        if (!HTTP_SUCCESS_CODES.includes(response.status)) {
             return {
                 error: true,
                 errorMessages: { "server error": data },

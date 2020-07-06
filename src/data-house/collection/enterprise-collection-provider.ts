@@ -8,13 +8,12 @@ import { IApiValidationRule } from "../../api/provider/api-request-validation-ru
 import { IApiResponse } from "../../api/provider/api-response.interface";
 import { IApiRequestValidationResult } from "../../api/provider/api-request-validation-result.interface";
 import { EnterpriseDataProvider } from "../../api/provider/enterprise-data-provider";
-import { IApiRequestOptions } from "@/api/provider/api-request-options.interface";
-
-
+import { IApiRequestOptions } from "../../api/provider/api-request-options.interface";
+import { EnumRequestMethod } from "../../api/enums/request-method.enum";
 
 export abstract class EnterpriseCollectionProvider<
     TModel
-> extends EnterpriseDataProvider {
+    > extends EnterpriseDataProvider {
     protected options: EnterpriseCollectionOptions<TModel>;
 
     protected constructor(
@@ -38,7 +37,7 @@ export abstract class EnterpriseCollectionProvider<
             return this.getFromApi(getRequest);
         }
 
-        const result = this.getFromCache(
+        let result = this.getFromCache(
             this.options.cacheStrategy,
             getFromCacheOptions
         );
@@ -49,7 +48,12 @@ export abstract class EnterpriseCollectionProvider<
                 getFromCacheOptions
             );
 
-            if (isCacheResultLacking) return this.getFromApi(getRequest);
+            if (isCacheResultLacking) {
+                const apiResult = await this.getFromApi(getRequest);
+                if (apiResult.error) return apiResult;
+
+                result = apiResult.data ?? [];
+            }
         }
 
         this.setCache(result, getFromCacheOptions?.uniqueCacheKey);
@@ -84,9 +88,17 @@ export abstract class EnterpriseCollectionProvider<
             };
         }
 
-        return this.post(this.options.getRequestOptions.url, request);
+        const method = this.options.isEndpointRest ? EnumRequestMethod.GET : EnumRequestMethod.POST
+        return this.request(this.options.getRequestOptions.url, request, undefined, method);
     }
 
+    async save<TSaveRequest>(request: TSaveRequest) {
+
+    }
+
+    async delete<TDeleteRequest>(request: TDeleteRequest) {
+
+    }
 
     private setCache(data: TModel[], uniqueCacheKey?: string) {
         if (!this.options.cacheStrategy)
@@ -104,7 +116,7 @@ export abstract class EnterpriseCollectionProvider<
         result: TModel[],
         getOptions?: GetFromCacheCollectionOptions
     ): boolean {
-        if (!getOptions || !getOptions.ids?.length) return !!result.length;
+        if (!getOptions || !getOptions.ids?.length) return !result.length;
 
         return getOptions.ids?.length != result.length;
     }

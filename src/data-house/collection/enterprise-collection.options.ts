@@ -7,9 +7,10 @@ export interface EnterpriseCollectionOptions<TModel> {
     idField?: keyof TModel
     getIdField?: (collection: TModel) => number | string
     cacheStrategy?: EnumCacheType
-    provideFromCacheStrategy?:EnumProvideFromCacheStrategy
+    provideFromCacheStrategy?: EnumProvideFromCacheStrategy
 
-    getRequestOptions?:IApiRequestOptions
-    saveRequestOptions?:IApiRequestOptions
-    deleteRequestOptions?:IApiRequestOptions
+    isEndpointRest?: boolean
+    getRequestOptions?: IApiRequestOptions
+    saveRequestOptions?: IApiRequestOptions
+    deleteRequestOptions?: IApiRequestOptions
 }

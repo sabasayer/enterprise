@@ -1,16 +1,19 @@
-import { patientCollectionProvider } from "./patient-collection-provider";
+import { PatientCollectionProvider } from "./patient-collection-provider";
 import { Patient } from "./patient";
+import { api } from "./main";
 
 export class PatientListComponent {
     data: Patient[] = [];
+    provider: PatientCollectionProvider
 
     constructor() {
         //get data
+        this.provider = new PatientCollectionProvider(api);
+        this.getData();
     }
 
     async getData() {
-        const result = await patientCollectionProvider.get({
-            search: "test",
+        const result = await this.provider.get({
         });
 
         if (result.error) {
@@ -19,7 +22,14 @@ export class PatientListComponent {
         }
 
         this.data = result.data;
+        this.render();
     }
 
-    render() {}
+    render() {
+        this.data.forEach(item => {
+            const node = document.createElement('div');
+            node.innerHTML = `<div>${item.id} ${item.name}</div>`;
+            document.body.append(node)
+        })
+    }
 }
