@@ -1,20 +1,16 @@
 import { PatientCollectionProvider } from "./patient-collection-provider";
 import { Patient } from "./patient";
-import { api } from "./main";
 
 export class PatientListComponent {
     data: Patient[] = [];
-    provider: PatientCollectionProvider
 
     constructor() {
         //get data
-        this.provider = new PatientCollectionProvider(api);
         this.getData();
     }
 
     async getData() {
-        const result = await this.provider.get({
-        });
+        const result = await PatientCollectionProvider.instance.get({}, { forceGetFromApi: true });
 
         if (result.error) {
             console.log(result);

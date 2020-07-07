@@ -1,15 +1,12 @@
 import { EnterpriseCollectionOptions } from "./enterprise-collection.options";
 import { EnumProvideFromCacheStrategy } from "./enums/provide-from-cache-strategy.enum";
 import { GetFromCacheCollectionOptions } from "./get-from-cache-collection.options";
-import DataHouse from "../enterprise-data-house";
 import { EnumCacheType } from "@sabasayer/utils";
 import { EnterpriseApi } from "@/api/enterpise-api";
-import { IApiValidationRule } from "../../api/provider/api-request-validation-rule.interface";
 import { IApiResponse } from "../../api/provider/api-response.interface";
-import { IApiRequestValidationResult } from "../../api/provider/api-request-validation-result.interface";
 import { EnterpriseDataProvider } from "../../api/provider/enterprise-data-provider";
-import { IApiRequestOptions } from "../../api/provider/api-request-options.interface";
 import { EnumRequestMethod } from "../../api/enums/request-method.enum";
+import { EnterpriseDataHouse } from "../enterprise-data-house";
 
 export abstract class EnterpriseCollectionProvider<
     TModel
@@ -33,6 +30,8 @@ export abstract class EnterpriseCollectionProvider<
         getRequest: TGetRequest,
         getFromCacheOptions?: GetFromCacheCollectionOptions
     ): Promise<IApiResponse<TModel[]> | never> {
+        console.log('api', this.api)
+
         if (!this.options.cacheStrategy) {
             return this.getFromApi(getRequest);
         }
@@ -104,7 +103,7 @@ export abstract class EnterpriseCollectionProvider<
         if (!this.options.cacheStrategy)
             throw new Error("Cache strategy is absent!");
 
-        DataHouse.set(
+        EnterpriseDataHouse.instance.set(
             this.options.cacheStrategy,
             this.options.typename,
             data,
@@ -116,6 +115,8 @@ export abstract class EnterpriseCollectionProvider<
         result: TModel[],
         getOptions?: GetFromCacheCollectionOptions
     ): boolean {
+        if (getOptions?.forceGetFromApi) return true;
+
         if (!getOptions || !getOptions.ids?.length) return !result.length;
 
         return getOptions.ids?.length != result.length;
@@ -133,7 +134,7 @@ export abstract class EnterpriseCollectionProvider<
         strategy: EnumCacheType,
         getOptions?: GetFromCacheCollectionOptions
     ): TModel[] {
-        return DataHouse.get(strategy, this.options.typename, getOptions);
+        return EnterpriseDataHouse.instance.get(strategy, this.options.typename, getOptions);
     }
 
     private filterByCacheProvideStrategy(

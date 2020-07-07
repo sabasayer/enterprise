@@ -7,13 +7,18 @@ declare global {
     interface Window { enterpriseDataHouse: any }
 }
 
-class EnterpriseDataHouse {
+export class EnterpriseDataHouse {
+    static instance: EnterpriseDataHouse;
     private collections: Map<string, any[]> = new Map();
 
     constructor() {
         if (isDevelopment())
             this.debug()
     }
+
+    private static initialize = (() => {
+        EnterpriseDataHouse.instance = new EnterpriseDataHouse();
+    })();
 
     private debug() {
         window.enterpriseDataHouse = this;
@@ -68,7 +73,3 @@ class EnterpriseDataHouse {
     }
 
 }
-
-const dataHouse = new EnterpriseDataHouse();
-
-export default dataHouse

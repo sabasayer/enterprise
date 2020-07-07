@@ -5,19 +5,25 @@ import { EnumProvideFromCacheStrategy } from "../../src/data-house/collection/en
 import { GetPatientRequest, getPatientRequestOptions } from "./patient.api";
 import { GetFromCacheCollectionOptions } from "../../src/data-house/collection/get-from-cache-collection.options";
 import { EnterpriseApi } from "../..";
-import { api } from "./main";
+import { enterpriseApi } from "./main";
 
 export class PatientCollectionProvider extends EnterpriseCollectionProvider<Patient> {
-    constructor(api:EnterpriseApi) {
+    static instance: PatientCollectionProvider;
+
+    constructor(api: EnterpriseApi) {
         super(api, {
             typename: "patient",
             cacheStrategy: EnumCacheType.SessionStorage,
             idField: "id",
             provideFromCacheStrategy: EnumProvideFromCacheStrategy.CollectionId,
             getRequestOptions: getPatientRequestOptions,
-            isEndpointRest:true
+            isEndpointRest: true
         });
     }
+
+    static initialize() {
+        PatientCollectionProvider.instance = new PatientCollectionProvider(enterpriseApi);
+    };
 
     async get(
         getRequest: GetPatientRequest,

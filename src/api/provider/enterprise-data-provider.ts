@@ -44,6 +44,9 @@ export class EnterpriseDataProvider {
         try {
             let response;
 
+            console.log('api', this.api)
+
+
             switch (method) {
                 case EnumRequestMethod.GET:
                     response = await this.api.get(url, data, config);
