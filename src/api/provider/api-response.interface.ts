@@ -1,5 +1,6 @@
+import { ErrorMessages } from "@/shared/definitions/error-messages.interface";
+
 export interface IApiResponse<TModel> {
-    error: boolean;
-    errorMessages?: Record<string, string>;
+    errorMessages?: ErrorMessages;
     data?: TModel;
 }

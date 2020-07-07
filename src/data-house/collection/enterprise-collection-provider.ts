@@ -7,6 +7,7 @@ import { IApiResponse } from "../../api/provider/api-response.interface";
 import { EnterpriseDataProvider } from "../../api/provider/enterprise-data-provider";
 import { EnumRequestMethod } from "../../api/enums/request-method.enum";
 import { EnterpriseDataHouse } from "../enterprise-data-house";
+import { IApiRequestOptions } from "@/api/provider/api-request-options.interface";
 
 export abstract class EnterpriseCollectionProvider<
     TModel
@@ -30,7 +31,6 @@ export abstract class EnterpriseCollectionProvider<
         getRequest: TGetRequest,
         getFromCacheOptions?: GetFromCacheCollectionOptions
     ): Promise<IApiResponse<TModel[]> | never> {
-        console.log('api', this.api)
 
         if (!this.options.cacheStrategy) {
             return this.getFromApi(getRequest);
@@ -49,7 +49,7 @@ export abstract class EnterpriseCollectionProvider<
 
             if (isCacheResultLacking) {
                 const apiResult = await this.getFromApi(getRequest);
-                if (apiResult.error) return apiResult;
+                if (apiResult.errorMessages) return apiResult;
 
                 result = apiResult.data ?? [];
             }
@@ -58,7 +58,6 @@ export abstract class EnterpriseCollectionProvider<
         this.setCache(result, getFromCacheOptions?.uniqueCacheKey);
 
         return {
-            error: false,
             data: result,
         };
     }
@@ -68,35 +67,47 @@ export abstract class EnterpriseCollectionProvider<
     ): Promise<IApiResponse<TModel[]>> {
         if (!this.options.getRequestOptions)
             return {
-                error: true,
                 errorMessages: {
                     "collection-provider-error":
                         "get request options is absent",
                 },
             };
 
-        const validationResult = this.validateRequest(
-            this.options.getRequestOptions,
-            request
-        );
-
-        if (!validationResult.valid) {
-            return {
-                error: true,
-                errorMessages: validationResult.errorMessages,
-            };
-        }
 
         const method = this.options.isEndpointRest ? EnumRequestMethod.GET : EnumRequestMethod.POST
-        return this.request(this.options.getRequestOptions.url, request, undefined, method);
-    }
-
-    async save<TSaveRequest>(request: TSaveRequest) {
+        return this.apiRequest(this.options.getRequestOptions, request, method)
 
     }
 
-    async delete<TDeleteRequest>(request: TDeleteRequest) {
+    async save<TSaveResponse>(request: object): Promise<IApiResponse<TSaveResponse>> {
+        if (!this.options.saveRequestOptions)
+            return {
+                errorMessages: {
+                    "collection-provider-error":
+                        "save request options is absent",
+                },
+            }
 
+        return this.apiRequest(this.options.saveRequestOptions, request, EnumRequestMethod.POST)
+    }
+
+    async delete<TDeleteResponse>(request: object, ids?: (string | number)[]): Promise<IApiResponse<TDeleteResponse>> {
+        if (!this.options.deleteRequestOptions)
+            return {
+                errorMessages: {
+                    "collection-provider-error":
+                        "delete request options is absent",
+                },
+            }
+
+        const method = this.options.isEndpointRest ? EnumRequestMethod.DELETE : EnumRequestMethod.POST
+        const result = await this.apiRequest<object, TDeleteResponse>(this.options.deleteRequestOptions, request, method)
+
+        if (!result.errorMessages) {
+            this.removeItemsFromCache(ids);
+        }
+
+        return result;
     }
 
     private setCache(data: TModel[], uniqueCacheKey?: string) {
@@ -109,6 +120,20 @@ export abstract class EnterpriseCollectionProvider<
             data,
             uniqueCacheKey
         );
+    }
+
+    private removeItemsFromCache(ids?: (number | string)[]) {
+        if (!this.options.cacheStrategy ||
+            this.options.provideFromCacheStrategy != EnumProvideFromCacheStrategy.CollectionId ||
+            !ids?.length) return;
+
+        EnterpriseDataHouse.instance.removeItem<TModel>(this.options.cacheStrategy, this.options.typename, (item) => {
+            const id = this.getIdFromItem(item);
+
+            if (id == undefined) throw "id cannot be undefined";
+
+            return ids.includes(id as string | number)
+        })
     }
 
     private isCacheResultLacking(
@@ -137,6 +162,7 @@ export abstract class EnterpriseCollectionProvider<
         return EnterpriseDataHouse.instance.get(strategy, this.options.typename, getOptions);
     }
 
+
     private filterByCacheProvideStrategy(
         all: TModel[],
         getOptions?: GetFromCacheCollectionOptions
@@ -149,11 +175,13 @@ export abstract class EnterpriseCollectionProvider<
 
         this.checkIdOptions();
 
+        if (!getOptions.ids?.length) return all;
+
         return all.filter((item) => {
             const id = this.getIdFromItem(item);
             if (id == undefined) throw "id cannot be undefined";
 
-            return getOptions.ids?.includes(id);
+            return getOptions.ids?.includes(id as string | number);
         });
     }
 

@@ -35,6 +35,18 @@ export class EnterpriseDataProvider {
         return validateRequest(requestOptions.validationRules, request);
     }
 
+    async apiRequest<TRequest, TResponseModel>(options: IApiRequestOptions, request: TRequest, method?: EnumRequestMethod): Promise<IApiResponse<TResponseModel>> {
+        const validationResult = this.validateRequest(options, request);
+
+        if (!validationResult.valid) {
+            return {
+                errorMessages: validationResult.errorMessages,
+            };
+        }
+
+        return this.request(options.url, request, undefined, method);
+    }
+
     protected async request<TResponseModel>(
         url: string,
         data?: any,
@@ -44,18 +56,15 @@ export class EnterpriseDataProvider {
         try {
             let response;
 
-            console.log('api', this.api)
-
-
             switch (method) {
                 case EnumRequestMethod.GET:
                     response = await this.api.get(url, data, config);
                     break;
                 case EnumRequestMethod.PUT:
-                    response = await this.api.post(url, data, config);
+                    response = await this.api.put(url, data, config);
                     break;
                 case EnumRequestMethod.DELETE:
-                    response = await this.api.post(url, data, config);
+                    response = await this.api.delete(url, data, config);
                     break;
                 default:
                     response = await this.api.post(url, data, config);
@@ -67,7 +76,6 @@ export class EnterpriseDataProvider {
         } catch (e) {
             const error = e as AxiosError;
             return {
-                error: true,
                 errorMessages: { [error.name]: error.message },
             };
         }
@@ -80,13 +88,11 @@ export class EnterpriseDataProvider {
 
         if (!HTTP_SUCCESS_CODES.includes(response.status)) {
             return {
-                error: true,
                 errorMessages: { "server error": data },
             };
         }
 
         return {
-            error: false,
             data: data as TResponseModel,
         };
     }

@@ -43,6 +43,20 @@ export class EnterpriseApi implements IEnterpriseApi {
         });
     }
 
+    /**
+    * converts data to querystring and appends to url
+    * @param data should only contain one level nested values
+    */
+    get(url: string, data?: Record<string, any>, config?: AxiosRequestConfig): AxiosPromise | never {
+        if (!this.axios) throw new Error("axios is not initialized");
+
+        if (data) {
+            url = EnterpriseApiHelper.createUrl(url, data);
+        }
+
+        return this.axios.get(url, config);
+    }
+
     post(
         url: string,
         data?: any,
@@ -53,19 +67,30 @@ export class EnterpriseApi implements IEnterpriseApi {
         return this.axios.post(url, data, config);
     }
 
-    /**
-     * converts data to querystring and appends to url
-     * @param data should only contain one level nested values
-     */
-    get(url: string, data?: Record<string, any>, config?: AxiosRequestConfig): AxiosPromise | never {
+    put(
+        url: string,
+        data?: any,
+        config?: AxiosRequestConfig
+    ): AxiosPromise | never {
+        if (!this.axios) throw new Error("axios is not initialized");
+
+        return this.axios.put(url, data, config);
+    }
+
+    delete(
+        url: string,
+        data?: any,
+        config?: AxiosRequestConfig
+    ): AxiosPromise | never {
         if (!this.axios) throw new Error("axios is not initialized");
 
         if (data) {
             url = EnterpriseApiHelper.createUrl(url, data);
         }
-
-        return this.axios.get(url, config);
+        return this.axios.delete(url, data);
     }
+
+
 
     getAxios(): AxiosInstance | null {
         return this.axios;

@@ -52,12 +52,32 @@ export class EnterpriseDataHouse {
         CacheUtil.clearCache(type, key);
     }
 
+    removeItem<TModel>(type: EnumCacheType, typename: string, findFunc: (item: TModel) => boolean) {
+        if (type == EnumCacheType.Memory) {
+            const collection = this.getFromInMemoryCache(typename, false);
+            const item = collection.find(findFunc);
+            if (!item) return;
+
+            collection.remove(item)
+            return;
+        }
+
+        const items = this.get<TModel>(type, typename);
+        const item = items.find(findFunc);
+        if (!item) return;
+
+        items.remove(item);
+        this.set(type, typename, items)
+    }
+
     /**
      * Get cloned values for immutability of stored data
      * @param typename stored typename
      */
-    private getFromInMemoryCache(typename: string): any[] {
-        return cloneDeep(this.collections.get(typename)) ?? [];
+    private getFromInMemoryCache(typename: string, clone: boolean = true): any[] {
+        const collection = this.collections.get(typename) ?? [];
+
+        return clone ? cloneDeep(collection) : collection;
     }
 
     /**

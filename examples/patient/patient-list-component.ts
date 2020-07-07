@@ -1,5 +1,6 @@
 import { PatientCollectionProvider } from "./patient-collection-provider";
 import { Patient } from "./patient";
+import { PatientCollectionLogic } from "./patient-collection-logic";
 
 export class PatientListComponent {
     data: Patient[] = [];
@@ -10,9 +11,9 @@ export class PatientListComponent {
     }
 
     async getData() {
-        const result = await PatientCollectionProvider.instance.get({}, { forceGetFromApi: true });
+        const result = await PatientCollectionLogic.instance.get({});
 
-        if (result.error) {
+        if (result.errorMessages) {
             console.log(result);
             return;
         }

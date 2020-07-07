@@ -1,5 +1,5 @@
 export interface GetFromCacheCollectionOptions {
-    ids?: any[]
+    ids?: (string | number)[]
     uniqueCacheKey?: string
-    forceGetFromApi?:boolean
+    forceGetFromApi?: boolean
 }

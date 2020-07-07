@@ -2,10 +2,9 @@ import { EnterpriseCollectionProvider } from "../../src/data-house/collection/en
 import { Patient } from "./patient";
 import { EnumCacheType } from "@sabasayer/utils";
 import { EnumProvideFromCacheStrategy } from "../../src/data-house/collection/enums/provide-from-cache-strategy.enum";
-import { GetPatientRequest, getPatientRequestOptions } from "./patient.api";
+import { GetPatientRequest, getPatientRequestOptions, savePatientsRequestOptions, deletePatientsRequestOptions, SavePatientsRequest } from "./patient.api";
 import { GetFromCacheCollectionOptions } from "../../src/data-house/collection/get-from-cache-collection.options";
 import { EnterpriseApi } from "../..";
-import { enterpriseApi } from "./main";
 
 export class PatientCollectionProvider extends EnterpriseCollectionProvider<Patient> {
     static instance: PatientCollectionProvider;
@@ -17,13 +16,11 @@ export class PatientCollectionProvider extends EnterpriseCollectionProvider<Pati
             idField: "id",
             provideFromCacheStrategy: EnumProvideFromCacheStrategy.CollectionId,
             getRequestOptions: getPatientRequestOptions,
+            saveRequestOptions: savePatientsRequestOptions,
+            deleteRequestOptions:deletePatientsRequestOptions,
             isEndpointRest: true
         });
     }
-
-    static initialize() {
-        PatientCollectionProvider.instance = new PatientCollectionProvider(enterpriseApi);
-    };
 
     async get(
         getRequest: GetPatientRequest,
@@ -31,6 +28,7 @@ export class PatientCollectionProvider extends EnterpriseCollectionProvider<Pati
     ) {
         return super.get(getRequest, getOptions);
     }
+
 }
 
 
