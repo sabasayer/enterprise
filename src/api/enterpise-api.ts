@@ -7,6 +7,7 @@ import { IEnterpriseApi } from "./enterprise.api.interfaces";
 export class EnterpriseApi implements IEnterpriseApi {
     private options: EnterpriseApiOptions;
     private axios: AxiosInstance | null = null;
+    private authToken: string | null = null;
 
     constructor(options: EnterpriseApiOptions) {
         this.options = options;
@@ -17,18 +18,25 @@ export class EnterpriseApi implements IEnterpriseApi {
         if (options.baseUrl)
             return this.ensureLastCharacterToBeSlash(options.baseUrl);
 
-        if (!options.hostName)
-            throw new Error("hostName or baseUrl is required");
+        const configHostName = options.hostName ?? this.getHostNameFromEndPoints(options.endpoints);
+
+        if (!configHostName)
+            throw new Error("hostName , endPoints or baseUrl is required");
 
         const protocol = options.protocol ? `${options.protocol}://` : "//";
-        const hostName = options.hostName ? `${options.hostName}/` : "";
-        const prefix = options.languagePrefix
+        const hostName = configHostName ? `${configHostName}/` : "";
+        const languagePrefix = options.languagePrefix
             ? `${options.languagePrefix}/`
             : "";
+        const prefix = options.prefix ? `${options.prefix}/` : ""
 
-        const baseUrl = `${protocol}${hostName}${prefix}`;
+        const baseUrl = `${protocol}${hostName}${languagePrefix}${prefix}`;
 
         return this.ensureLastCharacterToBeSlash(baseUrl);
+    }
+
+    private getHostNameFromEndPoints(endPoints?: Record<string, string>) {
+        return endPoints?.[window.location.host];
     }
 
     private ensureLastCharacterToBeSlash(baseUrl: string): string {
@@ -41,6 +49,20 @@ export class EnterpriseApi implements IEnterpriseApi {
             baseURL: this.createBaseUrl(options),
             headers: options.headers,
         });
+    }
+
+    get dataField(){
+        return this.options.dataField;
+    }
+
+    getAuthToken() {
+        return this.authToken;
+    }
+
+    setAuthToken(token: string) {
+        this.authToken = token;
+        if (this.options.authTokenHeaderKey)
+            this.setHeader(this.options.authTokenHeaderKey, token);
     }
 
     /**

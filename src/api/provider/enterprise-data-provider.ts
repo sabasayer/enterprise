@@ -84,7 +84,7 @@ export class EnterpriseDataProvider {
     protected createResult<TResponseModel>(
         response: AxiosResponse<any>
     ): IApiResponse<TResponseModel> {
-        const data = response.data;
+        const data = this.api.dataField ? response.data[this.api.dataField] : response.data;
 
         if (!HTTP_SUCCESS_CODES.includes(response.status)) {
             return {
