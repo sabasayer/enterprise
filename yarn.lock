@@ -456,10 +456,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^3.0.0"
 
-"@sabasayer/utils@^1.1.4":
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/@sabasayer/utils/-/utils-1.1.4.tgz#d88ee7826b853b3904747466796dca24e309b346"
-  integrity sha512-uUr37rI/97SFdINd3j+yQvwKaR+VAFSNRJUoMC+XTkK7nuselMAUss4DSTxnGC84KhrIf5oEL+FqWDErHdxcoA==
+"@sabasayer/utils@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@sabasayer/utils/-/utils-1.2.0.tgz#ccd73e950f9bd5fb0efabc30e2ab13936df47c1b"
+  integrity sha512-aKdSaEocM0rbtFjEIguCHGcmgWuBWvRcpiInjFsYneuPRekpgC1BYYeQRdAklI+B6OxCs+eTgWyfcSwC0LZROA==
   dependencies:
     lodash.clonedeep "^4.5.0"
 

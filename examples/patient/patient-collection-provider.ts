@@ -12,7 +12,7 @@ export class PatientCollectionProvider extends EnterpriseCollectionProvider<Pati
     constructor(api: EnterpriseApi) {
         super(api, {
             typename: "patient",
-            cacheStrategy: EnumCacheType.SessionStorage,
+            cacheStrategy: EnumCacheType.Memory,
             idField: "id",
             provideFromCacheStrategy: EnumProvideFromCacheStrategy.CollectionId,
             getRequestOptions: getPatientRequestOptions,

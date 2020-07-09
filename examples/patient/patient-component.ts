@@ -19,6 +19,8 @@ export class PatientComponent {
             return;
         }
 
+        if(!result.data[0]) return;
+
         this.data = result.data[0];
         this.render();
     }

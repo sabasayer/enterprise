@@ -112,8 +112,6 @@ export class EnterpriseApi implements IEnterpriseApi {
         return this.axios.delete(url, data);
     }
 
-
-
     getAxios(): AxiosInstance | null {
         return this.axios;
     }

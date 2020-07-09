@@ -55,6 +55,10 @@ export abstract class EnterpriseCollectionProvider<
             }
         }
 
+        
+        // if forceGetFromApi is true always overwrite cache
+        // if compare with id and ids exists find and update or add to cache
+        
         this.setCache(result, getFromCacheOptions?.uniqueCacheKey);
 
         return {
