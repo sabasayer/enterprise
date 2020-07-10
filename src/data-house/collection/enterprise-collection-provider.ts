@@ -6,19 +6,23 @@ import { EnterpriseApi } from "@/api/enterpise-api";
 import { IApiResponse } from "../../api/provider/api-response.interface";
 import { EnterpriseDataProvider } from "../../api/provider/enterprise-data-provider";
 import { EnumRequestMethod } from "../../api/enums/request-method.enum";
-import { EnterpriseDataHouse } from "../enterprise-data-house";
-import { IApiRequestOptions } from "@/api/provider/api-request-options.interface";
+import { applyMixins } from "../../shared/mixi.helper";
+import { EnterpriseCollectionCacheProvider } from "../cache/enterprise-collection-cache-provider";
 
-export abstract class EnterpriseCollectionProvider<
+interface EnterpriseCollectionProvider<TModel> extends EnterpriseCollectionCacheProvider<TModel>,
+    EnterpriseDataProvider {
+}
+
+abstract class EnterpriseCollectionProvider<
     TModel
-    > extends EnterpriseDataProvider {
+    > {
     protected options: EnterpriseCollectionOptions<TModel>;
 
     protected constructor(
         api: EnterpriseApi,
         options: EnterpriseCollectionOptions<TModel>
     ) {
-        super(api);
+        this.api = api;
         this.options = options;
     }
 
@@ -37,7 +41,6 @@ export abstract class EnterpriseCollectionProvider<
         }
 
         let result = this.getFromCache(
-            this.options.cacheStrategy,
             getFromCacheOptions
         );
 
@@ -55,10 +58,10 @@ export abstract class EnterpriseCollectionProvider<
             }
         }
 
-        
+
         // if forceGetFromApi is true always overwrite cache
         // if compare with id and ids exists find and update or add to cache
-        
+
         this.setCache(result, getFromCacheOptions?.uniqueCacheKey);
 
         return {
@@ -113,92 +116,9 @@ export abstract class EnterpriseCollectionProvider<
 
         return result;
     }
-
-    private setCache(data: TModel[], uniqueCacheKey?: string) {
-        if (!this.options.cacheStrategy)
-            throw new Error("Cache strategy is absent!");
-
-        EnterpriseDataHouse.instance.set(
-            this.options.cacheStrategy,
-            this.options.typename,
-            data,
-            uniqueCacheKey
-        );
-    }
-
-    private removeItemsFromCache(ids?: (number | string)[]) {
-        if (!this.options.cacheStrategy ||
-            this.options.provideFromCacheStrategy != EnumProvideFromCacheStrategy.CollectionId ||
-            !ids?.length) return;
-
-        EnterpriseDataHouse.instance.removeItem<TModel>(this.options.cacheStrategy, this.options.typename, (item) => {
-            const id = this.getIdFromItem(item);
-
-            if (id == undefined) throw "id cannot be undefined";
-
-            return ids.includes(id as string | number)
-        })
-    }
-
-    private isCacheResultLacking(
-        result: TModel[],
-        getOptions?: GetFromCacheCollectionOptions
-    ): boolean {
-        if (getOptions?.forceGetFromApi) return true;
-
-        if (!getOptions || !getOptions.ids?.length) return !result.length;
-
-        return getOptions.ids?.length != result.length;
-    }
-
-    private getFromCache(
-        strategy: EnumCacheType,
-        getOptions?: GetFromCacheCollectionOptions
-    ): TModel[] {
-        const all = this.getAllFromCache(strategy, getOptions);
-        return this.filterByCacheProvideStrategy(all, getOptions);
-    }
-
-    private getAllFromCache(
-        strategy: EnumCacheType,
-        getOptions?: GetFromCacheCollectionOptions
-    ): TModel[] {
-        return EnterpriseDataHouse.instance.get(strategy, this.options.typename, getOptions);
-    }
-
-
-    private filterByCacheProvideStrategy(
-        all: TModel[],
-        getOptions?: GetFromCacheCollectionOptions
-    ): TModel[] {
-        const isStrategyColledtionId =
-            this.options.provideFromCacheStrategy ===
-            EnumProvideFromCacheStrategy.CollectionId;
-
-        if (!getOptions || !isStrategyColledtionId) return all;
-
-        this.checkIdOptions();
-
-        if (!getOptions.ids?.length) return all;
-
-        return all.filter((item) => {
-            const id = this.getIdFromItem(item);
-            if (id == undefined) throw "id cannot be undefined";
-
-            return getOptions.ids?.includes(id as string | number);
-        });
-    }
-
-    private checkIdOptions(): never | void {
-        if (!this.options.idField && !this.options.getIdField)
-            throw new Error("idField or getIdField function must be defined");
-    }
-
-    private getIdFromItem(item: TModel) {
-        this.checkIdOptions();
-
-        return this.options.idField
-            ? item[this.options.idField]
-            : this.options.getIdField?.(item);
-    }
 }
+
+
+applyMixins(EnterpriseCollectionProvider, [EnterpriseDataProvider, EnterpriseCollectionCacheProvider])
+
+export { EnterpriseCollectionProvider }

@@ -20,12 +20,13 @@ export class PatientListComponent {
 
         this.data = result.data;
         this.render();
+
     }
 
     render() {
         this.data.forEach(item => {
             const node = document.createElement('div');
-            node.innerHTML = `<div>${item.id} ${item.name}</div>`;
+            node.innerHTML = `<div>${item.id} ${item.name} </div>`;
             document.body.append(node)
         })
     }

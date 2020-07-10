@@ -25,20 +25,22 @@ export class EnterpriseDataHouse {
     }
 
     get<TModel>(type: EnumCacheType, typename: string, getOptions?: GetFromCacheCollectionOptions): TModel[] {
-        if (type === EnumCacheType.Memory)
-            return this.getFromInMemoryCache(typename);
-
         const key = getOptions?.uniqueCacheKey ?? typename;
+
+        if (type === EnumCacheType.Memory)
+            return this.getFromInMemoryCache(key);
+
         return CacheUtil.getFromCache(type, key) ?? [];
     }
 
     set(type: EnumCacheType, typename: string, collection: any[], uniqueCacheKey?: string): void {
+        const key = uniqueCacheKey ?? typename;
+
         if (type === EnumCacheType.Memory) {
-            this.setInMemoryCacahe(typename, collection)
+            this.setInMemoryCacahe(key, collection)
             return;
         }
 
-        const key = uniqueCacheKey ?? typename;
         CacheUtil.addToCache(type, key, collection);
     }
 
@@ -58,7 +60,7 @@ export class EnterpriseDataHouse {
             const item = collection.find(findFunc);
             if (!item) return;
 
-            collection.remove(item)
+            collection.remove(item);
             return;
         }
 

@@ -6,6 +6,9 @@ import { EnterpriseLogic } from './src/logic/enterprise-logic';
 import { EnterpriseCollectionLogic } from './src/logic/enterprise-collection-logic';
 import { IEnterpriseCollectionLogic } from './src/logic/enterprise-collection-logic.interface';
 import {ErrorMessages} from './src/shared/definitions/error-messages.interface'
+import { ExtendArray } from '@sabasayer/utils';
+
+new ExtendArray();
 
 export {
     EnterpriseApi,
