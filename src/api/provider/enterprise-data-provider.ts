@@ -7,6 +7,7 @@ import Axios, {
     AxiosRequestConfig,
     AxiosPromise,
     AxiosError,
+    CancelTokenSource,
 } from "axios";
 import { IApiResponse } from "./api-response.interface";
 import { HTTP_SUCCESS_CODES } from "../enterprise-api.const";
@@ -18,15 +19,19 @@ import { IEnterpriseRequestOptions } from './enterprise-request-options.interfac
 export class EnterpriseDataProvider {
     protected api: EnterpriseApi;
     protected waitingRequests: Map<string, AxiosPromise>;
+    protected cancelTokens: Map<string, CancelTokenSource[]>;
 
     constructor(api: EnterpriseApi) {
         this.api = api;
-        this.waitingRequests = this.initWaitingRequests();
+        this.waitingRequests = new Map();
+        this.cancelTokens = new Map();
     }
 
     protected initWaitingRequests() {
-        return new Map();
+        this.waitingRequests = new Map();
+        this.cancelTokens = new Map();
     }
+
 
     /**
      * override for extra validation. Dont forget to call super()
@@ -53,13 +58,50 @@ export class EnterpriseDataProvider {
     cancellableApiRequest<TRequest, TResponseModel>(
         options: IApiRequestOptions,
         request: TRequest,
-        method?: EnumRequestMethod): ICancellableApiResponse<TResponseModel> {
+        uniqueKey: string,
+        method?: EnumRequestMethod,
+        mustCheckWaitingRequest: boolean = true): ICancellableApiResponse<TResponseModel> {
 
         const source = this.createCancelToken();
 
-        const response = this.apiRequest<TRequest, TResponseModel>(options, request, method, { cancelToken: source.token });
+        const key = this.createCancelTokenKey(options, uniqueKey, method);
+        this.cancelPreviousPromises(key);
+        this.registerCancelToken(source, key);
+
+        const response = this.apiRequest<TRequest, TResponseModel>(
+            options, request, method, { cancelToken: source.token }, mustCheckWaitingRequest);
 
         return { response, token: source }
+    }
+
+    protected createCancelTokenKey(options: IApiRequestOptions,
+        uniqueKey: string,
+        method?: EnumRequestMethod) {
+
+        const requestHash = EnterpriseApiHelper.createRequestHash(options.url, method);
+        return `${uniqueKey}_${requestHash}`;
+    }
+
+    protected cancelPreviousPromises(key: string) {
+        const tokenList = this.cancelTokens.get(key);
+        if (!tokenList) return;
+
+        tokenList.forEach(token => token.cancel())
+    }
+
+    protected registerCancelToken(
+        token: CancelTokenSource,
+        key: string) {
+
+        if (!this.cancelTokens.has(key)) {
+            this.cancelTokens.set(key, []);
+        }
+
+        const tokenList = this.cancelTokens.get(key);
+        if (tokenList) {
+            tokenList.push(token);
+        }
+
     }
 
     async apiRequest<TRequest, TResponseModel>(

@@ -24,7 +24,7 @@ abstract class EnterpriseCollectionProvider<
     ) {
         this.api = api;
         this.options = options;
-        this.waitingRequests = this.initWaitingRequests()
+        this.initWaitingRequests()
     }
 
 
