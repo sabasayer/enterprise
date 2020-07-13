@@ -63,4 +63,10 @@ describe("Enterprise Api Helper ", () => {
 
         expect(result).toBe('//testoloji.com/en-us/')
     })
+
+    it("should create unique key", () => {
+        const key = EnterpriseApiHelper.createUniqueKey('https://test.com', { id: 1 });
+
+        expect(key).toBe('2_https://test.com_{"id":1}')
+    })
 })

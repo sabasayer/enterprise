@@ -11,6 +11,9 @@ const enterpriseApi = new EnterpriseApi({
 PatientCollectionLogic.initialize(enterpriseApi);
 new PatientComponent("1");
 new PatientListComponent();
+new PatientListComponent();
+new PatientListComponent();
+new PatientListComponent();
 
 export {
     enterpriseApi

@@ -1,4 +1,5 @@
 import { EnterpriseApiOptions } from "./enterprise-api.options";
+import { EnumRequestMethod } from "./enums/request-method.enum";
 
 export abstract class EnterpriseApiHelper {
     static createUrl(url: string, data: Record<string, any>): string {
@@ -34,5 +35,19 @@ export abstract class EnterpriseApiHelper {
         const baseUrl = `${protocol}${hostName}${languagePrefix}${prefix}`;
 
         return EnterpriseApiHelper.ensureLastCharacterToBeSlash(baseUrl);
+    }
+
+    static createDataHash(data?: any) {
+        return data != undefined ? JSON.stringify(data) : '';
+    }
+
+    static createUniqueKey(url: string, data?: any, method: EnumRequestMethod = EnumRequestMethod.POST) {
+        const dataHash = EnterpriseApiHelper.createDataHash(data);
+        const requestHash = EnterpriseApiHelper.createRequestHash(url, method);
+        return `${requestHash}_${dataHash}`;
+    }
+
+    static createRequestHash(url: string, method: EnumRequestMethod = EnumRequestMethod.POST) {
+        return `${method}_${url}`;
     }
 }

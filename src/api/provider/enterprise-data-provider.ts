@@ -1,4 +1,3 @@
-import { IApiValidationRule } from "./api-request-validation-rule.interface";
 import { IApiRequestValidationResult } from "./api-request-validation-result.interface";
 import { EnterpriseApi } from "../enterpise-api";
 import { IApiRequestOptions } from "./api-request-options.interface";
@@ -13,12 +12,20 @@ import { IApiResponse } from "./api-response.interface";
 import { HTTP_SUCCESS_CODES } from "../enterprise-api.const";
 import { EnumRequestMethod } from "../enums/request-method.enum";
 import { ICancellableApiResponse } from "./cancellable-api-response.interface";
+import { EnterpriseApiHelper } from "../enterprise-api.helper";
+import { IEnterpriseRequestOptions } from './enterprise-request-options.interface'
 
 export class EnterpriseDataProvider {
     protected api: EnterpriseApi;
+    protected waitingRequests: Map<string, AxiosPromise>;
 
     constructor(api: EnterpriseApi) {
         this.api = api;
+        this.waitingRequests = this.initWaitingRequests();
+    }
+
+    protected initWaitingRequests() {
+        return new Map();
     }
 
     /**
@@ -41,9 +48,10 @@ export class EnterpriseDataProvider {
     }
 
     /**
-     * create cancel token and response.
+     * Returns cancel token and response.
      */
-    cancellableApiRequest<TRequest, TResponseModel>(options: IApiRequestOptions,
+    cancellableApiRequest<TRequest, TResponseModel>(
+        options: IApiRequestOptions,
         request: TRequest,
         method?: EnumRequestMethod): ICancellableApiResponse<TResponseModel> {
 
@@ -54,10 +62,12 @@ export class EnterpriseDataProvider {
         return { response, token: source }
     }
 
-    async apiRequest<TRequest, TResponseModel>(options: IApiRequestOptions,
+    async apiRequest<TRequest, TResponseModel>(
+        options: IApiRequestOptions,
         request: TRequest,
         method?: EnumRequestMethod,
-        config?: AxiosRequestConfig): Promise<IApiResponse<TResponseModel>> {
+        config?: AxiosRequestConfig,
+        mustCheckWaitingRequest: boolean = true): Promise<IApiResponse<TResponseModel>> {
 
         const validationResult = this.validateRequest(options, request);
 
@@ -67,37 +77,25 @@ export class EnterpriseDataProvider {
             };
         }
 
-        return this.request(options.url, request, config, method);
+        return this.request({
+            url: options.url, data: request, config, method, mustCheckWaitingRequest
+        });
     }
 
+    /**
+     * @param {string} mustCheckWaitingRequest : default true. 
+     * Prevents paralel same requests
+     */
     protected async request<TResponseModel>(
-        url: string,
-        data?: any,
-        config?: AxiosRequestConfig,
-        method?: EnumRequestMethod
+        options: IEnterpriseRequestOptions
     ): Promise<IApiResponse<TResponseModel>> {
         try {
-            let response;
-
-            switch (method) {
-                case EnumRequestMethod.GET:
-                    response = await this.api.get(url, data, config);
-                    break;
-                case EnumRequestMethod.PUT:
-                    response = await this.api.put(url, data, config);
-                    break;
-                case EnumRequestMethod.DELETE:
-                    response = await this.api.delete(url, data, config);
-                    break;
-                default:
-                    response = await this.api.post(url, data, config);
-                    break
-
-            }
+            const response = await this.createResponse(options)
 
             return this.createResult(response);
         } catch (e) {
             const error = e as AxiosError;
+
             if (Axios.isCancel(e)) {
                 return { canceled: true }
             }
@@ -107,6 +105,52 @@ export class EnterpriseDataProvider {
             };
         }
     }
+
+    private createRequest(options: IEnterpriseRequestOptions): AxiosPromise {
+        switch (options.method) {
+            case EnumRequestMethod.GET:
+                return this.api.get(options.url, options.data, options.config);
+            case EnumRequestMethod.PUT:
+                return this.api.put(options.url, options.data, options.config);
+            case EnumRequestMethod.DELETE:
+                return this.api.delete(options.url, options.data, options.config);
+            default:
+                return this.api.post(options.url, options.data, options.config);
+        }
+    }
+
+    private async createResponse(
+        options: IEnterpriseRequestOptions): Promise<AxiosResponse> {
+
+        let mustCheckWaitingRequest = options.mustCheckWaitingRequest ?? true
+
+        let response: AxiosResponse<any>;
+        let request: AxiosPromise;
+
+        const key = EnterpriseApiHelper.createUniqueKey(options.url, options.data, options.method);
+
+        if (!mustCheckWaitingRequest) {
+            request = this.createRequest(options);
+            this.waitingRequests.set(key, request);
+        }
+        else {
+            const waitingRequest = this.waitingRequests.get(key);
+            if (waitingRequest) {
+                request = waitingRequest;
+            }
+            else {
+                request = this.createRequest(options)
+                this.waitingRequests.set(key, request);
+            }
+        }
+
+        response = await request;
+        this.waitingRequests.delete(key);
+
+        return response;
+    }
+
+
 
     protected createResult<TResponseModel>(
         response: AxiosResponse<any>

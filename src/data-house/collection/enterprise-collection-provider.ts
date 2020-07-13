@@ -24,7 +24,9 @@ abstract class EnterpriseCollectionProvider<
     ) {
         this.api = api;
         this.options = options;
+        this.waitingRequests = this.initWaitingRequests()
     }
+
 
     /**
      * Decides where data will be provided by options

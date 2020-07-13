@@ -20,7 +20,6 @@ export class PatientListComponent {
 
         this.data = result.data;
         this.render();
-
     }
 
     render() {
