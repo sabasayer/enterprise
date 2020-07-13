@@ -19,13 +19,4 @@ describe("Enterprise Data House", () => {
         expect(result).toHaveLength(0)
     })
 
-    it("should store data at session storage",()=>{
-
-        expect(false).toBe(true)
-    })
-
-    it("should store data at local storage",()=>{
-
-        expect(false).toBe(true)
-    })
 })

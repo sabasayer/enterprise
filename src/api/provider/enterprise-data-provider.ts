@@ -12,6 +12,7 @@ import Axios, {
 import { IApiResponse } from "./api-response.interface";
 import { HTTP_SUCCESS_CODES } from "../enterprise-api.const";
 import { EnumRequestMethod } from "../enums/request-method.enum";
+import { ICancellableApiResponse } from "./cancellable-api-response.interface";
 
 export class EnterpriseDataProvider {
     protected api: EnterpriseApi;
@@ -35,7 +36,29 @@ export class EnterpriseDataProvider {
         return validateRequest(requestOptions.validationRules, request);
     }
 
-    async apiRequest<TRequest, TResponseModel>(options: IApiRequestOptions, request: TRequest, method?: EnumRequestMethod): Promise<IApiResponse<TResponseModel>> {
+    createCancelToken() {
+        return Axios.CancelToken.source();
+    }
+
+    /**
+     * create cancel token and response.
+     */
+    cancellableApiRequest<TRequest, TResponseModel>(options: IApiRequestOptions,
+        request: TRequest,
+        method?: EnumRequestMethod): ICancellableApiResponse<TResponseModel> {
+
+        const source = this.createCancelToken();
+
+        const response = this.apiRequest<TRequest, TResponseModel>(options, request, method, { cancelToken: source.token });
+
+        return { response, token: source }
+    }
+
+    async apiRequest<TRequest, TResponseModel>(options: IApiRequestOptions,
+        request: TRequest,
+        method?: EnumRequestMethod,
+        config?: AxiosRequestConfig): Promise<IApiResponse<TResponseModel>> {
+
         const validationResult = this.validateRequest(options, request);
 
         if (!validationResult.valid) {
@@ -44,7 +67,7 @@ export class EnterpriseDataProvider {
             };
         }
 
-        return this.request(options.url, request, undefined, method);
+        return this.request(options.url, request, config, method);
     }
 
     protected async request<TResponseModel>(
@@ -75,6 +98,10 @@ export class EnterpriseDataProvider {
             return this.createResult(response);
         } catch (e) {
             const error = e as AxiosError;
+            if (Axios.isCancel(e)) {
+                return { canceled: true }
+            }
+
             return {
                 errorMessages: { [error.name]: error.message },
             };

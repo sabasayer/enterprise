@@ -14,44 +14,14 @@ export class EnterpriseApi implements IEnterpriseApi {
         this.initAxios(options);
     }
 
-    private createBaseUrl(options: EnterpriseApiOptions): string {
-        if (options.baseUrl)
-            return this.ensureLastCharacterToBeSlash(options.baseUrl);
-
-        const configHostName = options.hostName ?? this.getHostNameFromEndPoints(options.endpoints);
-
-        if (!configHostName)
-            throw new Error("hostName , endPoints or baseUrl is required");
-
-        const protocol = options.protocol ? `${options.protocol}://` : "//";
-        const hostName = configHostName ? `${configHostName}/` : "";
-        const languagePrefix = options.languagePrefix
-            ? `${options.languagePrefix}/`
-            : "";
-        const prefix = options.prefix ? `${options.prefix}/` : ""
-
-        const baseUrl = `${protocol}${hostName}${languagePrefix}${prefix}`;
-
-        return this.ensureLastCharacterToBeSlash(baseUrl);
-    }
-
-    private getHostNameFromEndPoints(endPoints?: Record<string, string>) {
-        return endPoints?.[window.location.host];
-    }
-
-    private ensureLastCharacterToBeSlash(baseUrl: string): string {
-        if (baseUrl[baseUrl.length - 1] != "/") return baseUrl + "/";
-        return baseUrl;
-    }
-
     private initAxios(options: EnterpriseApiOptions) {
         this.axios = axios.create({
-            baseURL: this.createBaseUrl(options),
+            baseURL: EnterpriseApiHelper.createBaseUrl(options),
             headers: options.headers,
         });
     }
 
-    get dataField(){
+    get dataField() {
         return this.options.dataField;
     }
 
@@ -109,7 +79,7 @@ export class EnterpriseApi implements IEnterpriseApi {
         if (data) {
             url = EnterpriseApiHelper.createUrl(url, data);
         }
-        return this.axios.delete(url, data);
+        return this.axios.delete(url, config);
     }
 
     getAxios(): AxiosInstance | null {
