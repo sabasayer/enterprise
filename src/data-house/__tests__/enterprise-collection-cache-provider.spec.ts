@@ -48,14 +48,14 @@ describe("Enterprise Collection Cache Provider", () => {
         const cacheProvider = new EnterpriseCollectionCacheProvider<IMockData>({
             typename: 'test',
             cacheStrategy: EnumCacheType.Memory,
-            provideFromCacheStrategy: EnumProvideFromCacheStrategy.UniqueCacheKey
+            provideFromCacheStrategy: EnumProvideFromCacheStrategy.RequestParamsHash
         });
 
         cacheProvider.setCache(data, uniqueCacheKey);
         cacheProvider.setCache(data2, uniqueCacheKey2);
 
-        const cachedData = cacheProvider.getFromCache({ uniqueCacheKey });
-        const cachedData2 = cacheProvider.getFromCache({ uniqueCacheKey: uniqueCacheKey2 });
+        const cachedData = cacheProvider.getFromCache({}, uniqueCacheKey);
+        const cachedData2 = cacheProvider.getFromCache({}, uniqueCacheKey2);
 
         expect(data).toEqual(cachedData);
         expect(data2).toEqual(cachedData2);
@@ -137,6 +137,6 @@ describe("Enterprise Collection Cache Provider", () => {
         const last = cachedData.last();
 
         expect(last).toEqual(newItem);
-        expect(cachedData.filter(e=>e.id == lastData.id)).toHaveLength(1);
+        expect(cachedData.filter(e => e.id == lastData.id)).toHaveLength(1);
     })
 })

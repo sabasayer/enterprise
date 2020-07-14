@@ -14,7 +14,7 @@ import { HTTP_SUCCESS_CODES } from "../enterprise-api.const";
 import { EnumRequestMethod } from "../enums/request-method.enum";
 import { ICancellableApiResponse } from "./cancellable-api-response.interface";
 import { EnterpriseApiHelper } from "../enterprise-api.helper";
-import { IEnterpriseRequestOptions } from './enterprise-request-options.interface'
+import { IEnterpriseRequestOptions } from "./enterprise-request-options.interface";
 
 export class EnterpriseDataProvider {
     protected api: EnterpriseApi;
@@ -31,7 +31,6 @@ export class EnterpriseDataProvider {
         this.waitingRequests = new Map();
         this.cancelTokens = new Map();
     }
-
 
     /**
      * override for extra validation. Dont forget to call super()
@@ -60,21 +59,31 @@ export class EnterpriseDataProvider {
         request: TRequest,
         uniqueKey: string,
         method?: EnumRequestMethod,
-        mustCheckWaitingRequest: boolean = true): ICancellableApiResponse<TResponseModel> {
-
+        mustCheckWaitingRequest: boolean = true
+    ): ICancellableApiResponse<TResponseModel> {
         const source = this.createCancelToken();
 
         const response = this.apiRequest<TRequest, TResponseModel>(
-            options, request, method, { cancelToken: source.token }, undefined, mustCheckWaitingRequest);
+            options,
+            request,
+            method,
+            { cancelToken: source.token },
+            undefined,
+            mustCheckWaitingRequest
+        );
 
-        return { response, token: source }
+        return { response, token: source };
     }
 
-    protected createCancelTokenKey(options: IApiRequestOptions,
+    protected createCancelTokenKey(
+        options: IApiRequestOptions,
         uniqueKey: string,
-        method?: EnumRequestMethod) {
-
-        const requestHash = EnterpriseApiHelper.createRequestHash(options.url, method);
+        method?: EnumRequestMethod
+    ) {
+        const requestHash = EnterpriseApiHelper.createRequestHash(
+            options.url,
+            method
+        );
         return `${uniqueKey}_${requestHash}`;
     }
 
@@ -82,13 +91,21 @@ export class EnterpriseDataProvider {
         const tokenList = this.cancelTokens.get(key);
         if (!tokenList) return;
 
-        tokenList.forEach(token => token.cancel())
+        tokenList.forEach((token) => {
+            token.cancel();
+        });
     }
 
-    protected registerCancelToken(
-        token: CancelTokenSource,
-        key: string) {
+    protected deleteCancelTokens(
+        options: IApiRequestOptions,
+        uniqueKey: string,
+        method?: EnumRequestMethod
+    ) {
+        const key = this.createCancelTokenKey(options, uniqueKey, method);
+        this.cancelTokens.delete(key);
+    }
 
+    protected registerCancelToken(token: CancelTokenSource, key: string) {
         if (!this.cancelTokens.has(key)) {
             this.cancelTokens.set(key, []);
         }
@@ -99,27 +116,24 @@ export class EnterpriseDataProvider {
         }
     }
 
-    handleCancelation(
+    protected handleCancelation(
         options: IApiRequestOptions,
         uniqueKey: string,
         method?: EnumRequestMethod
-    ) {
+    ): CancelTokenSource {
         const source = this.createCancelToken();
 
         const key = this.createCancelTokenKey(options, uniqueKey, method);
         this.cancelPreviousPromises(key);
         this.registerCancelToken(source, key);
+        return source;
     }
 
     /**
-     * 
-     * @param options 
-     * @param request 
-     * @param method 
-     * @param config 
+     * Validates request, handles cancelation and response
      * @param cancelTokenUniqueKey unique string for grouping sameRequest cancelTokens.
-     * Cancels existing waiting promises with same unique key and request. 
-     * @param mustCheckWaitingRequest Prevents paralel same request 
+     * Cancels existing waiting promises with same unique key and request.
+     * @param mustCheckWaitingRequest Prevents paralel same request
      */
     async apiRequest<TRequest, TResponseModel>(
         options: IApiRequestOptions,
@@ -127,8 +141,8 @@ export class EnterpriseDataProvider {
         method?: EnumRequestMethod,
         config?: AxiosRequestConfig,
         cancelTokenUniqueKey?: string,
-        mustCheckWaitingRequest: boolean = true): Promise<IApiResponse<TResponseModel>> {
-
+        mustCheckWaitingRequest: boolean = true
+    ): Promise<IApiResponse<TResponseModel>> {
         const validationResult = this.validateRequest(options, request);
 
         if (!validationResult.valid) {
@@ -138,30 +152,47 @@ export class EnterpriseDataProvider {
         }
 
         if (cancelTokenUniqueKey) {
-            this.handleCancelation(options, cancelTokenUniqueKey, method)
+            if (!config) config = {};
+            const source = this.handleCancelation(
+                options,
+                cancelTokenUniqueKey,
+                method
+            );
+            config.cancelToken = source.token;
         }
 
-        return this.request({
-            url: options.url, data: request, config, method, mustCheckWaitingRequest
+        const response = await this.request<TResponseModel>({
+            url: options.url,
+            data: request,
+            config,
+            method,
+            mustCheckWaitingRequest,
         });
+
+        if (cancelTokenUniqueKey) {
+            this.deleteCancelTokens(options, cancelTokenUniqueKey, method);
+        }
+
+        return response;
     }
 
     /**
-     * @param {string} mustCheckWaitingRequest : default true. 
+     * @param {string} mustCheckWaitingRequest : default true.
      * Prevents paralel same requests
      */
     protected async request<TResponseModel>(
         options: IEnterpriseRequestOptions
     ): Promise<IApiResponse<TResponseModel>> {
         try {
-            const response = await this.createResponse(options)
+            const response = await this.createResponse(options);
 
             return this.createResult(response);
         } catch (e) {
             const error = e as AxiosError;
 
             if (Axios.isCancel(e)) {
-                return { canceled: true }
+                console.log("canceled", options);
+                return { canceled: true };
             }
 
             return {
@@ -177,33 +208,39 @@ export class EnterpriseDataProvider {
             case EnumRequestMethod.PUT:
                 return this.api.put(options.url, options.data, options.config);
             case EnumRequestMethod.DELETE:
-                return this.api.delete(options.url, options.data, options.config);
+                return this.api.delete(
+                    options.url,
+                    options.data,
+                    options.config
+                );
             default:
                 return this.api.post(options.url, options.data, options.config);
         }
     }
 
     private async createResponse(
-        options: IEnterpriseRequestOptions): Promise<AxiosResponse> {
-
-        let mustCheckWaitingRequest = options.mustCheckWaitingRequest ?? true
+        options: IEnterpriseRequestOptions
+    ): Promise<AxiosResponse> {
+        let mustCheckWaitingRequest = options.mustCheckWaitingRequest ?? true;
 
         let response: AxiosResponse<any>;
         let request: AxiosPromise;
 
-        const key = EnterpriseApiHelper.createUniqueKey(options.url, options.data, options.method);
+        const key = EnterpriseApiHelper.createUniqueKey(
+            options.url,
+            options.data,
+            options.method
+        );
 
         if (!mustCheckWaitingRequest) {
             request = this.createRequest(options);
             this.waitingRequests.set(key, request);
-        }
-        else {
+        } else {
             const waitingRequest = this.waitingRequests.get(key);
             if (waitingRequest) {
                 request = waitingRequest;
-            }
-            else {
-                request = this.createRequest(options)
+            } else {
+                request = this.createRequest(options);
                 this.waitingRequests.set(key, request);
             }
         }
@@ -214,12 +251,12 @@ export class EnterpriseDataProvider {
         return response;
     }
 
-
-
     protected createResult<TResponseModel>(
         response: AxiosResponse<any>
     ): IApiResponse<TResponseModel> {
-        const data = this.api.dataField ? response.data[this.api.dataField] : response.data;
+        const data = this.api.dataField
+            ? response.data[this.api.dataField]
+            : response.data;
 
         if (!HTTP_SUCCESS_CODES.includes(response.status)) {
             return {

@@ -1,5 +1,5 @@
 export enum EnumProvideFromCacheStrategy {
-    UniqueCacheKey = 1,
+    RequestParamsHash = 1,
     CollectionId = 2,
     Always = 3
 }

@@ -3,7 +3,7 @@ import { EnterpriseCollectionCacheOptions } from "./enterprise-collection-cache.
 import { EnterpriseDataHouse } from "../enterprise-data-house";
 import { EnumProvideFromCacheStrategy } from "../collection/enums/provide-from-cache-strategy.enum";
 import { EnumCacheType } from "@sabasayer/utils";
-import { GetFromCacheCollectionOptions } from "../collection/get-from-cache-collection.options";
+import { GetCollectionOptions } from "../collection/get-collection.options";
 
 export class EnterpriseCollectionCacheProvider<TModel>{
     protected options: EnterpriseCollectionOptions<TModel>;
@@ -70,12 +70,13 @@ export class EnterpriseCollectionCacheProvider<TModel>{
     }
 
     getFromCache(
-        getOptions?: GetFromCacheCollectionOptions
+        getOptions?: GetCollectionOptions,
+        uniqueCacheKey?: string
     ): TModel[] {
         if (!this.options.cacheStrategy)
             throw new Error("Cache strategy is absent !");
 
-        const all = this.getAllFromCache(this.options.cacheStrategy, getOptions);
+        const all = this.getAllFromCache(this.options.cacheStrategy, uniqueCacheKey);
         return this.filterByCacheProvideStrategy(all, getOptions);
     }
 
@@ -89,7 +90,7 @@ export class EnterpriseCollectionCacheProvider<TModel>{
 
     protected isCacheResultLacking(
         result: TModel[],
-        getOptions?: GetFromCacheCollectionOptions
+        getOptions?: GetCollectionOptions
     ): boolean {
         if (getOptions?.forceGetFromApi) return true;
 
@@ -101,15 +102,15 @@ export class EnterpriseCollectionCacheProvider<TModel>{
 
     protected getAllFromCache(
         strategy: EnumCacheType,
-        getOptions?: GetFromCacheCollectionOptions
+        uniqueCacheKey?: string
     ): TModel[] {
-        return EnterpriseDataHouse.instance.get(strategy, this.options.typename, getOptions);
+        return EnterpriseDataHouse.instance.get(strategy, this.options.typename, uniqueCacheKey);
     }
 
 
     protected filterByCacheProvideStrategy(
         all: TModel[],
-        getOptions?: GetFromCacheCollectionOptions
+        getOptions?: GetCollectionOptions
     ): TModel[] {
         const isStrategyColledtionId =
             this.options.provideFromCacheStrategy ===

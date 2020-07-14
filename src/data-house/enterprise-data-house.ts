@@ -1,7 +1,7 @@
 import { isDevelopment } from "../helpers";
 import cloneDeep from "lodash.clonedeep";
-import { GetFromCacheCollectionOptions } from "./collection/get-from-cache-collection.options";
 import { CacheUtil, EnumCacheType, cache } from '@sabasayer/utils'
+import { GetCollectionOptions } from "./collection/get-collection.options";
 
 declare global {
     interface Window { enterpriseDataHouse: any }
@@ -24,8 +24,8 @@ export class EnterpriseDataHouse {
         window.enterpriseDataHouse = this;
     }
 
-    get<TModel>(type: EnumCacheType, typename: string, getOptions?: GetFromCacheCollectionOptions): TModel[] {
-        const key = getOptions?.uniqueCacheKey ?? typename;
+    get<TModel>(type: EnumCacheType, typename: string, uniqueCacheKey?: string): TModel[] {
+        const key = uniqueCacheKey ?? typename;
 
         if (type === EnumCacheType.Memory)
             return this.getFromInMemoryCache(key);

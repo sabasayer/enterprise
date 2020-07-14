@@ -5,8 +5,8 @@ import { IValidationResponse } from "./validation-response.interface";
 export interface IEnterpriseCollectionLogic<TModel> {
     provider?: EnterpriseCollectionProvider<TModel>;
 
-    get?: (options: object) => Promise<IApiResponse<TModel[]>>
-    getOne?: (options: object) => Promise<IApiResponse<TModel>>
+    get?: (options: object,cancelTokenUniqueKey?:string) => Promise<IApiResponse<TModel[]>>
+    getOne?: (options: object,cancelTokenUniqueKey?:string) => Promise<IApiResponse<TModel>>
     save?: <TSaveResult>(options: object) => Promise<IApiResponse<TSaveResult>>
     saveMany?: <TSaveManyResult>(options: object) => Promise<IApiResponse<TSaveManyResult>>
     delete?: <TDeleteResult>(options: object) => Promise<IApiResponse<TDeleteResult>>
