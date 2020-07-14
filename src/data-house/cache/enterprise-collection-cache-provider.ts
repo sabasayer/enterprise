@@ -24,17 +24,48 @@ export class EnterpriseCollectionCacheProvider<TModel>{
         );
     }
 
-    removeItemsFromCache(ids?: (number | string)[]) {
-        if (!this.options.cacheStrategy ||
-            this.options.provideFromCacheStrategy != EnumProvideFromCacheStrategy.CollectionId ||
-            !ids?.length) return;
+    /**
+     * Pushs new items to cache
+     */
+    addItemsToCache(newItems: TModel[], uniqueCacheKey?: string) {
+        if (!this.options.cacheStrategy) return;
 
-        EnterpriseDataHouse.instance.removeItem<TModel>(this.options.cacheStrategy, this.options.typename, (item) => {
+        const hasMeansToFindIdfield = this.options.provideFromCacheStrategy == EnumProvideFromCacheStrategy.CollectionId &&
+            (this.options.idField || this.options.getIdField)
+
+        const compareFunc = (cachedItem: TModel, newItem: TModel) => {
+            const cachedItemId = this.getIdFromItem(cachedItem);
+            const newItemId = this.getIdFromItem(newItem);
+
+            if (!cachedItem)
+                throw `cached item : ${JSON.stringify(cachedItem)} id cannot be undefined`;
+
+            if (!newItemId)
+                throw `new item : ${JSON.stringify(cachedItem)} id cannot be undefined`;
+
+            return cachedItemId == newItemId;
+        }
+
+        EnterpriseDataHouse.instance.addItems<TModel>(this.options.cacheStrategy, this.options.typename, newItems,
+            hasMeansToFindIdfield ? compareFunc : undefined, uniqueCacheKey)
+    }
+
+    /**
+     * Removes items by id field
+     * @param ids id fields of items that will be removed
+     */
+    removeItemsFromCache(ids?: (number | string)[]) {
+        const hasMeansToFindIdfield = this.options.provideFromCacheStrategy == EnumProvideFromCacheStrategy.CollectionId &&
+            ids?.length
+
+        if (!this.options.cacheStrategy || !hasMeansToFindIdfield) return;
+
+        EnterpriseDataHouse.instance.removeItems<TModel>(this.options.cacheStrategy, this.options.typename, (item) => {
             const id = this.getIdFromItem(item);
 
             if (id == undefined) throw "id cannot be undefined";
 
-            return ids.includes(id as string | number)
+            return !!ids?.includes(id as string | number)
         })
     }
 

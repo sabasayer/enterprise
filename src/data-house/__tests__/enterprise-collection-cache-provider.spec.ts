@@ -1,5 +1,5 @@
 import { EnterpriseCollectionCacheProvider } from '../cache/enterprise-collection-cache-provider';
-import { EnumCacheType, ExtendArray } from '@sabasayer/utils';
+import { EnumCacheType, ExtendArray, cache } from '@sabasayer/utils';
 import { EnumProvideFromCacheStrategy } from '../collection/enums/provide-from-cache-strategy.enum';
 import { IMockData, createMock } from '../mocks/mock';
 import { EnterpriseDataHouse } from '../enterprise-data-house';
@@ -95,6 +95,48 @@ describe("Enterprise Collection Cache Provider", () => {
         const cachedData = cacheProvider.getFromCache();
 
         expect(cachedData.some(e => e.id == firstData.id)).toBeFalsy();
+    })
 
+    it("should add new data", () => {
+        const data = createMock(20);
+
+        const cacheProvider = new EnterpriseCollectionCacheProvider<IMockData>({
+            typename: 'test2',
+            cacheStrategy: EnumCacheType.Memory
+        })
+
+        const newItem = { id: 900, name: 'new item' };
+
+        cacheProvider.setCache(data);
+        cacheProvider.addItemsToCache([newItem])
+
+        const cachedData = cacheProvider.getFromCache();
+        const last = cachedData.last();
+
+        expect(last).toEqual(newItem);
+    })
+
+
+    it("should add new data with checking ids", () => {
+        const data = createMock(20);
+        const lastData = data.last();
+
+        const cacheProvider = new EnterpriseCollectionCacheProvider<IMockData>({
+            typename: 'test3',
+            cacheStrategy: EnumCacheType.Memory,
+            provideFromCacheStrategy: EnumProvideFromCacheStrategy.CollectionId,
+            idField: 'id'
+        })
+
+        const newItem = { id: 900, name: 'new item' };
+
+        cacheProvider.setCache(data);
+        cacheProvider.addItemsToCache([newItem, lastData])
+
+        const cachedData = cacheProvider.getFromCache();
+        const last = cachedData.last();
+
+        expect(last).toEqual(newItem);
+        expect(cachedData.filter(e=>e.id == lastData.id)).toHaveLength(1);
     })
 })

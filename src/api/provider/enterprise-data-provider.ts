@@ -64,12 +64,8 @@ export class EnterpriseDataProvider {
 
         const source = this.createCancelToken();
 
-        const key = this.createCancelTokenKey(options, uniqueKey, method);
-        this.cancelPreviousPromises(key);
-        this.registerCancelToken(source, key);
-
         const response = this.apiRequest<TRequest, TResponseModel>(
-            options, request, method, { cancelToken: source.token }, mustCheckWaitingRequest);
+            options, request, method, { cancelToken: source.token }, undefined, mustCheckWaitingRequest);
 
         return { response, token: source }
     }
@@ -101,14 +97,36 @@ export class EnterpriseDataProvider {
         if (tokenList) {
             tokenList.push(token);
         }
-
     }
 
+    handleCancelation(
+        options: IApiRequestOptions,
+        uniqueKey: string,
+        method?: EnumRequestMethod
+    ) {
+        const source = this.createCancelToken();
+
+        const key = this.createCancelTokenKey(options, uniqueKey, method);
+        this.cancelPreviousPromises(key);
+        this.registerCancelToken(source, key);
+    }
+
+    /**
+     * 
+     * @param options 
+     * @param request 
+     * @param method 
+     * @param config 
+     * @param cancelTokenUniqueKey unique string for grouping sameRequest cancelTokens.
+     * Cancels existing waiting promises with same unique key and request. 
+     * @param mustCheckWaitingRequest Prevents paralel same request 
+     */
     async apiRequest<TRequest, TResponseModel>(
         options: IApiRequestOptions,
         request: TRequest,
         method?: EnumRequestMethod,
         config?: AxiosRequestConfig,
+        cancelTokenUniqueKey?: string,
         mustCheckWaitingRequest: boolean = true): Promise<IApiResponse<TResponseModel>> {
 
         const validationResult = this.validateRequest(options, request);
@@ -117,6 +135,10 @@ export class EnterpriseDataProvider {
             return {
                 errorMessages: validationResult.errorMessages,
             };
+        }
+
+        if (cancelTokenUniqueKey) {
+            this.handleCancelation(options, cancelTokenUniqueKey, method)
         }
 
         return this.request({

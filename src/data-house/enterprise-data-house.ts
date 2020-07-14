@@ -1,7 +1,7 @@
 import { isDevelopment } from "../helpers";
 import cloneDeep from "lodash.clonedeep";
 import { GetFromCacheCollectionOptions } from "./collection/get-from-cache-collection.options";
-import { CacheUtil, EnumCacheType } from '@sabasayer/utils'
+import { CacheUtil, EnumCacheType, cache } from '@sabasayer/utils'
 
 declare global {
     interface Window { enterpriseDataHouse: any }
@@ -33,7 +33,7 @@ export class EnterpriseDataHouse {
         return CacheUtil.getFromCache(type, key) ?? [];
     }
 
-    set(type: EnumCacheType, typename: string, collection: any[], uniqueCacheKey?: string): void {
+    set<TModel>(type: EnumCacheType, typename: string, collection: TModel[], uniqueCacheKey?: string): void {
         const key = uniqueCacheKey ?? typename;
 
         if (type === EnumCacheType.Memory) {
@@ -54,21 +54,48 @@ export class EnterpriseDataHouse {
         CacheUtil.clearCache(type, key);
     }
 
-    removeItem<TModel>(type: EnumCacheType, typename: string, findFunc: (item: TModel) => boolean) {
+    addItems<TModel>(
+        type: EnumCacheType,
+        typename: string,
+        collection: TModel[],
+        compareFunc?: (cachedItem: TModel, item: TModel) => boolean,
+        uniqueCacheKey?: string): void {
+        let cachedItems: TModel[] | undefined;
+        const key = uniqueCacheKey ?? typename;
+
+        if (type == EnumCacheType.Memory) {
+            cachedItems = this.getFromInMemoryCache(key, false);
+        }
+        else
+            cachedItems = this.get<TModel>(type, key);
+
+        if (!cachedItems.length) {
+            this.set(type, key, collection);
+            return;
+        }
+
+        const statement = compareFunc ?
+            ((newItem: TModel) => !!cachedItems?.every(cachedItem => !compareFunc(cachedItem, newItem))) :
+            undefined
+
+
+        cachedItems.pushRange(collection, statement)
+
+        if (type == EnumCacheType.Memory)
+            return;
+
+        this.set(type, key, cachedItems);
+    }
+
+    removeItems<TModel>(type: EnumCacheType, typename: string, filterFunc: (item: TModel) => boolean) {
         if (type == EnumCacheType.Memory) {
             const collection = this.getFromInMemoryCache(typename, false);
-            const item = collection.find(findFunc);
-            if (!item) return;
-
-            collection.remove(item);
+            collection.findRemove(filterFunc);
             return;
         }
 
         const items = this.get<TModel>(type, typename);
-        const item = items.find(findFunc);
-        if (!item) return;
-
-        items.remove(item);
+        items.findRemove(filterFunc);
         this.set(type, typename, items)
     }
 
