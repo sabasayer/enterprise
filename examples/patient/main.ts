@@ -12,10 +12,6 @@ PatientCollectionLogic.initialize(enterpriseApi);
 new PatientComponent("1");
 new PatientListComponent();
 
-const res = PatientCollectionLogic.instance.provider.cancellableApiRequest({url:'patient'},{},'12')
-res.token.cancel();
-
-
 export {
     enterpriseApi
 }

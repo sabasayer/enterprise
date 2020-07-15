@@ -7,7 +7,6 @@ import {
     getPatientRequestOptions,
     savePatientsRequestOptions,
     deletePatientsRequestOptions,
-    SavePatientsRequest,
 } from "./patient.api";
 import { EnterpriseApi, GetCollectionOptions } from "../..";
 

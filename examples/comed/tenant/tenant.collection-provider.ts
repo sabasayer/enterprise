@@ -1,23 +1,28 @@
 import { EnterpriseCollectionProvider } from "../../../src/data-house/collection/enterprise-collection-provider";
-import { TenantModel, getTenantsRequestOptions, GetTenantsRequest } from "./tenant.api";
+import {
+    TenantModel,
+    getTenantsRequestOptions,
+    GetTenantsRequest,
+} from "./tenant.api";
 import { EnterpriseApi } from "../../..";
 import { EnumCacheType } from "@sabasayer/utils";
 import { EnumProvideFromCacheStrategy } from "../../../src/data-house/collection/enums/provide-from-cache-strategy.enum";
-import { GetFromCacheCollectionOptions } from "../../../src/data-house/collection/get-from-cache-collection.options";
+import { GetCollectionOptions } from "../../..";
 
-export class TenantCollectionProvider extends EnterpriseCollectionProvider<TenantModel>{
+export class TenantCollectionProvider extends EnterpriseCollectionProvider<
+    TenantModel
+> {
     constructor(api: EnterpriseApi) {
         super(api, {
-            typename: 'tenant',
+            typename: "tenant",
             cacheStrategy: EnumCacheType.SessionStorage,
             getRequestOptions: getTenantsRequestOptions,
-            idField: 'id',
-            provideFromCacheStrategy: EnumProvideFromCacheStrategy.CollectionId
-        })
+            idField: "id",
+            provideFromCacheStrategy: EnumProvideFromCacheStrategy.CollectionId,
+        });
     }
 
-    async get(request: GetTenantsRequest,
-        getOptions?: GetFromCacheCollectionOptions) {
+    async get(request: GetTenantsRequest, getOptions?: GetCollectionOptions) {
         return super.get(request, getOptions);
     }
 }

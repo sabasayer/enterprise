@@ -57,7 +57,6 @@ export class EnterpriseDataProvider {
     cancellableApiRequest<TRequest, TResponseModel>(
         options: IApiRequestOptions,
         request: TRequest,
-        uniqueKey: string,
         method?: EnumRequestMethod,
         mustCheckWaitingRequest: boolean = true
     ): ICancellableApiResponse<TResponseModel> {
