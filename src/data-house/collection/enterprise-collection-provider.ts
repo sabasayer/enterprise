@@ -95,14 +95,9 @@ abstract class EnterpriseCollectionProvider<TModel> {
                 },
             };
 
-        const method = this.options.isEndpointRest
-            ? EnumRequestMethod.GET
-            : EnumRequestMethod.POST;
         return this.apiRequest(
             this.options.getRequestOptions,
             request,
-            method,
-            undefined,
             cancelTokenUniqueKey
         );
     }
@@ -120,8 +115,7 @@ abstract class EnterpriseCollectionProvider<TModel> {
 
         return this.apiRequest(
             this.options.saveRequestOptions,
-            request,
-            EnumRequestMethod.POST
+            request
         );
     }
 
@@ -137,13 +131,9 @@ abstract class EnterpriseCollectionProvider<TModel> {
                 },
             };
 
-        const method = this.options.isEndpointRest
-            ? EnumRequestMethod.DELETE
-            : EnumRequestMethod.POST;
         const result = await this.apiRequest<object, TDeleteResponse>(
             this.options.deleteRequestOptions,
-            request,
-            method
+            request
         );
 
         if (!result.errorMessages) {

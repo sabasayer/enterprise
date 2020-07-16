@@ -4,7 +4,6 @@ import { IApiRequestOptions } from "../../api/provider/api-request-options.inter
 import { EnterpriseCollectionCacheOptions } from "../cache/enterprise-collection-cache.options";
 
 export interface EnterpriseCollectionOptions<TModel> extends EnterpriseCollectionCacheOptions<TModel> {
-    isEndpointRest?: boolean
     getRequestOptions?: IApiRequestOptions
     saveRequestOptions?: IApiRequestOptions
     deleteRequestOptions?: IApiRequestOptions
