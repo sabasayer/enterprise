@@ -47,28 +47,22 @@ export class EnterpriseDataProvider {
         return validateRequest(requestOptions.validationRules, request);
     }
 
-    createCancelToken() {
-        return Axios.CancelToken.source();
-    }
-
     /**
      * Returns cancel token and response.
      */
     cancellableApiRequest<TRequest, TResponseModel>(
         options: IApiRequestOptions,
         request: TRequest,
-        method?: EnumRequestMethod,
         mustCheckWaitingRequest: boolean = true
     ): ICancellableApiResponse<TResponseModel> {
-        const source = this.createCancelToken();
+        const source = EnterpriseApiHelper.createCancelToken();
 
         const response = this.apiRequest<TRequest, TResponseModel>(
             options,
             request,
-            method,
-            { cancelToken: source.token },
             undefined,
-            mustCheckWaitingRequest
+            mustCheckWaitingRequest,
+            { cancelToken: source.token }
         );
 
         return { response, token: source };
@@ -76,12 +70,11 @@ export class EnterpriseDataProvider {
 
     protected createCancelTokenKey(
         options: IApiRequestOptions,
-        uniqueKey: string,
-        method?: EnumRequestMethod
+        uniqueKey: string
     ) {
         const requestHash = EnterpriseApiHelper.createRequestHash(
             options.url,
-            method
+            options.method
         );
         return `${uniqueKey}_${requestHash}`;
     }
@@ -97,10 +90,9 @@ export class EnterpriseDataProvider {
 
     protected deleteCancelTokens(
         options: IApiRequestOptions,
-        uniqueKey: string,
-        method?: EnumRequestMethod
+        uniqueKey: string
     ) {
-        const key = this.createCancelTokenKey(options, uniqueKey, method);
+        const key = this.createCancelTokenKey(options, uniqueKey);
         this.cancelTokens.delete(key);
     }
 
@@ -117,12 +109,11 @@ export class EnterpriseDataProvider {
 
     protected handleCancelation(
         options: IApiRequestOptions,
-        uniqueKey: string,
-        method?: EnumRequestMethod
+        uniqueKey: string
     ): CancelTokenSource {
-        const source = this.createCancelToken();
+        const source = EnterpriseApiHelper.createCancelToken();
 
-        const key = this.createCancelTokenKey(options, uniqueKey, method);
+        const key = this.createCancelTokenKey(options, uniqueKey);
         this.cancelPreviousPromises(key);
         this.registerCancelToken(source, key);
         return source;
@@ -130,17 +121,16 @@ export class EnterpriseDataProvider {
 
     /**
      * Validates request, handles cancelation and response
-     * @param cancelTokenUniqueKey unique string for grouping sameRequest cancelTokens.
+     * @param cancelTokenUniqueKey unique string for grouping sameRequest.
      * Cancels existing waiting promises with same unique key and request.
      * @param mustCheckWaitingRequest Prevents paralel same request
      */
     async apiRequest<TRequest, TResponseModel>(
         options: IApiRequestOptions,
         request: TRequest,
-        method?: EnumRequestMethod,
-        config?: AxiosRequestConfig,
         cancelTokenUniqueKey?: string,
-        mustCheckWaitingRequest: boolean = true
+        mustCheckWaitingRequest: boolean = true,
+        config?: AxiosRequestConfig
     ): Promise<IApiResponse<TResponseModel>> {
         const validationResult = this.validateRequest(options, request);
 
@@ -154,8 +144,7 @@ export class EnterpriseDataProvider {
             if (!config) config = {};
             const source = this.handleCancelation(
                 options,
-                cancelTokenUniqueKey,
-                method
+                cancelTokenUniqueKey
             );
             config.cancelToken = source.token;
         }
@@ -164,12 +153,12 @@ export class EnterpriseDataProvider {
             url: options.url,
             data: request,
             config,
-            method,
+            method: options.method,
             mustCheckWaitingRequest,
         });
 
         if (cancelTokenUniqueKey) {
-            this.deleteCancelTokens(options, cancelTokenUniqueKey, method);
+            this.deleteCancelTokens(options, cancelTokenUniqueKey);
         }
 
         return response;
@@ -190,7 +179,6 @@ export class EnterpriseDataProvider {
             const error = e as AxiosError;
 
             if (Axios.isCancel(e)) {
-                console.log("canceled", options);
                 return { canceled: true };
             }
 

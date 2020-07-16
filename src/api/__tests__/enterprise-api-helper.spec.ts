@@ -1,5 +1,6 @@
 import { EnterpriseApi } from '../enterpise-api';
 import { EnterpriseApiHelper } from '../enterprise-api.helper';
+import {CancelTokenSource} from 'axios';
 
 
 describe("Enterprise Api Helper ", () => {
@@ -68,5 +69,11 @@ describe("Enterprise Api Helper ", () => {
         const key = EnterpriseApiHelper.createUniqueKey('https://test.com', { id: 1 });
 
         expect(key).toBe('2_https://test.com_{"id":1}')
+    })
+
+    it("should create cancel token",()=>{
+        const token = EnterpriseApiHelper.createCancelToken();
+
+        expect(token.cancel).toBeDefined()
     })
 })

@@ -1,5 +1,6 @@
 import { Patient } from "./patient";
 import { IApiRequestOptions } from "../../src/api/provider/api-request-options.interface";
+import { EnumRequestMethod } from "../../src/api";
 
 export interface GetPatientRequest {
     search?: string;
@@ -18,14 +19,17 @@ export interface DeletePatientsRequest {
 export const getPatientRequestOptions: IApiRequestOptions = {
     url: "patient",
     validationRules: [],
+    method:EnumRequestMethod.GET
 };
 
 export const savePatientsRequestOptions: IApiRequestOptions = {
     url: "patient",
-    validationRules: []
+    validationRules: [],
+    method:EnumRequestMethod.POST
 }
 
 export const deletePatientsRequestOptions: IApiRequestOptions = {
     url: "patient",
-    validationRules: []
+    validationRules: [],
+    method:EnumRequestMethod.DELETE
 }

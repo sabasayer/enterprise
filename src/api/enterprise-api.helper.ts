@@ -1,5 +1,6 @@
 import { EnterpriseApiOptions } from "./enterprise-api.options";
 import { EnumRequestMethod } from "./enums/request-method.enum";
+import Axios from "axios";
 
 export abstract class EnterpriseApiHelper {
     static createUrl(url: string, data: Record<string, any>): string {
@@ -49,5 +50,9 @@ export abstract class EnterpriseApiHelper {
 
     static createRequestHash(url: string, method: EnumRequestMethod = EnumRequestMethod.POST) {
         return `${method}_${url}`;
+    }
+
+    static createCancelToken() {
+        return Axios.CancelToken.source();
     }
 }
