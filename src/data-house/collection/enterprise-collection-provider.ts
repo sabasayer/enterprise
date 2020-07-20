@@ -14,10 +14,10 @@ interface EnterpriseCollectionProvider<TModel>
     extends EnterpriseCollectionCacheProvider<TModel>,
         EnterpriseDataProvider {}
 
-abstract class EnterpriseCollectionProvider<TModel> {
+class EnterpriseCollectionProvider<TModel> {
     protected options: EnterpriseCollectionOptions<TModel>;
 
-    protected constructor(
+    constructor(
         api: EnterpriseApi,
         options: EnterpriseCollectionOptions<TModel>
     ) {
@@ -103,7 +103,8 @@ abstract class EnterpriseCollectionProvider<TModel> {
     }
 
     async save<TSaveResponse>(
-        request: object
+        request: object,
+        saveToCacheFunc?: (response: TSaveResponse) => TModel[]
     ): Promise<IApiResponse<TSaveResponse>> {
         if (!this.options.saveRequestOptions)
             return {
@@ -113,10 +114,22 @@ abstract class EnterpriseCollectionProvider<TModel> {
                 },
             };
 
-        return this.apiRequest(
+        const result = await this.apiRequest<object, TSaveResponse>(
             this.options.saveRequestOptions,
             request
         );
+
+        if (
+            !result.errorMessages &&
+            !result.canceled &&
+            result.data &&
+            saveToCacheFunc
+        ) {
+            const items = saveToCacheFunc(result.data);
+            this.addItemsToCache(items);
+        }
+
+        return result;
     }
 
     async delete<TDeleteResponse>(
@@ -136,7 +149,7 @@ abstract class EnterpriseCollectionProvider<TModel> {
             request
         );
 
-        if (!result.errorMessages) {
+        if (!result.errorMessages && !result.canceled) {
             this.removeItemsFromCache(ids);
         }
 
