@@ -3,4 +3,7 @@
 
 Acts as glue between logic and data house. 
 
-Cache strategy and how to compare, if required item is exist at the cache is defined here.
+Caches items by defined cache strategy and provide from cache options.
+
+Also has basic publish subscribe ability to observe changes on the data.
+Which is provided by EnterpirseObservable. 

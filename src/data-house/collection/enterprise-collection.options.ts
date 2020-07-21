@@ -7,4 +7,6 @@ export interface EnterpriseCollectionOptions<TModel> extends EnterpriseCollectio
     getRequestOptions?: IApiRequestOptions
     saveRequestOptions?: IApiRequestOptions
     deleteRequestOptions?: IApiRequestOptions
+
+    relatedTypes?:string[]
 }

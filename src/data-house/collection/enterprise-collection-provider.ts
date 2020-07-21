@@ -9,6 +9,8 @@ import { applyMixins } from "../../shared/mixin.helper";
 import { EnterpriseCollectionCacheProvider } from "../cache/enterprise-collection-cache-provider";
 import { GetCollectionOptions } from "./get-collection.options";
 import { EnterpriseApiHelper } from "../../api/enterprise-api.helper";
+import { EnterpriseObservable, IEnterpriseSubscription } from "../observable";
+import { EnterpriseObservableHouse } from "../observable/enterprise-observable-house";
 
 interface EnterpriseCollectionProvider<TModel>
     extends EnterpriseCollectionCacheProvider<TModel>,
@@ -16,6 +18,7 @@ interface EnterpriseCollectionProvider<TModel>
 
 class EnterpriseCollectionProvider<TModel> {
     protected options: EnterpriseCollectionOptions<TModel>;
+    protected observable: EnterpriseObservable<TModel>;
 
     constructor(
         api: EnterpriseApi,
@@ -23,11 +26,21 @@ class EnterpriseCollectionProvider<TModel> {
     ) {
         this.api = api;
         this.options = options;
+        this.observable = new EnterpriseObservable(options.typename);
         this.initWaitingRequests();
     }
 
+    subscribe(options: IEnterpriseSubscription<TModel>) {
+        this.observable.subscribe(options);
+    }
+
+    unsubscribe(id: string) {
+        this.observable.unsubscribe(id);
+    }
+
     /**
-     * Decides where data will be provided by options
+     * Decides where data will be provided by options.
+     * Cache or Api
      * @param getOptions how to compare and get data
      * @param apiFunc api call function to get from backend
      */
@@ -83,6 +96,10 @@ class EnterpriseCollectionProvider<TModel> {
             : undefined;
     }
 
+    /**
+     * @param cancelTokenUniqueKey Group cancel tokens by this key.
+     * And cancel previous ones with same key
+     */
     async getFromApi<TGetRequest>(
         request: TGetRequest,
         cancelTokenUniqueKey?: string
@@ -102,9 +119,13 @@ class EnterpriseCollectionProvider<TModel> {
         );
     }
 
+    /**
+     * @param mapResponseToModel Runs after request succeeded,
+     * creates array for saving to cache
+     */
     async save<TSaveResponse>(
         request: object,
-        saveToCacheFunc?: (response: TSaveResponse) => TModel[]
+        mapResponseToModel?: (response: TSaveResponse) => TModel[]
     ): Promise<IApiResponse<TSaveResponse>> {
         if (!this.options.saveRequestOptions)
             return {
@@ -123,15 +144,31 @@ class EnterpriseCollectionProvider<TModel> {
             !result.errorMessages &&
             !result.canceled &&
             result.data &&
-            saveToCacheFunc
+            mapResponseToModel
         ) {
-            const items = saveToCacheFunc(result.data);
+            const items = mapResponseToModel(result.data);
+            this.observable.addedMany(items);
             this.addItemsToCache(items);
         }
 
         return result;
     }
 
+    handleSideEffects() {
+        if (!this.options.relatedTypes?.length) return;
+
+        this.options.relatedTypes?.forEach((type) => {
+            const observable = EnterpriseObservableHouse.instance.get(type);
+
+            if (!observable) return;
+
+            observable.sideEffected();
+        });
+    }
+
+    /**
+     * @param ids Removed item ids to remove from cache
+     */
     async delete<TDeleteResponse>(
         request: object,
         ids?: (string | number)[]
@@ -149,7 +186,8 @@ class EnterpriseCollectionProvider<TModel> {
             request
         );
 
-        if (!result.errorMessages && !result.canceled) {
+        if (!result.errorMessages && !result.canceled && ids) {
+            this.observable.removedMany(ids);
             this.removeItemsFromCache(ids);
         }
 
