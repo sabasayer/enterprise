@@ -1,4 +1,9 @@
 import { IEnterpriseCollectionLogic } from "./enterprise-collection-logic.interface";
-import { IValidationResponse } from "./validation-response.interface";
+import { IValidationResult } from "./validation-result.interface";
+import { EnterpriseCollectionLogic } from "./enterprise-collection-logic";
 
-export { IEnterpriseCollectionLogic, IValidationResponse };
+export {
+    IEnterpriseCollectionLogic,
+    IValidationResult,
+    EnterpriseCollectionLogic,
+};

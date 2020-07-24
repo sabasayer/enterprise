@@ -135,7 +135,7 @@ export class EnterpriseCollectionCacheProvider<TModel>{
             throw new Error("idField or getIdField function must be defined");
     }
 
-    protected getIdFromItem(item: TModel) {
+    getIdFromItem(item: TModel) {
         this.checkIdOptions();
 
         return this.options.idField

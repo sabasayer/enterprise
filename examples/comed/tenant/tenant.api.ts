@@ -1,7 +1,7 @@
 import { IApiRequestOptions } from "../../../src/api/provider/api-request-options.interface";
 
 export interface GetTenantsRequest {
-
+    keys?:number[]
 }
 
 export interface TenantModel {

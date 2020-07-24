@@ -3,6 +3,7 @@ import { apiConfig } from "./api.config";
 import { AuthLogic } from "./auth/auth.logic";
 import { AuthComponent } from "./auth/auth.component";
 import { ErrorMessages } from "../../src/shared";
+import { TenantLogic } from "./tenant/tenant.logic";
 
 const enterpriseApi = new EnterpriseApi({
     endpoints: apiConfig.endpoints,
@@ -22,9 +23,12 @@ const enterpriseApi = new EnterpriseApi({
             }
         );
 
-        return errorMessages
+        return errorMessages;
     },
 });
 
 AuthLogic.initialize(enterpriseApi);
+TenantLogic.initialize(enterpriseApi);
 new AuthComponent();
+
+TenantLogic.instance.get({});
