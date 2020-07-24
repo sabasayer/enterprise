@@ -40,11 +40,7 @@ describe("Enterprise Data Provider", () => {
     });
 
     it("should call post with cancelToken", async () => {
-        const request = provider.apiRequest(
-            { url: "patient" },
-            { id: 1 },
-            "1"
-        );
+        const request = provider.apiRequest({ url: "patient" }, { id: 1 }, "1");
 
         const request2 = provider.apiRequest(
             { url: "patient" },
@@ -63,5 +59,31 @@ describe("Enterprise Data Provider", () => {
         provider.apiRequest({ url: "patient" }, { id: 1 });
 
         expect(mockAxios.post).toHaveBeenCalledTimes(1);
+    });
+
+    it("should create errorMessages when error and createErrorMessagesFunc defined", async () => {
+        const api = new EnterpriseApi({
+            baseUrl: "http://test.com",
+            createErrorMessagesFunc: (response) => {
+                return response.data;
+            },
+        });
+
+        provider = new EnterpriseDataProvider(api);
+
+        const request = provider.apiRequest({ url: "test" }, {});
+
+        const errorMessage = {
+            error: "Error message",
+        };
+
+        mockAxios.mockResponse({
+            data: errorMessage,
+            status: 500,
+        });
+
+        const result = await request;
+
+        expect(result.errorMessages).toEqual(errorMessage);
     });
 });

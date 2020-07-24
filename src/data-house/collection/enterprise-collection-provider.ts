@@ -148,6 +148,8 @@ class EnterpriseCollectionProvider<TModel> {
         ) {
             const items = mapResponseToModel(result.data);
             this.observable.addedMany(items);
+            this.handleSideEffects();
+
             this.addItemsToCache(items);
         }
 
@@ -188,6 +190,8 @@ class EnterpriseCollectionProvider<TModel> {
 
         if (!result.errorMessages && !result.canceled && ids) {
             this.observable.removedMany(ids);
+            this.handleSideEffects();
+
             this.removeItemsFromCache(ids);
         }
 

@@ -182,6 +182,15 @@ export class EnterpriseDataProvider {
                 return { canceled: true };
             }
 
+            const createErrorMessagesFunc = this.api.getOptions()
+                .createErrorMessagesFunc;
+
+            if (error.response && createErrorMessagesFunc) {
+                return {
+                    errorMessages: createErrorMessagesFunc(error.response),
+                };
+            }
+
             return {
                 errorMessages: { [error.name]: error.message },
             };
@@ -246,6 +255,15 @@ export class EnterpriseDataProvider {
             : response.data;
 
         if (!HTTP_SUCCESS_CODES.includes(response.status)) {
+            const createErrorMessagesFunc = this.api.getOptions()
+                .createErrorMessagesFunc;
+
+            if (response && createErrorMessagesFunc) {
+                return {
+                    errorMessages: createErrorMessagesFunc(response),
+                };
+            }
+
             return {
                 errorMessages: { "server error": data },
             };

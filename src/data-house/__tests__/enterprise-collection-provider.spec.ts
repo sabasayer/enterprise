@@ -5,6 +5,7 @@ import { IMockData } from "../mocks/mock";
 import { EnumCacheType, ExtendArray } from "@sabasayer/utils";
 import { EnumProvideFromCacheStrategy } from "../collection/enums/provide-from-cache-strategy.enum";
 import { EnterpriseDataHouse } from "../enterprise-data-house";
+import { IEnterpriseSubscription, EnterpriseObservable } from "../observable";
 
 const enterpriseApi = new EnterpriseApi({
     baseUrl: "http://test.com",
@@ -184,11 +185,99 @@ describe("EnterpriseCollectionProvider", () => {
         expect(data).toHaveLength(0);
     });
 
-    it("should publish added and removed for subscriptions",()=>{
-        
-    })
+    it("should publish added and removed for subscriptions", async () => {
+        const provider = new EnterpriseCollectionProvider<IMockData>(
+            enterpriseApi,
+            {
+                typename: "test",
+                saveRequestOptions: { url: "saveTests" },
+                deleteRequestOptions: { url: "deleteTests" },
+            }
+        );
 
-    it("should run side effects for subscriptions",()=>{
+        let addedItem: IMockData = {
+            id: 0,
+            name: "",
+        };
 
-    })
+        let removedId: number = 0;
+
+        const subscription: IEnterpriseSubscription<IMockData> = {
+            id: "1",
+            added: (item) => {
+                addedItem = item;
+            },
+            removed: (id) => {
+                removedId = +id;
+            },
+            sideEffected: () => {},
+        };
+
+        provider.subscribe(subscription);
+
+        const saveRequest = provider.save<IMockData[]>(
+            {},
+            (res: IMockData[]) => {
+                return res;
+            }
+        );
+
+        const savedData: IMockData[] = [
+            { id: 1, name: "ali" },
+            { id: 2, name: "fatma" },
+        ];
+
+        mockAxios.mockResponse({
+            data: savedData,
+        });
+
+        await saveRequest;
+
+        expect(addedItem).toEqual(savedData[1]);
+
+        const deleteRequet = provider.delete<number>({}, [12]);
+
+        mockAxios.mockResponse({
+            data: 12,
+        });
+
+        await deleteRequet;
+
+        expect(removedId).toBe(12);
+    });
+
+    it("should run side effects for subscriptions", async () => {
+        const provider = new EnterpriseCollectionProvider<IMockData>(
+            enterpriseApi,
+            {
+                typename: "test",
+                saveRequestOptions: { url: "saveTests" },
+                relatedTypes: ["sideType"],
+            }
+        );
+
+        let isSideEffected: boolean = false;
+
+        const subscription: IEnterpriseSubscription<IMockData> = {
+            id: "1",
+            added: (item) => {},
+            removed: (id) => {},
+            sideEffected: () => {
+                isSideEffected = true;
+            },
+        };
+
+        const observable2 = new EnterpriseObservable<IMockData>("sideType");
+        observable2.subscribe(subscription);
+
+        const request = provider.save<IMockData[]>({}, (res: IMockData[]) => {
+            return res;
+        });
+
+        mockAxios.mockResponse({data:[]});
+
+        await request;
+
+        expect(isSideEffected).toBe(true);
+    });
 });

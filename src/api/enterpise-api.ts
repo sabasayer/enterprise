@@ -36,10 +36,14 @@ export class EnterpriseApi implements IEnterpriseApi {
     }
 
     /**
-    * converts data to querystring and appends to url
-    * @param data should only contain one level nested values
-    */
-    get(url: string, data?: Record<string, any>, config?: AxiosRequestConfig): AxiosPromise | never {
+     * converts data to querystring and appends to url
+     * @param data should only contain one level nested values
+     */
+    get(
+        url: string,
+        data?: Record<string, any>,
+        config?: AxiosRequestConfig
+    ): AxiosPromise | never {
         if (!this.axios) throw new Error("axios is not initialized");
 
         if (data) {
@@ -91,7 +95,7 @@ export class EnterpriseApi implements IEnterpriseApi {
         this.initAxios(options);
     }
 
-    getOptions(): DeepReadonly<EnterpriseApiOptions> {
+    getOptions(): EnterpriseApiOptions {
         return cloneDeep(this.options);
     }
 

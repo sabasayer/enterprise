@@ -7,7 +7,7 @@ export class AuthComponent {
     }
 
     async signIn() {
-        const result = await AuthLogic.instance.signIn({ username: 'comed.doktor', password: 'ASM123123', tenantId: 1 });
+        const result = await AuthLogic.instance.signIn({ username: 'ahmetar', password: '123456', tenantId: 1 });
 
         console.log('isAuthenticated', AuthLogic.instance.isAuthenticated);
 
