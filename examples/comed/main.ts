@@ -4,8 +4,11 @@ import { AuthLogic } from "./auth/auth.logic";
 import { AuthComponent } from "./auth/auth.component";
 import { ErrorMessages } from "../../src/shared";
 import { TenantLogic } from "./tenant/tenant.logic";
+import { EnterpriseLogicBoot } from "../../src/logic";
+import { enterpirseBoot } from "../../src/enterpirse.boot";
 
-const enterpriseApi = new EnterpriseApi({
+
+const enterpriseApi = enterpirseBoot({
     endpoints: apiConfig.endpoints,
     prefix: apiConfig.prefix,
     languagePrefix: "tr-tr",
@@ -25,10 +28,7 @@ const enterpriseApi = new EnterpriseApi({
 
         return errorMessages;
     },
-});
+})
 
-AuthLogic.initialize(enterpriseApi);
-TenantLogic.initialize(enterpriseApi);
 new AuthComponent();
-
 TenantLogic.instance.get({});

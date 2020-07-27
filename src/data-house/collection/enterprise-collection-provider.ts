@@ -78,9 +78,6 @@ class EnterpriseCollectionProvider<TModel> {
             }
         }
 
-        // if forceGetFromApi is true always overwrite cache
-        // if compare with id and ids exists find and update or add to cache
-
         const uniqueCacheKey = this.createRequestHash(getRequest);
         this.setCache(result, uniqueCacheKey);
 

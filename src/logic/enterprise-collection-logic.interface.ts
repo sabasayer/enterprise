@@ -2,7 +2,10 @@ import { EnterpriseCollectionProvider } from "@/data-house/collection/enterprise
 import { IApiResponse } from "@/api/provider/api-response.interface";
 import { IValidationResult } from "./validation-result.interface";
 
-export interface IEnterpriseCollectionLogic<TModel> {
+export interface IEnterpriseCollectionLogic<
+    TModel,
+    TCollectionProvider extends EnterpriseCollectionProvider<TModel>
+> {
     get?: (
         options: any,
         cancelTokenUniqueKey?: string

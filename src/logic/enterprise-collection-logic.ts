@@ -7,11 +7,14 @@ import { EnterpriseCollectionProvider } from "@/data-house";
 
 new ExtendArray();
 
-export class EnterpriseCollectionLogic<TModel> extends EnterpirseLogic
-    implements IEnterpriseCollectionLogic<TModel> {
-    protected provider: EnterpriseCollectionProvider<TModel>;
+export class EnterpriseCollectionLogic<
+    TModel,
+    TCollectionProvider extends EnterpriseCollectionProvider<TModel>
+> extends EnterpirseLogic
+    implements IEnterpriseCollectionLogic<TModel, TCollectionProvider> {
+    protected provider: TCollectionProvider;
 
-    constructor(provider: EnterpriseCollectionProvider<TModel>) {
+    constructor(provider: TCollectionProvider) {
         super();
         this.provider = provider;
     }

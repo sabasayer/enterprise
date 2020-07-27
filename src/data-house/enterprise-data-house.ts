@@ -1,7 +1,6 @@
 import { isDevelopment } from "../helpers";
 import cloneDeep from "lodash.clonedeep";
 import { CacheUtil, EnumCacheType, cache, ExtendArray } from '@sabasayer/utils'
-import { GetCollectionOptions } from "./collection/get-collection.options";
 
 new ExtendArray();
 

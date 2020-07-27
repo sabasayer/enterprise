@@ -1,7 +1,12 @@
 import { EnterpriseApi } from "@/api";
+import { EnterpriseLogicBoot } from "./enterprise-logic.boot";
 
-export abstract class EnterpirseLogic {
+export class EnterpirseLogic {
     static instance: EnterpirseLogic;
 
-    static initialize?(api:EnterpriseApi): void;
+    constructor(api?: EnterpriseApi) {}
+
+    static register() {
+        EnterpriseLogicBoot.register(this);
+    }
 }

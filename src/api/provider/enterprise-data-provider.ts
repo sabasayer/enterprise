@@ -197,6 +197,21 @@ export class EnterpriseDataProvider {
         }
     }
 
+    fileUpload(
+        options: IEnterpriseRequestOptions,
+        onUploadProgress?: (progressEvent: ProgressEvent) => void
+    ) {
+        if (!options.files?.length) throw new Error("files must not be empty");
+
+        return this.api.upload(
+            options.url,
+            options.files,
+            options.data,
+            options.dataKeyOnFileUpload,
+            onUploadProgress
+        );
+    }
+
     private createRequest(options: IEnterpriseRequestOptions): AxiosPromise {
         switch (options.method) {
             case EnumRequestMethod.GET:

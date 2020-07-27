@@ -86,6 +86,28 @@ export class EnterpriseApi implements IEnterpriseApi {
         return this.axios.delete(url, config);
     }
 
+    upload(
+        url: string,
+        files: File[],
+        data?: any,
+        dataKey?: string,
+        onUploadProgress?: (progressEvent: ProgressEvent) => void
+    ) {
+        if (!this.axios) throw new Error("axios is not initialized");
+
+        let formData = new FormData();
+
+        for (let i = 0; i < files.length; i++) {
+            formData.append("files", files[i], files[i].name);
+        }
+
+        formData.append(dataKey ?? "data", JSON.stringify(data));
+
+        const config = onUploadProgress ? { onUploadProgress } : undefined;
+
+        return this.axios.post(url, formData, config);
+    }
+
     getAxios(): AxiosInstance | null {
         return this.axios;
     }
