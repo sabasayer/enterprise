@@ -1,10 +1,10 @@
 import { AuthDataProvider } from "./auth.data-provider";
-import { EnterpriseApi } from "../../..";
+import { EnterpriseApi } from "../../../..";
 import { SignInRequest, SignInResponseModel } from "./auth.api";
-import { IApiResponse } from "../../../src/api/provider/api-response.interface";
-import { EnterpirseLogic } from "../../../src/logic/enterpise-logic";
+import { IApiResponse } from "../../../..";
+import { EnterpriseLogic } from "../../../..";
 
-export class AuthLogic extends EnterpirseLogic {
+export class AuthLogic extends EnterpriseLogic {
     static instance: AuthLogic;
     private provider: AuthDataProvider;
 

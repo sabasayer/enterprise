@@ -1,10 +1,10 @@
-import { EnterpirseLogic } from "./enterpise-logic";
+import { EnterpriseLogic } from "./enterprise-logic";
 import { EnterpriseApi } from "@/api";
 
 export abstract class EnterpriseLogicBoot {
-    private static collection: typeof EnterpirseLogic[] = [];
+    private static collection: typeof EnterpriseLogic[] = [];
 
-    static register(logic: typeof EnterpirseLogic) {
+    static register(logic: typeof EnterpriseLogic) {
         this.collection.push(logic);
     }
 

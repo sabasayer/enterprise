@@ -1,4 +1,4 @@
-import { IApiRequestOptions } from "../../../src/api/provider/api-request-options.interface";
+import { IApiRequestOptions } from "../../../../src/api/provider/api-request-options.interface";
 
 export interface SignInRequest{
     username:string

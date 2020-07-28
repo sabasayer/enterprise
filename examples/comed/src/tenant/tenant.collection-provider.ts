@@ -1,13 +1,13 @@
-import { EnterpriseCollectionProvider } from "../../../src/data-house/collection/enterprise-collection-provider";
+import { EnterpriseCollectionProvider } from "../../../..";
 import {
     TenantModel,
     getTenantsRequestOptions,
     GetTenantsRequest,
 } from "./tenant.api";
-import { EnterpriseApi } from "../../..";
+import { EnterpriseApi } from "../../../..";
 import { EnumCacheType } from "@sabasayer/utils";
-import { EnumProvideFromCacheStrategy } from "../../../src/data-house/collection/enums/provide-from-cache-strategy.enum";
-import { GetCollectionOptions } from "../../..";
+import { EnumProvideFromCacheStrategy } from "../../../..";
+import { GetCollectionOptions } from "../../../..";
 
 export class TenantCollectionProvider extends EnterpriseCollectionProvider<
     TenantModel

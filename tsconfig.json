@@ -12,7 +12,7 @@
         "baseUrl": ".",
         "moduleResolution": "node",
         "paths": {
-            "@/*": ["src/*"],
+            "@/*": ["src/*"]
         }
     }
 }

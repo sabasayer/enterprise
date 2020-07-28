@@ -4,17 +4,18 @@ import { IValidationResult } from "./validation-result.interface";
 
 export interface IEnterpriseCollectionLogic<
     TModel,
-    TCollectionProvider extends EnterpriseCollectionProvider<TModel>
+    TCollectionProvider extends EnterpriseCollectionProvider<TModel>,
+    TViewModel
 > {
     get?: (
         options: any,
         cancelTokenUniqueKey?: string
-    ) => Promise<IApiResponse<TModel[]>>;
+    ) => Promise<IApiResponse<(TViewModel extends undefined ? TModel : TViewModel)[]>>;
 
     getOne?: (
         options: any,
         cancelTokenUniqueKey?: string
-    ) => Promise<IApiResponse<TModel>>;
+    ) => Promise<IApiResponse<(TViewModel extends undefined ? TModel : TViewModel)>>;
 
     save?: <TSaveResult>(options: any) => Promise<IApiResponse<TSaveResult>>;
     saveMany?: <TSaveManyResult>(
@@ -27,10 +28,11 @@ export interface IEnterpriseCollectionLogic<
         options: any
     ) => Promise<IApiResponse<TDeleteManyResult>>;
     validate?: (
-        model: TModel
+        model: (TViewModel extends undefined ? TModel : TViewModel)
     ) => IValidationResult | Promise<IValidationResult>;
     validateMany?: (
-        models: TModel[]
+        models: (TViewModel extends undefined ? TModel : TViewModel)[]
     ) => IValidationResult | Promise<IValidationResult>;
-    mapToVm?: <TViewModel>(model: TModel) => TViewModel;
+
+    mapToVm?: (model: TModel) => TViewModel;
 }

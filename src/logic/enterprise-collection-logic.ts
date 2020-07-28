@@ -1,5 +1,5 @@
 import { IEnterpriseCollectionLogic } from "./enterprise-collection-logic.interface";
-import { EnterpirseLogic } from "./enterpise-logic";
+import { EnterpriseLogic } from "./enterprise-logic";
 import { IApiResponse, EnterpriseApi } from "@/api";
 import { IValidationResult } from ".";
 import { ExtendArray, UuidUtil } from "@sabasayer/utils";
@@ -9,9 +9,11 @@ new ExtendArray();
 
 export class EnterpriseCollectionLogic<
     TModel,
-    TCollectionProvider extends EnterpriseCollectionProvider<TModel>
-> extends EnterpirseLogic
-    implements IEnterpriseCollectionLogic<TModel, TCollectionProvider> {
+    TCollectionProvider extends EnterpriseCollectionProvider<TModel>,
+    TViewModel = undefined
+> extends EnterpriseLogic
+    implements
+        IEnterpriseCollectionLogic<TModel, TCollectionProvider, TViewModel> {
     protected provider: TCollectionProvider;
 
     constructor(provider: TCollectionProvider) {
@@ -22,12 +24,16 @@ export class EnterpriseCollectionLogic<
     async get?<TGetRequest>(
         request: TGetRequest,
         cancelTokenUniqueKey?: string
-    ): Promise<IApiResponse<TModel[]>>;
+    ): Promise<
+        IApiResponse<(TViewModel extends undefined ? TModel : TViewModel)[]>
+    >;
 
     async getOne<TGetRequest>(
         request: TGetRequest,
         cancelTokenUniqueKey?: string
-    ): Promise<IApiResponse<TModel>> {
+    ): Promise<
+        IApiResponse<TViewModel extends undefined ? TModel : TViewModel>
+    > {
         if (!this.get) throw new Error("get method is not defined!");
 
         const result = await this.get(request, cancelTokenUniqueKey);
@@ -43,9 +49,13 @@ export class EnterpriseCollectionLogic<
         };
     }
 
-    validate?(model: TModel): IValidationResult | Promise<IValidationResult>;
+    validate?(
+        model: TViewModel extends undefined ? TModel : TViewModel
+    ): IValidationResult | Promise<IValidationResult>;
 
-    async validateMany(models: TModel[]): Promise<IValidationResult> {
+    async validateMany(
+        models: (TViewModel extends undefined ? TModel : TViewModel)[]
+    ): Promise<IValidationResult> {
         if (!this.validate) throw new Error("validate method is not defined");
 
         let validationResult: IValidationResult = {
@@ -58,9 +68,9 @@ export class EnterpriseCollectionLogic<
             if (!result?.valid) validationResult.valid = false;
 
             if (result?.errorMessages) {
-                const id = this.provider.getIdFromItem(model);
+                // const id = this.provider.getIdFromItem(model);
 
-                let key = id ? id + "" : UuidUtil.uuidv4();
+                let key = UuidUtil.uuidv4();
 
                 validationResult.errorMessages![key] = result.errorMessages;
             }

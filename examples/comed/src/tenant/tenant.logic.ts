@@ -1,9 +1,9 @@
 import {
     IEnterpriseCollectionLogic,
     EnterpriseCollectionLogic,
-} from "../../../src/logic";
+} from "../../../..";
 import { TenantModel, GetTenantsRequest } from "./tenant.api";
-import { EnterpriseApi } from "../../../src/api";
+import { EnterpriseApi } from "../../../..";
 import { TenantCollectionProvider } from "./tenant.collection-provider";
 
 export class TenantLogic extends EnterpriseCollectionLogic<
