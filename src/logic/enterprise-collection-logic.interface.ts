@@ -10,12 +10,14 @@ export interface IEnterpriseCollectionLogic<
     get?: (
         options: any,
         cancelTokenUniqueKey?: string
-    ) => Promise<IApiResponse<(TViewModel extends undefined ? TModel : TViewModel)[]>>;
+    ) => Promise<IApiResponse<(TViewModel | TModel)[]>>;
 
     getOne?: (
         options: any,
         cancelTokenUniqueKey?: string
-    ) => Promise<IApiResponse<(TViewModel extends undefined ? TModel : TViewModel)>>;
+    ) => Promise<
+        IApiResponse<TViewModel | TModel>
+    >;
 
     save?: <TSaveResult>(options: any) => Promise<IApiResponse<TSaveResult>>;
     saveMany?: <TSaveManyResult>(
@@ -28,7 +30,7 @@ export interface IEnterpriseCollectionLogic<
         options: any
     ) => Promise<IApiResponse<TDeleteManyResult>>;
     validate?: (
-        model: (TViewModel extends undefined ? TModel : TViewModel)
+        model: TViewModel extends undefined ? TModel : TViewModel
     ) => IValidationResult | Promise<IValidationResult>;
     validateMany?: (
         models: (TViewModel extends undefined ? TModel : TViewModel)[]

@@ -33,3 +33,4 @@ const enterpriseApi = enterpirseBoot({
 
 new AuthComponent();
 new PatientComponent();
+

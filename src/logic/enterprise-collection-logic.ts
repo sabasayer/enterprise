@@ -11,9 +11,7 @@ export class EnterpriseCollectionLogic<
     TModel,
     TCollectionProvider extends EnterpriseCollectionProvider<TModel>,
     TViewModel = undefined
-> extends EnterpriseLogic
-    implements
-        IEnterpriseCollectionLogic<TModel, TCollectionProvider, TViewModel> {
+> extends EnterpriseLogic {
     protected provider: TCollectionProvider;
 
     constructor(provider: TCollectionProvider) {
@@ -24,16 +22,12 @@ export class EnterpriseCollectionLogic<
     async get?<TGetRequest>(
         request: TGetRequest,
         cancelTokenUniqueKey?: string
-    ): Promise<
-        IApiResponse<(TViewModel extends undefined ? TModel : TViewModel)[]>
-    >;
+    ): Promise<IApiResponse<TModel[]>>;
 
     async getOne<TGetRequest>(
         request: TGetRequest,
         cancelTokenUniqueKey?: string
-    ): Promise<
-        IApiResponse<TViewModel extends undefined ? TModel : TViewModel>
-    > {
+    ): Promise<IApiResponse<TModel>> {
         if (!this.get) throw new Error("get method is not defined!");
 
         const result = await this.get(request, cancelTokenUniqueKey);
@@ -78,4 +72,17 @@ export class EnterpriseCollectionLogic<
 
         return validationResult;
     }
+
+    save?: <TSaveResult>(options: any) => Promise<IApiResponse<TSaveResult>>;
+    saveMany?: <TSaveManyResult>(
+        options: any
+    ) => Promise<IApiResponse<TSaveManyResult>>;
+    delete?: <TDeleteResult>(
+        options: any
+    ) => Promise<IApiResponse<TDeleteResult>>;
+    deleteMany?: <TDeleteManyResult>(
+        options: any
+    ) => Promise<IApiResponse<TDeleteManyResult>>;
+
+    mapToVm?: (model: TModel) => TViewModel;
 }
