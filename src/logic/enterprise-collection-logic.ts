@@ -22,12 +22,12 @@ export class EnterpriseCollectionLogic<
     async get?<TGetRequest>(
         request: TGetRequest,
         cancelTokenUniqueKey?: string
-    ): Promise<IApiResponse<TModel[]>>;
+    ): Promise<IApiResponse<(TModel | TViewModel)[]>>;
 
     async getOne<TGetRequest>(
         request: TGetRequest,
         cancelTokenUniqueKey?: string
-    ): Promise<IApiResponse<TModel>> {
+    ): Promise<IApiResponse<TModel | TViewModel>> {
         if (!this.get) throw new Error("get method is not defined!");
 
         const result = await this.get(request, cancelTokenUniqueKey);

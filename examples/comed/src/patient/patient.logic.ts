@@ -15,6 +15,7 @@ export class PatientLogic extends EnterpriseCollectionLogic<
     constructor(api: EnterpriseApi) {
         super(new PatientCollectionProvider(api));
         this.mapper = new PatientMapper();
+        
     }
 
     // async get(options: GetPatientRequest): Promise<IApiResponse<Patient[]>> {
