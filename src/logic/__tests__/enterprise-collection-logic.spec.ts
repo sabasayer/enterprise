@@ -51,7 +51,7 @@ describe("Enterprise Collection Logic", () => {
 
         const errorMessageKeys = Object.keys(res?.errorMessages ?? {});
 
-        expect(errorMessageKeys).toContain("testField");
+        expect(errorMessageKeys).toContain("ali");
     });
 
     it("should validate before saveMany", async () => {

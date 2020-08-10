@@ -12,11 +12,21 @@ import { EnterpriseApiHelper } from "../../api/enterprise-api.helper";
 import { EnterpriseObservable, IEnterpriseSubscription } from "../observable";
 import { EnterpriseObservableHouse } from "../observable/enterprise-observable-house";
 
-interface EnterpriseCollectionProvider<TModel>
-    extends EnterpriseCollectionCacheProvider<TModel>,
-        EnterpriseDataProvider {}
+interface EnterpriseCollectionProvider<
+    TModel,
+    TSaveRequest = undefined,
+    TSaveResponse = undefined,
+    TDeleteRequest = undefined,
+    TDeleteResponse = undefined,
+> extends EnterpriseCollectionCacheProvider<TModel>, EnterpriseDataProvider {}
 
-class EnterpriseCollectionProvider<TModel> {
+class EnterpriseCollectionProvider<
+    TModel,
+    TSaveRequest = undefined,
+    TSaveResponse = undefined,
+    TDeleteRequest = undefined,
+    TDeleteResponse = undefined,
+> {
     protected options: EnterpriseCollectionOptions<TModel>;
     protected observable: EnterpriseObservable<TModel>;
 
@@ -44,8 +54,8 @@ class EnterpriseCollectionProvider<TModel> {
      * @param getOptions how to compare and get data
      * @param apiFunc api call function to get from backend
      */
-    async get<TGetRequest>(
-        getRequest: TGetRequest,
+    async get(
+        getRequest: object,
         getOptions?: GetCollectionOptions<TModel>
     ): Promise<IApiResponse<TModel[]> | never> {
         if (!this.options.cacheStrategy) {
@@ -120,8 +130,8 @@ class EnterpriseCollectionProvider<TModel> {
      * @param mapResponseToModel Runs after request succeeded,
      * creates array for saving to cache
      */
-    async save<TSaveResponse>(
-        request: object,
+    async save(
+        request: TSaveRequest,
         mapResponseToModel?: (response: TSaveResponse) => TModel[]
     ): Promise<IApiResponse<TSaveResponse>> {
         if (!this.options.saveRequestOptions)
@@ -132,7 +142,7 @@ class EnterpriseCollectionProvider<TModel> {
                 },
             };
 
-        const result = await this.apiRequest<object, TSaveResponse>(
+        const result = await this.apiRequest<TSaveRequest, TSaveResponse>(
             this.options.saveRequestOptions,
             request
         );
@@ -168,8 +178,8 @@ class EnterpriseCollectionProvider<TModel> {
     /**
      * @param ids Removed item ids to remove from cache
      */
-    async delete<TDeleteResponse>(
-        request: object,
+    async delete(
+        request: TDeleteRequest,
         ids?: (string | number)[]
     ): Promise<IApiResponse<TDeleteResponse>> {
         if (!this.options.deleteRequestOptions)
@@ -180,7 +190,7 @@ class EnterpriseCollectionProvider<TModel> {
                 },
             };
 
-        const result = await this.apiRequest<object, TDeleteResponse>(
+        const result = await this.apiRequest<TDeleteRequest, TDeleteResponse>(
             this.options.deleteRequestOptions,
             request
         );

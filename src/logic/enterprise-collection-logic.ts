@@ -13,7 +13,13 @@ new ExtendArray();
 
 export class EnterpriseCollectionLogic<
     TModel,
-    TCollectionProvider extends EnterpriseCollectionProvider<TModel>,
+    TCollectionProvider extends EnterpriseCollectionProvider<
+        TModel,
+        any,
+        any,
+        any,
+        any
+    >,
     TViewModel = undefined
 > extends EnterpriseLogic {
     protected provider: TCollectionProvider;
@@ -32,8 +38,8 @@ export class EnterpriseCollectionLogic<
         if (mapper) this.mapper = new mapper();
     }
 
-    async get?<TGetRequest>(
-        request: TGetRequest,
+    async get?(
+        request: object,
         getOptions?: GetCollectionOptions<TModel>
     ): Promise<
         IApiResponse<(TViewModel extends undefined ? TModel : TViewModel)[]>
@@ -61,8 +67,8 @@ export class EnterpriseCollectionLogic<
         };
     }
 
-    async getOne<TGetRequest>(
-        request: TGetRequest,
+    async getOne(
+        request: object,
         getOptions?: GetCollectionOptions<TModel>
     ): Promise<
         IApiResponse<TViewModel extends undefined ? TModel : TViewModel>
@@ -116,35 +122,32 @@ export class EnterpriseCollectionLogic<
 
     getIdFromItem(model: TViewModel extends undefined ? TModel : TViewModel) {
         if (this.vmIdField) return (model as TViewModel)[this.vmIdField];
-        else this.provider.getIdFromItem(model as TModel);
+        else return this.provider.getIdFromItem(model as TModel);
     }
 
-    async save?<TSaveResult>(
+    async save?(
         model: TViewModel extends undefined ? TModel : TViewModel,
-        createSaveRequest: (model: TModel) => object
-    ): Promise<IApiResponse<TSaveResult>> {
-        if (this.validate) {
-            const validationResult = await this.validate(model);
+        createSaveRequest: (model: TModel) => any
+    ): Promise<IApiResponse<any>> {
+        const result = await this.saveMany([model], (models) =>
+            models.map((model) => createSaveRequest(model))
+        );
 
-            if (!validationResult.valid) {
-                return {
-                    errorMessages: validationResult.errorMessages,
-                };
-            }
-        }
+        if (result.canceled || result.errorMessages)
+            return {
+                canceled: result.canceled,
+                errorMessages: result.errorMessages,
+            };
 
-        if (this.mapper) {
-            const mappedModel = this.mapper.mapToModel(model as TViewModel);
-            return this.provider.save(createSaveRequest(mappedModel));
-        }
-
-        return this.provider.save(createSaveRequest(model as TModel));
+        return {
+            data: result.data?.[0],
+        };
     }
 
-    async saveMany?<TSaveManyResult>(
+    async saveMany(
         models: (TViewModel extends undefined ? TModel : TViewModel)[],
-        createSaveRequest: (models: TModel[]) => object
-    ): Promise<IApiResponse<TSaveManyResult>> {
+        createSaveRequest: (models: TModel[]) => any
+    ): Promise<IApiResponse<any>> {
         if (this.validate) {
             const validationResult = await this.validateMany(models);
             if (!validationResult.valid)
@@ -161,10 +164,7 @@ export class EnterpriseCollectionLogic<
         return this.provider.save(createSaveRequest(models as TModel[]));
     }
 
-    delete?: <TDeleteResult>(
-        options: any
-    ) => Promise<IApiResponse<TDeleteResult>>;
-    deleteMany?: <TDeleteManyResult>(
-        options: any
-    ) => Promise<IApiResponse<TDeleteManyResult>>;
+    deleteMany(options: object) {
+        return this.provider.delete(options);
+    }
 }

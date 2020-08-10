@@ -25,7 +25,7 @@ export class EnterpriseCollectionCacheProvider<TModel> {
     }
 
     /**
-     * Pushs new items to cache
+     * Pushes new items to cache
      */
     addItemsToCache(newItems: TModel[], uniqueCacheKey?: string) {
         if (!this.options.cacheStrategy) return;
