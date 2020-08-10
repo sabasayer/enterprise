@@ -1,4 +1,6 @@
 import { PatientLogic } from "./patient.logic";
+import { IApiResponse } from "../../../../src/api";
+import { Patient } from "./patient.api";
 
 export class PatientComponent {
     constructor() {
@@ -20,5 +22,11 @@ export class PatientComponent {
             element.innerHTML = JSON.stringify(item);
             document.body.append(element);
         });
+    }
+    
+
+    async getOne(){
+        const result = await PatientLogic.instance.getOne({});
+
     }
 }

@@ -10,32 +10,15 @@ export class PatientLogic extends EnterpriseCollectionLogic<
     Patient
 > {
     static instance: PatientLogic;
-    private mapper: PatientMapper;
+    protected mapper: PatientMapper;
 
     constructor(api: EnterpriseApi) {
-        super(new PatientCollectionProvider(api));
-        this.mapper = new PatientMapper();
-        
+        super(api, PatientCollectionProvider, PatientMapper);
     }
 
-    // async get(options: GetPatientRequest): Promise<IApiResponse<Patient[]>> {
-
-    //     const result = await this.provider.get(options);
-    //     if (result.canceled || result.errorMessages)
-    //         return {
-    //             canceled: result.canceled,
-    //             errorMessages: result.errorMessages,
-    //         };
-
-    //     const values = result.data?.map((e) => this.mapper.mapToVm(e));
-        
-    //     return <IApiResponse<Patient[]>>{
-    //         data: values,
-    //     };
-    // }
-    
-
+    async get(options: GetPatientRequest): Promise<IApiResponse<Patient[]>> {
+        return super.get(options);
+    }
 }
 
 PatientLogic.register();
-PatientLogic.instance.get

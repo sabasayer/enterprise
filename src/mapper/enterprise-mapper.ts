@@ -10,6 +10,14 @@ export class EnterpriseMapper<TModel, TViewModel> {
 
     defaultViewModel?(): TViewModel;
 
+    mapListToVm(models?: TModel[]): TViewModel[] {
+        return models?.map((e) => this.mapToVm(e)) ?? [];
+    }
+
+    mapListToModel(viewModels?: TViewModel[]): TModel[] {
+        return viewModels?.map((vm) => this.mapToModel(vm)) ?? [];
+    }
+
     mapToVm(model: TModel): TViewModel {
         return this.map(model, this.options.toViewModel);
     }

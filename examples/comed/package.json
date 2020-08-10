@@ -3,6 +3,9 @@
     "version": "1.0.0",
     "main": "index.js",
     "license": "MIT",
+    "scripts": {
+        "run": "parcel index.html --open"
+    },
     "devDependencies": {
         "parcel-bundler": "^1.12.4"
     },

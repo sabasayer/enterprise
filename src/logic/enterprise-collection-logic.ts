@@ -1,9 +1,13 @@
 import { IEnterpriseCollectionLogic } from "./enterprise-collection-logic.interface";
 import { EnterpriseLogic } from "./enterprise-logic";
-import { IApiResponse, EnterpriseApi } from "@/api";
+import { IApiResponse, EnterpriseApi } from "../api";
 import { IValidationResult } from ".";
 import { ExtendArray, UuidUtil } from "@sabasayer/utils";
-import { EnterpriseCollectionProvider } from "@/data-house";
+import {
+    EnterpriseCollectionProvider,
+    GetCollectionOptions,
+} from "../data-house";
+import { EnterpriseMapper } from "../mapper";
 
 new ExtendArray();
 
@@ -13,24 +17,56 @@ export class EnterpriseCollectionLogic<
     TViewModel = undefined
 > extends EnterpriseLogic {
     protected provider: TCollectionProvider;
+    protected mapper?: EnterpriseMapper<TModel, TViewModel>;
 
-    constructor(provider: TCollectionProvider) {
+    constructor(
+        api: EnterpriseApi,
+        provider: { new (api: EnterpriseApi): TCollectionProvider },
+        mapper?: { new (): EnterpriseMapper<TModel, TViewModel> }
+    ) {
         super();
-        this.provider = provider;
+        this.provider = new provider(api);
+        if (mapper) this.mapper = new mapper();
     }
 
     async get?<TGetRequest>(
         request: TGetRequest,
-        cancelTokenUniqueKey?: string
-    ): Promise<IApiResponse<(TModel | TViewModel)[]>>;
+        getOptions?: GetCollectionOptions
+    ): Promise<
+        IApiResponse<(TViewModel extends undefined ? TModel : TViewModel)[]>
+    > {
+        const result = await this.provider.get(request, getOptions);
+        if (result.canceled || result.errorMessages)
+            return {
+                canceled: result.canceled,
+                errorMessages: result.errorMessages,
+            };
+
+        if (this.mapper) {
+            const mappedValues = this.mapper.mapListToVm(result.data);
+            return {
+                data: mappedValues as (TViewModel extends undefined
+                    ? TModel
+                    : TViewModel)[],
+            };
+        }
+
+        return {
+            data: result.data as (TViewModel extends undefined
+                ? TModel
+                : TViewModel)[],
+        };
+    }
 
     async getOne<TGetRequest>(
         request: TGetRequest,
-        cancelTokenUniqueKey?: string
-    ): Promise<IApiResponse<TModel | TViewModel>> {
+        getOptions?: GetCollectionOptions
+    ): Promise<
+        IApiResponse<TViewModel extends undefined ? TModel : TViewModel>
+    > {
         if (!this.get) throw new Error("get method is not defined!");
 
-        const result = await this.get(request, cancelTokenUniqueKey);
+        const result = await this.get(request, getOptions);
 
         if (result.errorMessages || result.canceled)
             return {
@@ -73,16 +109,52 @@ export class EnterpriseCollectionLogic<
         return validationResult;
     }
 
-    save?: <TSaveResult>(options: any) => Promise<IApiResponse<TSaveResult>>;
-    saveMany?: <TSaveManyResult>(
-        options: any
-    ) => Promise<IApiResponse<TSaveManyResult>>;
+    async save?<TSaveResult>(
+        model: TViewModel extends undefined ? TModel : TViewModel,
+        createSaveRequest: (model: TModel) => object
+    ): Promise<IApiResponse<TSaveResult>> {
+        if (this.validate) {
+            const validationResult = await this.validate(model);
+
+            if (!validationResult.valid) {
+                return {
+                    errorMessages: validationResult.errorMessages,
+                };
+            }
+        }
+
+        if (this.mapper) {
+            const mappedModel = this.mapper.mapToModel(model as TViewModel);
+            return this.provider.save(createSaveRequest(mappedModel));
+        }
+
+        return this.provider.save(createSaveRequest(model as TModel));
+    }
+
+    async saveMany?<TSaveManyResult>(
+        models: (TViewModel extends undefined ? TModel : TViewModel)[],
+        createSaveRequest: (models: TModel[]) => object
+    ): Promise<IApiResponse<TSaveManyResult>> {
+        if (this.validate) {
+            const validationResult = await this.validateMany(models);
+            if (!validationResult.valid)
+                return { errorMessages: validationResult.errorMessages };
+        }
+
+        if (this.mapper) {
+            const mappedModels = this.mapper.mapListToModel(
+                models as TViewModel[]
+            );
+            return this.provider.save(createSaveRequest(mappedModels));
+        }
+
+        return this.provider.save(createSaveRequest(models as TModel[]));
+    }
+
     delete?: <TDeleteResult>(
         options: any
     ) => Promise<IApiResponse<TDeleteResult>>;
     deleteMany?: <TDeleteManyResult>(
         options: any
     ) => Promise<IApiResponse<TDeleteManyResult>>;
-
-    mapToVm?: (model: TModel) => TViewModel;
 }
