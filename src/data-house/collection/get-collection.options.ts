@@ -1,5 +1,6 @@
-export interface GetCollectionOptions {
-    ids?: (string | number)[]
-    forceGetFromApi?: boolean
-    cancelTokenUniqueKey?:string
+export interface GetCollectionOptions<TModel = undefined> {
+    ids?: (string | number)[];
+    forceGetFromApi?: boolean;
+    cancelTokenUniqueKey?: string;
+    filterFunc?: (model: TModel) => boolean;
 }

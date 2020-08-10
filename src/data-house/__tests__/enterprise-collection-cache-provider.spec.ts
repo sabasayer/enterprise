@@ -1,8 +1,8 @@
-import { EnterpriseCollectionCacheProvider } from '../cache/enterprise-collection-cache-provider';
-import { EnumCacheType, ExtendArray, cache } from '@sabasayer/utils';
-import { EnumProvideFromCacheStrategy } from '../collection/enums/provide-from-cache-strategy.enum';
-import { IMockData, createMock } from '../mocks/mock';
-import { EnterpriseDataHouse } from '../enterprise-data-house';
+import { EnterpriseCollectionCacheProvider } from "../cache/enterprise-collection-cache-provider";
+import { EnumCacheType, ExtendArray, cache } from "@sabasayer/utils";
+import { EnumProvideFromCacheStrategy } from "../collection/enums/provide-from-cache-strategy.enum";
+import { IMockData, createMock } from "../mocks/mock";
+import { EnterpriseDataHouse } from "../enterprise-data-house";
 
 new ExtendArray();
 
@@ -10,12 +10,15 @@ describe("Enterprise Collection Cache Provider", () => {
     it("should set data to cache", () => {
         const data = createMock(1);
         const cacheProvider = new EnterpriseCollectionCacheProvider<IMockData>({
-            typename: 'test',
-            cacheStrategy: EnumCacheType.Memory
+            typename: "test",
+            cacheStrategy: EnumCacheType.Memory,
         });
 
         cacheProvider.setCache(data);
-        const cachedData = EnterpriseDataHouse.instance.get(EnumCacheType.Memory, 'test');
+        const cachedData = EnterpriseDataHouse.instance.get(
+            EnumCacheType.Memory,
+            "test"
+        );
         const getDataResult = cacheProvider.getFromCache();
 
         expect(data).toEqual(cachedData);
@@ -25,30 +28,33 @@ describe("Enterprise Collection Cache Provider", () => {
     it("should remove data from cache", () => {
         const data = createMock(1);
         const cacheProvider = new EnterpriseCollectionCacheProvider<IMockData>({
-            typename: 'test',
-            cacheStrategy: EnumCacheType.Memory
+            typename: "test",
+            cacheStrategy: EnumCacheType.Memory,
         });
 
         cacheProvider.setCache(data);
         cacheProvider.clearCache();
 
-        const cachedData = EnterpriseDataHouse.instance.get(EnumCacheType.Memory, 'test');
+        const cachedData = EnterpriseDataHouse.instance.get(
+            EnumCacheType.Memory,
+            "test"
+        );
 
         expect(cachedData).toHaveLength(0);
-
     });
 
     it("should get data by unique key", () => {
         const data = createMock(2);
-        const uniqueCacheKey = 'unique';
+        const uniqueCacheKey = "unique";
 
         const data2 = createMock(3);
-        const uniqueCacheKey2 = 'unique2';
+        const uniqueCacheKey2 = "unique2";
 
         const cacheProvider = new EnterpriseCollectionCacheProvider<IMockData>({
-            typename: 'test',
+            typename: "test",
             cacheStrategy: EnumCacheType.Memory,
-            provideFromCacheStrategy: EnumProvideFromCacheStrategy.RequestParamsHash
+            provideFromCacheStrategy:
+                EnumProvideFromCacheStrategy.RequestParamsHash,
         });
 
         cacheProvider.setCache(data, uniqueCacheKey);
@@ -59,34 +65,55 @@ describe("Enterprise Collection Cache Provider", () => {
 
         expect(data).toEqual(cachedData);
         expect(data2).toEqual(cachedData2);
-    })
+    });
+
+    it("should get data with filter func", () => {
+        const data = createMock(2);
+
+        const cacheProvider = new EnterpriseCollectionCacheProvider<IMockData>({
+            typename: "test",
+            cacheStrategy: EnumCacheType.Memory,
+            provideFromCacheStrategy:
+                EnumProvideFromCacheStrategy.RequestParamsHash,
+        });
+
+        const uniqueCacheKey = "unique";
+        cacheProvider.setCache(data, uniqueCacheKey);
+
+        const cachedData = cacheProvider.getFromCache(
+            { filterFunc: (model) => model.id < 4 },
+            uniqueCacheKey
+        );
+
+        expect(cachedData).toHaveLength(1);
+    });
 
     it("should set and get data by id", () => {
         const data = createMock(10);
         const lastData = data[data.length - 1];
 
         const cacheProvider = new EnterpriseCollectionCacheProvider<IMockData>({
-            typename: 'test',
+            typename: "test",
             cacheStrategy: EnumCacheType.Memory,
             provideFromCacheStrategy: EnumProvideFromCacheStrategy.CollectionId,
-            idField: 'id'
+            idField: "id",
         });
 
         cacheProvider.setCache(data);
         const cachedData = cacheProvider.getFromCache({ ids: [lastData.id] });
 
-        expect(cachedData).toEqual([lastData])
-    })
+        expect(cachedData).toEqual([lastData]);
+    });
 
     it("should remove data by id", () => {
         const data = createMock(11);
         const firstData = data[0];
 
         const cacheProvider = new EnterpriseCollectionCacheProvider<IMockData>({
-            typename: 'test',
+            typename: "test",
             cacheStrategy: EnumCacheType.Memory,
             provideFromCacheStrategy: EnumProvideFromCacheStrategy.CollectionId,
-            idField: 'id'
+            idField: "id",
         });
 
         cacheProvider.setCache(data);
@@ -94,49 +121,48 @@ describe("Enterprise Collection Cache Provider", () => {
 
         const cachedData = cacheProvider.getFromCache();
 
-        expect(cachedData.some(e => e.id == firstData.id)).toBeFalsy();
-    })
+        expect(cachedData.some((e) => e.id == firstData.id)).toBeFalsy();
+    });
 
     it("should add new data", () => {
         const data = createMock(20);
 
         const cacheProvider = new EnterpriseCollectionCacheProvider<IMockData>({
-            typename: 'test2',
-            cacheStrategy: EnumCacheType.Memory
-        })
+            typename: "test2",
+            cacheStrategy: EnumCacheType.Memory,
+        });
 
-        const newItem = { id: 900, name: 'new item' };
+        const newItem = { id: 900, name: "new item" };
 
         cacheProvider.setCache(data);
-        cacheProvider.addItemsToCache([newItem])
+        cacheProvider.addItemsToCache([newItem]);
 
         const cachedData = cacheProvider.getFromCache();
         const last = cachedData.last();
 
         expect(last).toEqual(newItem);
-    })
-
+    });
 
     it("should add new data with checking ids", () => {
         const data = createMock(20);
         const lastData = data.last();
 
         const cacheProvider = new EnterpriseCollectionCacheProvider<IMockData>({
-            typename: 'test3',
+            typename: "test3",
             cacheStrategy: EnumCacheType.Memory,
             provideFromCacheStrategy: EnumProvideFromCacheStrategy.CollectionId,
-            idField: 'id'
-        })
+            idField: "id",
+        });
 
-        const newItem = { id: 900, name: 'new item' };
+        const newItem = { id: 900, name: "new item" };
 
         cacheProvider.setCache(data);
-        cacheProvider.addItemsToCache([newItem, lastData])
+        cacheProvider.addItemsToCache([newItem, lastData]);
 
         const cachedData = cacheProvider.getFromCache();
         const last = cachedData.last();
 
         expect(last).toEqual(newItem);
-        expect(cachedData.filter(e => e.id == lastData.id)).toHaveLength(1);
-    })
-})
+        expect(cachedData.filter((e) => e.id == lastData.id)).toHaveLength(1);
+    });
+});

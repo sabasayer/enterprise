@@ -27,6 +27,5 @@ export class PatientComponent {
 
     async getOne(){
         const result = await PatientLogic.instance.getOne({});
-
     }
 }

@@ -5,11 +5,11 @@ import { EnumProvideFromCacheStrategy } from "../collection/enums/provide-from-c
 import { EnumCacheType } from "@sabasayer/utils";
 import { GetCollectionOptions } from "../collection/get-collection.options";
 
-export class EnterpriseCollectionCacheProvider<TModel>{
+export class EnterpriseCollectionCacheProvider<TModel> {
     protected options: EnterpriseCollectionOptions<TModel>;
 
     constructor(options: EnterpriseCollectionCacheOptions<TModel>) {
-        this.options = options
+        this.options = options;
     }
 
     setCache(data: TModel[], uniqueCacheKey?: string) {
@@ -30,24 +30,35 @@ export class EnterpriseCollectionCacheProvider<TModel>{
     addItemsToCache(newItems: TModel[], uniqueCacheKey?: string) {
         if (!this.options.cacheStrategy) return;
 
-        const hasMeansToFindIdfield = this.options.provideFromCacheStrategy == EnumProvideFromCacheStrategy.CollectionId &&
-            (this.options.idField || this.options.getIdField)
+        const hasMeansToFindIdfield =
+            this.options.provideFromCacheStrategy ==
+                EnumProvideFromCacheStrategy.CollectionId &&
+            (this.options.idField || this.options.getIdField);
 
         const compareFunc = (cachedItem: TModel, newItem: TModel) => {
             const cachedItemId = this.getIdFromItem(cachedItem);
             const newItemId = this.getIdFromItem(newItem);
 
             if (!cachedItem)
-                throw `cached item : ${JSON.stringify(cachedItem)} id cannot be undefined`;
+                throw `cached item : ${JSON.stringify(
+                    cachedItem
+                )} id cannot be undefined`;
 
             if (!newItemId)
-                throw `new item : ${JSON.stringify(cachedItem)} id cannot be undefined`;
+                throw `new item : ${JSON.stringify(
+                    cachedItem
+                )} id cannot be undefined`;
 
             return cachedItemId == newItemId;
-        }
+        };
 
-        EnterpriseDataHouse.instance.addItems<TModel>(this.options.cacheStrategy, this.options.typename, newItems,
-            hasMeansToFindIdfield ? compareFunc : undefined, uniqueCacheKey)
+        EnterpriseDataHouse.instance.addItems<TModel>(
+            this.options.cacheStrategy,
+            this.options.typename,
+            newItems,
+            hasMeansToFindIdfield ? compareFunc : undefined,
+            uniqueCacheKey
+        );
     }
 
     /**
@@ -55,28 +66,36 @@ export class EnterpriseCollectionCacheProvider<TModel>{
      * @param ids id fields of items that will be removed
      */
     removeItemsFromCache(ids?: (number | string)[]) {
-        const hasMeansToFindIdfield = this.options.provideFromCacheStrategy == EnumProvideFromCacheStrategy.CollectionId &&
-            ids?.length
+        const hasMeansToFindIdfield =
+            this.options.provideFromCacheStrategy ==
+                EnumProvideFromCacheStrategy.CollectionId && ids?.length;
 
         if (!this.options.cacheStrategy || !hasMeansToFindIdfield) return;
 
-        EnterpriseDataHouse.instance.removeItems<TModel>(this.options.cacheStrategy, this.options.typename, (item) => {
-            const id = this.getIdFromItem(item);
+        EnterpriseDataHouse.instance.removeItems<TModel>(
+            this.options.cacheStrategy,
+            this.options.typename,
+            (item) => {
+                const id = this.getIdFromItem(item);
 
-            if (id == undefined) throw "id cannot be undefined";
+                if (id == undefined) throw "id cannot be undefined";
 
-            return !!ids?.includes(id as string | number)
-        })
+                return !!ids?.includes(id as string | number);
+            }
+        );
     }
 
     getFromCache(
-        getOptions?: GetCollectionOptions,
+        getOptions?: GetCollectionOptions<TModel>,
         uniqueCacheKey?: string
     ): TModel[] {
         if (!this.options.cacheStrategy)
             throw new Error("Cache strategy is absent !");
 
-        const all = this.getAllFromCache(this.options.cacheStrategy, uniqueCacheKey);
+        const all = this.getAllFromCache(
+            this.options.cacheStrategy,
+            uniqueCacheKey
+        );
         return this.filterByCacheProvideStrategy(all, getOptions);
     }
 
@@ -84,13 +103,16 @@ export class EnterpriseCollectionCacheProvider<TModel>{
         if (!this.options.cacheStrategy)
             throw new Error("Cache strategy is absent !");
 
-
-        EnterpriseDataHouse.instance.clear(this.options.cacheStrategy, this.options.typename, uniqueCacheKey)
+        EnterpriseDataHouse.instance.clear(
+            this.options.cacheStrategy,
+            this.options.typename,
+            uniqueCacheKey
+        );
     }
 
     protected isCacheResultLacking(
         result: TModel[],
-        getOptions?: GetCollectionOptions
+        getOptions?: GetCollectionOptions<TModel>
     ): boolean {
         if (getOptions?.forceGetFromApi) return true;
 
@@ -99,28 +121,42 @@ export class EnterpriseCollectionCacheProvider<TModel>{
         return getOptions.ids?.length != result.length;
     }
 
-
     protected getAllFromCache(
         strategy: EnumCacheType,
         uniqueCacheKey?: string
     ): TModel[] {
-        return EnterpriseDataHouse.instance.get(strategy, this.options.typename, uniqueCacheKey);
+        return EnterpriseDataHouse.instance.get(
+            strategy,
+            this.options.typename,
+            uniqueCacheKey
+        );
     }
-
 
     protected filterByCacheProvideStrategy(
         all: TModel[],
-        getOptions?: GetCollectionOptions
+        getOptions?: GetCollectionOptions<TModel>
     ): TModel[] {
-        const isStrategyColledtionId =
+        if (!getOptions) return all;
+
+        if (getOptions.filterFunc)
+            return all.filter((e) => getOptions.filterFunc?.(e));
+
+        return this.filterByIdOptions(all, getOptions);
+    }
+
+    protected filterByIdOptions(
+        all: TModel[],
+        getOptions?: GetCollectionOptions<TModel>
+    ): TModel[] {
+        const isStrategyCollectionId =
             this.options.provideFromCacheStrategy ===
             EnumProvideFromCacheStrategy.CollectionId;
 
-        if (!getOptions || !isStrategyColledtionId) return all;
+        if (!isStrategyCollectionId) return all;
 
         this.checkIdOptions();
 
-        if (!getOptions.ids?.length) return all;
+        if (!getOptions?.ids?.length) return all;
 
         return all.filter((item) => {
             const id = this.getIdFromItem(item);

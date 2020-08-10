@@ -18,20 +18,23 @@ export class EnterpriseCollectionLogic<
 > extends EnterpriseLogic {
     protected provider: TCollectionProvider;
     protected mapper?: EnterpriseMapper<TModel, TViewModel>;
+    protected vmIdField?: keyof TViewModel;
 
     constructor(
         api: EnterpriseApi,
         provider: { new (api: EnterpriseApi): TCollectionProvider },
-        mapper?: { new (): EnterpriseMapper<TModel, TViewModel> }
+        mapper?: { new (): EnterpriseMapper<TModel, TViewModel> },
+        vmIdField?: keyof TViewModel
     ) {
         super();
         this.provider = new provider(api);
+        this.vmIdField = vmIdField;
         if (mapper) this.mapper = new mapper();
     }
 
     async get?<TGetRequest>(
         request: TGetRequest,
-        getOptions?: GetCollectionOptions
+        getOptions?: GetCollectionOptions<TModel>
     ): Promise<
         IApiResponse<(TViewModel extends undefined ? TModel : TViewModel)[]>
     > {
@@ -60,7 +63,7 @@ export class EnterpriseCollectionLogic<
 
     async getOne<TGetRequest>(
         request: TGetRequest,
-        getOptions?: GetCollectionOptions
+        getOptions?: GetCollectionOptions<TModel>
     ): Promise<
         IApiResponse<TViewModel extends undefined ? TModel : TViewModel>
     > {
@@ -98,15 +101,22 @@ export class EnterpriseCollectionLogic<
             if (!result?.valid) validationResult.valid = false;
 
             if (result?.errorMessages) {
-                // const id = this.provider.getIdFromItem(model);
-
                 let key = UuidUtil.uuidv4();
+
+                const id = this.getIdFromItem(model);
+
+                if (id != undefined) key = id + "";
 
                 validationResult.errorMessages![key] = result.errorMessages;
             }
         });
 
         return validationResult;
+    }
+
+    getIdFromItem(model: TViewModel extends undefined ? TModel : TViewModel) {
+        if (this.vmIdField) return (model as TViewModel)[this.vmIdField];
+        else this.provider.getIdFromItem(model as TModel);
     }
 
     async save?<TSaveResult>(

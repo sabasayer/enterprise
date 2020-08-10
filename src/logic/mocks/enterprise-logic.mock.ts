@@ -44,7 +44,7 @@ export class MockLogic extends EnterpriseCollectionLogic<
     static instance: MockLogic;
 
     constructor(api: EnterpriseApi) {
-        super(api, MockCollectionProvider, MockMapper);
+        super(api, MockCollectionProvider, MockMapper, "testField");
     }
 
     validate(model: IMockVmData): IValidationResult {

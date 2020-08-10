@@ -46,7 +46,7 @@ class EnterpriseCollectionProvider<TModel> {
      */
     async get<TGetRequest>(
         getRequest: TGetRequest,
-        getOptions?: GetCollectionOptions
+        getOptions?: GetCollectionOptions<TModel>
     ): Promise<IApiResponse<TModel[]> | never> {
         if (!this.options.cacheStrategy) {
             return this.getFromApi(
