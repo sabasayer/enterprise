@@ -14,18 +14,20 @@ import { EnterpriseObservableHouse } from "../observable/enterprise-observable-h
 
 interface EnterpriseCollectionProvider<
     TModel,
+    TGetRequest,
     TSaveRequest = undefined,
     TSaveResponse = undefined,
     TDeleteRequest = undefined,
-    TDeleteResponse = undefined,
+    TDeleteResponse = undefined
 > extends EnterpriseCollectionCacheProvider<TModel>, EnterpriseDataProvider {}
 
 class EnterpriseCollectionProvider<
     TModel,
+    TGetRequest,
     TSaveRequest = undefined,
     TSaveResponse = undefined,
     TDeleteRequest = undefined,
-    TDeleteResponse = undefined,
+    TDeleteResponse = undefined
 > {
     protected options: EnterpriseCollectionOptions<TModel>;
     protected observable: EnterpriseObservable<TModel>;
@@ -55,7 +57,7 @@ class EnterpriseCollectionProvider<
      * @param apiFunc api call function to get from backend
      */
     async get(
-        getRequest: object,
+        getRequest: TGetRequest,
         getOptions?: GetCollectionOptions<TModel>
     ): Promise<IApiResponse<TModel[]> | never> {
         if (!this.options.cacheStrategy) {

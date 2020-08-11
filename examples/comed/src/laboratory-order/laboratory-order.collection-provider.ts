@@ -6,16 +6,19 @@ import {
     saveLaboratoryOrdersRequestOptions,
     deleteLaboratoryOrdersRequestOptions,
     SaveLaboratoryOrdersRequest,
+    SaveLaboratoryOrderResponse,
     DeleteLaboratoryOrdersRequest,
+    DeleteLaboratoryOrdersResponse,
 } from "./laboratory-order.api";
 import { EnterpriseApi } from "../../../../src/api";
 
 export class LaboratoryOrderCollectionProvider extends EnterpriseCollectionProvider<
     OrderLaboratoryModel,
+    GetLaboratoryOrdersRequest,
     SaveLaboratoryOrdersRequest,
-    SaveLaboratoryOrdersRequest,
+    SaveLaboratoryOrderResponse,
     DeleteLaboratoryOrdersRequest,
-    DeleteLaboratoryOrdersRequest
+    DeleteLaboratoryOrdersResponse
 > {
     constructor(api: EnterpriseApi) {
         super(api, {
@@ -25,9 +28,5 @@ export class LaboratoryOrderCollectionProvider extends EnterpriseCollectionProvi
             deleteRequestOptions: deleteLaboratoryOrdersRequestOptions,
             idField: "id",
         });
-    }
-
-    async get(request: GetLaboratoryOrdersRequest) {
-        return super.get(request);
     }
 }

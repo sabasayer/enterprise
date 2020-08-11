@@ -15,12 +15,18 @@ export class EnterpriseCollectionLogic<
     TModel,
     TCollectionProvider extends EnterpriseCollectionProvider<
         TModel,
-        any,
-        any,
-        any,
-        any
+        TGetRequest,
+        TSaveRequest,
+        TSaveResponse,
+        TDeleteRequest,
+        TDeleteResponse
     >,
-    TViewModel = undefined
+    TGetRequest,
+    TViewModel = undefined,
+    TSaveRequest = undefined,
+    TSaveResponse = undefined,
+    TDeleteRequest = undefined,
+    TDeleteResponse = undefined
 > extends EnterpriseLogic {
     protected provider: TCollectionProvider;
     protected mapper?: EnterpriseMapper<TModel, TViewModel>;
@@ -39,7 +45,7 @@ export class EnterpriseCollectionLogic<
     }
 
     async get?(
-        request: object,
+        request: TGetRequest,
         getOptions?: GetCollectionOptions<TModel>
     ): Promise<
         IApiResponse<(TViewModel extends undefined ? TModel : TViewModel)[]>
@@ -68,7 +74,7 @@ export class EnterpriseCollectionLogic<
     }
 
     async getOne(
-        request: object,
+        request: TGetRequest,
         getOptions?: GetCollectionOptions<TModel>
     ): Promise<
         IApiResponse<TViewModel extends undefined ? TModel : TViewModel>
@@ -125,12 +131,12 @@ export class EnterpriseCollectionLogic<
         else return this.provider.getIdFromItem(model as TModel);
     }
 
-    async save?(
+    async save(
         model: TViewModel extends undefined ? TModel : TViewModel,
-        createSaveRequest: (model: TModel) => any
-    ): Promise<IApiResponse<any>> {
+        createSaveRequest: (model: TModel) => TSaveRequest
+    ): Promise<IApiResponse<TSaveResponse>> {
         const result = await this.saveMany([model], (models) =>
-            models.map((model) => createSaveRequest(model))
+            createSaveRequest(models[0])
         );
 
         if (result.canceled || result.errorMessages)
@@ -140,14 +146,14 @@ export class EnterpriseCollectionLogic<
             };
 
         return {
-            data: result.data?.[0],
+            data: result.data,
         };
     }
 
     async saveMany(
         models: (TViewModel extends undefined ? TModel : TViewModel)[],
-        createSaveRequest: (models: TModel[]) => any
-    ): Promise<IApiResponse<any>> {
+        createSaveRequest: (models: TModel[]) => TSaveRequest
+    ): Promise<IApiResponse<TSaveResponse>> {
         if (this.validate) {
             const validationResult = await this.validateMany(models);
             if (!validationResult.valid)
@@ -164,7 +170,7 @@ export class EnterpriseCollectionLogic<
         return this.provider.save(createSaveRequest(models as TModel[]));
     }
 
-    deleteMany(options: object) {
+    deleteMany(options: TDeleteRequest) {
         return this.provider.delete(options);
     }
 }

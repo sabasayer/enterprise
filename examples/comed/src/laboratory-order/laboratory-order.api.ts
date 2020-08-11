@@ -1,5 +1,5 @@
 import { PlanModel } from "../order/plan-model.interface";
-import { IApiRequestOptions } from "../../../../src/api";
+import { IApiRequestOptions, IApiResponse } from "../../../../src/api";
 
 export interface GetLaboratoryOrdersRequest {
     model?: Partial<OrderLaboratoryModel>;
@@ -12,8 +12,15 @@ export interface SaveLaboratoryOrdersRequest {
     orders: OrderLaboratoryModel[];
 }
 
+export interface SaveLaboratoryOrderResponse
+    extends SaveLaboratoryOrdersRequest {}
+
 export interface DeleteLaboratoryOrdersRequest {
     orders: { [id: number]: string };
+}
+
+export interface DeleteLaboratoryOrdersResponse {
+    orders: { [id: number]: boolean };
 }
 
 export interface OrderLaboratoryModel {
