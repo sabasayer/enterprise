@@ -7,6 +7,7 @@ import { PatientMapper } from "./patient.mapper";
 export class PatientLogic extends EnterpriseCollectionLogic<
     PatientModel,
     PatientCollectionProvider,
+    GetPatientRequest,
     Patient
 > {
     static instance: PatientLogic;
@@ -14,10 +15,6 @@ export class PatientLogic extends EnterpriseCollectionLogic<
 
     constructor(api: EnterpriseApi) {
         super(api, PatientCollectionProvider, PatientMapper);
-    }
-
-    async get(options: GetPatientRequest): Promise<IApiResponse<Patient[]>> {
-        return super.get(options);
     }
 }
 

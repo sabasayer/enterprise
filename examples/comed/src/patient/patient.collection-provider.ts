@@ -10,7 +10,8 @@ import {
 import { EnterpriseApi } from "../../../../src/api";
 
 export class PatientCollectionProvider extends EnterpriseCollectionProvider<
-    PatientModel
+    PatientModel,
+    GetPatientRequest
 > {
     constructor(api: EnterpriseApi) {
         super(api, {
@@ -19,9 +20,4 @@ export class PatientCollectionProvider extends EnterpriseCollectionProvider<
             idField: "id",
         });
     }
-
-    async get(request: GetPatientRequest, getOptions?: GetCollectionOptions) {
-        return super.get(request, getOptions);
-    }
-    
 }

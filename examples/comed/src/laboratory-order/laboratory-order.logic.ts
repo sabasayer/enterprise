@@ -1,4 +1,7 @@
-import { EnterpriseCollectionLogic } from "../../../../src/logic";
+import {
+    EnterpriseCollectionLogic,
+    IValidationResult,
+} from "../../../../src/logic";
 import {
     OrderLaboratoryModel,
     GetLaboratoryOrdersRequest,
@@ -13,6 +16,7 @@ import { EnterpriseApi, IApiResponse } from "../../../../src/api";
 export class LaboratoryOrderLogic extends EnterpriseCollectionLogic<
     OrderLaboratoryModel,
     LaboratoryOrderCollectionProvider,
+    GetLaboratoryOrdersRequest,
     undefined,
     SaveLaboratoryOrdersRequest,
     SaveLaboratoryOrderResponse,
@@ -23,7 +27,22 @@ export class LaboratoryOrderLogic extends EnterpriseCollectionLogic<
 
     constructor(api: EnterpriseApi) {
         super(api, LaboratoryOrderCollectionProvider);
-        
+    }
+
+    validate(model: OrderLaboratoryModel): IValidationResult {
+        if (!model.location)
+            return {
+                valid: false,
+                errorMessages: {
+                    location: "location is required",
+                },
+            };
+
+        return { valid: true };
+    }
+
+    async saveMany(models: OrderLaboratoryModel[]) {
+        return super.saveMany(models, (orders) => ({ orders }));
     }
 
     // async get(options: GetLaboratoryOrdersRequest) {
