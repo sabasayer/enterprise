@@ -44,7 +44,7 @@ describe("Enterprise Collection Logic", () => {
     });
 
     it("should validate before save", async () => {
-        const res = await MockLogic.instance.save?.(
+        const res = await MockLogic.instance.saveOne?.(
             { testField: "ali" },
             (model) => model
         );
@@ -55,7 +55,7 @@ describe("Enterprise Collection Logic", () => {
     });
 
     it("should validate before saveMany", async () => {
-        const res = await MockLogic.instance.saveMany?.(
+        const res = await MockLogic.instance.save?.(
             [{ testField: "ali" }, { testField: "veli" }],
             (model) => model
         );

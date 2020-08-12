@@ -41,8 +41,12 @@ export class LaboratoryOrderLogic extends EnterpriseCollectionLogic<
         return { valid: true };
     }
 
-    async saveMany(models: OrderLaboratoryModel[]) {
-        return super.saveMany(models, (orders) => ({ orders }));
+    async save(models: OrderLaboratoryModel[]) {
+        return super.save(models, (orders) => ({ orders }));
+    }
+
+    async saveOne(model: OrderLaboratoryModel) {
+        return super.saveOne(model, (model) => ({ orders: [model] }));
     }
 
     // async get(options: GetLaboratoryOrdersRequest) {
@@ -71,3 +75,6 @@ export class LaboratoryOrderLogic extends EnterpriseCollectionLogic<
     //     return result;
     // }
 }
+
+
+LaboratoryOrderLogic.register()

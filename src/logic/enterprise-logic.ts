@@ -7,7 +7,9 @@ export class EnterpriseLogic {
     constructor(api?: EnterpriseApi) {}
 
     /**
-     * Registers to LogicBoot class for providing api
+     * Registers to LogicBoot static class. 
+     * Registered logics will use main EnterpriseApi.
+     * Don't register if you want to use different EnterpriseApi
      */
     static register() {
         EnterpriseLogicBoot.register(this);

@@ -5,8 +5,9 @@ export class PatientMapper extends EnterpriseMapper<PatientModel, Patient> {
     constructor() {
         super({
             toViewModel: {
-                onlyMapDefinedFields:true,
+                onlyMapDefinedFields: true,
                 mappers: {
+                    id: "id",
                     adi: (model) =>
                         `${model.name ?? ""} ${model.surname ?? ""}`,
                     cinsiyet: (model) => model.gender ?? "E",

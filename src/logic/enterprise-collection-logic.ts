@@ -44,7 +44,7 @@ export class EnterpriseCollectionLogic<
         if (mapper) this.mapper = new mapper();
     }
 
-    async get?(
+    async get(
         request: TGetRequest,
         getOptions?: GetCollectionOptions<TModel>
     ): Promise<
@@ -131,11 +131,11 @@ export class EnterpriseCollectionLogic<
         else return this.provider.getIdFromItem(model as TModel);
     }
 
-    async save(
+    async saveOne(
         model: TViewModel extends undefined ? TModel : TViewModel,
         createSaveRequest: (model: TModel) => TSaveRequest
     ): Promise<IApiResponse<TSaveResponse>> {
-        const result = await this.saveMany([model], (models) =>
+        const result = await this.save([model], (models) =>
             createSaveRequest(models[0])
         );
 
@@ -150,7 +150,7 @@ export class EnterpriseCollectionLogic<
         };
     }
 
-    async saveMany(
+    async save(
         models: (TViewModel extends undefined ? TModel : TViewModel)[],
         createSaveRequest: (models: TModel[]) => TSaveRequest
     ): Promise<IApiResponse<TSaveResponse>> {
@@ -170,7 +170,7 @@ export class EnterpriseCollectionLogic<
         return this.provider.save(createSaveRequest(models as TModel[]));
     }
 
-    deleteMany(options: TDeleteRequest) {
+    delete(options: TDeleteRequest) {
         return this.provider.delete(options);
     }
 }

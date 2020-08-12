@@ -11,10 +11,13 @@ export class PatientLogic extends EnterpriseCollectionLogic<
     Patient
 > {
     static instance: PatientLogic;
-    protected mapper: PatientMapper;
 
     constructor(api: EnterpriseApi) {
         super(api, PatientCollectionProvider, PatientMapper);
+    }
+
+    async getOne(request: GetPatientRequest) {
+        return super.getOne(request, { ids: request.keys });
     }
 }
 

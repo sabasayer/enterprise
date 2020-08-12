@@ -22,7 +22,11 @@ class MockMapper extends EnterpriseMapper<IMockData, IMockVmData> {
     }
 }
 
-class MockCollectionProvider extends EnterpriseCollectionProvider<IMockData> {
+class MockCollectionProvider extends EnterpriseCollectionProvider<
+    IMockData,
+    {},
+    {}
+> {
     constructor(api: EnterpriseApi) {
         super(api, {
             typename: "test",
@@ -39,7 +43,9 @@ export interface IMockVmData {
 export class MockLogic extends EnterpriseCollectionLogic<
     IMockData,
     MockCollectionProvider,
-    IMockVmData
+    {},
+    IMockVmData,
+    {}
 > {
     static instance: MockLogic;
 

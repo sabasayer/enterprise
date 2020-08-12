@@ -1,6 +1,7 @@
 import {
     EnterpriseCollectionProvider,
     GetCollectionOptions,
+    EnumProvideFromCacheStrategy,
 } from "../../../../src/data-house";
 import {
     PatientModel,
@@ -8,6 +9,7 @@ import {
     GetPatientRequest,
 } from "./patient.api";
 import { EnterpriseApi } from "../../../../src/api";
+import { EnumCacheType } from "@sabasayer/utils";
 
 export class PatientCollectionProvider extends EnterpriseCollectionProvider<
     PatientModel,
@@ -18,6 +20,8 @@ export class PatientCollectionProvider extends EnterpriseCollectionProvider<
             typename: "patient",
             getRequestOptions: getPatientRequestOptions,
             idField: "id",
+            cacheStrategy: EnumCacheType.Memory,
+            provideFromCacheStrategy: EnumProvideFromCacheStrategy.CollectionId,
         });
     }
 }

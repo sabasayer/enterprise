@@ -8,7 +8,10 @@ export class PatientComponent {
     }
 
     async get() {
-        const result = await PatientLogic.instance.get({});
+        const result = await PatientLogic.instance.get(
+            {},
+            { forceGetFromApi: true }
+        );
 
         if (result.canceled) return;
 
@@ -22,10 +25,12 @@ export class PatientComponent {
             element.innerHTML = JSON.stringify(item);
             document.body.append(element);
         });
-    }
-    
 
-    async getOne(){
-        const result = await PatientLogic.instance.getOne({});
+        this.getOne();
+    }
+
+    async getOne() {
+        const result = await PatientLogic.instance.getOne({ keys: [78931] });
+        console.log("getone result", result);
     }
 }

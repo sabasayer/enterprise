@@ -9,6 +9,7 @@ import { enterpirseBoot } from "../../../src/enterpirse.boot";
 import { PatientLogic } from "./patient/patient.logic";
 import { PatientComponent } from "./patient/patient.component";
 import { IApiResponse } from "../../../src/api";
+import { LaboratoryOrderComponent } from "./laboratory-order/laboratory-order.component";
 
 const enterpriseApi = enterpirseBoot({
     endpoints: apiConfig.endpoints,
@@ -34,3 +35,4 @@ const enterpriseApi = enterpirseBoot({
 
 new AuthComponent();
 new PatientComponent();
+new LaboratoryOrderComponent();
