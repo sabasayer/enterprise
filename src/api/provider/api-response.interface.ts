@@ -1,4 +1,4 @@
-import { ErrorMessages } from "@/shared/definitions/error-messages.interface";
+import { ErrorMessages } from "../../shared/definitions/error-messages.interface";
 
 export interface IApiResponse<TModel = undefined> {
     errorMessages?: ErrorMessages;

@@ -1,5 +1,5 @@
 import { EnterpriseApi, EnterpriseApiOptions } from "./api";
-import { EnterpriseLogicBoot } from "./logic";
+import { EnterpriseLogicBoot } from "./logic/enterprise-logic.boot";
 
 export const enterpirseBoot = (
     apiOptions: EnterpriseApiOptions

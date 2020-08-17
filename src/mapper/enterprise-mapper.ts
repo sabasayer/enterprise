@@ -1,6 +1,6 @@
 import { EnterpriseMapperOptions } from "./enterprise-mapper.options";
 import { MapOptions } from "./map-options.interface";
-import cloneDeep from "lodash/clonedeep";
+import cloneDeep from "lodash.clonedeep";
 
 export class EnterpriseMapper<TModel, TViewModel> {
     private options: EnterpriseMapperOptions<TModel, TViewModel>;

@@ -18,7 +18,7 @@ describe("EnterpriseCollectionProvider", () => {
     });
 
     it("should call get", () => {
-        const provider = new EnterpriseCollectionProvider<IMockData>(
+        const provider = new EnterpriseCollectionProvider<IMockData,{}>(
             enterpriseApi,
             { typename: "test", getRequestOptions: { url: "test" } }
         );
@@ -29,7 +29,7 @@ describe("EnterpriseCollectionProvider", () => {
     });
 
     it("should call save", () => {
-        const provider = new EnterpriseCollectionProvider<IMockData>(
+        const provider = new EnterpriseCollectionProvider<IMockData,any,any>(
             enterpriseApi,
             { typename: "test", saveRequestOptions: { url: "saveTest" } }
         );
@@ -46,7 +46,7 @@ describe("EnterpriseCollectionProvider", () => {
     });
 
     it("should call delete", () => {
-        const provider = new EnterpriseCollectionProvider<IMockData>(
+        const provider = new EnterpriseCollectionProvider<IMockData,any,any,any,any>(
             enterpriseApi,
             { typename: "test", deleteRequestOptions: { url: "deleteTest" } }
         );
@@ -61,7 +61,7 @@ describe("EnterpriseCollectionProvider", () => {
     });
 
     it("should call get when cache is empty and set data to cache is true", () => {
-        const provider = new EnterpriseCollectionProvider<IMockData>(
+        const provider = new EnterpriseCollectionProvider<IMockData,any,any,any,any>(
             enterpriseApi,
             {
                 typename: "test",
@@ -76,7 +76,7 @@ describe("EnterpriseCollectionProvider", () => {
     });
 
     it("should get data from cache and should'nt call get request", () => {
-        const provider = new EnterpriseCollectionProvider<IMockData>(
+        const provider = new EnterpriseCollectionProvider<IMockData,any,any,any,any>(
             enterpriseApi,
             {
                 typename: "test",
@@ -93,7 +93,7 @@ describe("EnterpriseCollectionProvider", () => {
     });
 
     it("should not get data from cache and calls get when forceGetFromApi is true", () => {
-        const provider = new EnterpriseCollectionProvider<IMockData>(
+        const provider = new EnterpriseCollectionProvider<IMockData,any,any,any,any>(
             enterpriseApi,
             {
                 typename: "test",
@@ -110,7 +110,7 @@ describe("EnterpriseCollectionProvider", () => {
     });
 
     it("should call get when items from cache is lacking", () => {
-        const provider = new EnterpriseCollectionProvider<IMockData>(
+        const provider = new EnterpriseCollectionProvider<IMockData,any,any,any,any>(
             enterpriseApi,
             {
                 typename: "test",
@@ -130,7 +130,7 @@ describe("EnterpriseCollectionProvider", () => {
     });
 
     it("should set data to cache on save", async () => {
-        const provider = new EnterpriseCollectionProvider<IMockData>(
+        const provider = new EnterpriseCollectionProvider<IMockData,any,any,any,any>(
             enterpriseApi,
             {
                 typename: "test",
@@ -144,7 +144,7 @@ describe("EnterpriseCollectionProvider", () => {
 
         const data: IMockData = { id: 1, name: "new item" };
 
-        const request = provider.save<{ id: number }>(
+        const request = provider.save(
             { item: data },
             (response) => {
                 const newData = { id: response.id, name: data.name };
@@ -162,7 +162,7 @@ describe("EnterpriseCollectionProvider", () => {
     });
 
     it("should remove data from cache on delete", async () => {
-        const provider = new EnterpriseCollectionProvider<IMockData>(
+        const provider = new EnterpriseCollectionProvider<IMockData,any,any,any,any>(
             enterpriseApi,
             {
                 typename: "test",
@@ -186,7 +186,7 @@ describe("EnterpriseCollectionProvider", () => {
     });
 
     it("should publish added and removed for subscriptions", async () => {
-        const provider = new EnterpriseCollectionProvider<IMockData>(
+        const provider = new EnterpriseCollectionProvider<IMockData,any,any,any,any>(
             enterpriseApi,
             {
                 typename: "test",
@@ -215,7 +215,7 @@ describe("EnterpriseCollectionProvider", () => {
 
         provider.subscribe(subscription);
 
-        const saveRequest = provider.save<IMockData[]>(
+        const saveRequest = provider.save(
             {},
             (res: IMockData[]) => {
                 return res;
@@ -235,7 +235,7 @@ describe("EnterpriseCollectionProvider", () => {
 
         expect(addedItem).toEqual(savedData[1]);
 
-        const deleteRequet = provider.delete<number>({}, [12]);
+        const deleteRequet = provider.delete({}, [12]);
 
         mockAxios.mockResponse({
             data: 12,
@@ -247,7 +247,7 @@ describe("EnterpriseCollectionProvider", () => {
     });
 
     it("should run side effects for subscriptions", async () => {
-        const provider = new EnterpriseCollectionProvider<IMockData>(
+        const provider = new EnterpriseCollectionProvider<IMockData,any,any>(
             enterpriseApi,
             {
                 typename: "test",
@@ -270,7 +270,7 @@ describe("EnterpriseCollectionProvider", () => {
         const observable2 = new EnterpriseObservable<IMockData>("sideType");
         observable2.subscribe(subscription);
 
-        const request = provider.save<IMockData[]>({}, (res: IMockData[]) => {
+        const request = provider.save({}, (res: IMockData[]) => {
             return res;
         });
 

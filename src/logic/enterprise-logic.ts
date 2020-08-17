@@ -1,4 +1,4 @@
-import { EnterpriseApi } from "@/api";
+import { EnterpriseApi } from "../api";
 import { EnterpriseLogicBoot } from "./enterprise-logic.boot";
 
 export class EnterpriseLogic {

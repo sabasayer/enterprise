@@ -1,8 +1,7 @@
-import { EnterpriseCollectionLogic } from "../../../../src/logic";
 import { PatientModel, GetPatientRequest, Patient } from "./patient.api";
 import { PatientCollectionProvider } from "./patient.collection-provider";
-import { EnterpriseApi, IApiResponse } from "../../../../src/api";
 import { PatientMapper } from "./patient.mapper";
+import { EnterpriseApi, EnterpriseCollectionLogic } from "../../../../dist";
 
 export class PatientLogic extends EnterpriseCollectionLogic<
     PatientModel,

@@ -14,5 +14,8 @@
     },
     "dependencies": {
         "enterprise": "^0.0.3"
-    }
+    },
+    "browsetslist": [
+        "since 2017-06"
+    ]
 }

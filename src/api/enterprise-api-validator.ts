@@ -1,5 +1,5 @@
-import { IApiRequestValidationResult } from "@/api/provider/api-request-validation-result.interface";
-import { IApiValidationRule } from "@/api/provider/api-request-validation-rule.interface";
+import { IApiRequestValidationResult } from "../api/provider/api-request-validation-result.interface";
+import { IApiValidationRule } from "../api/provider/api-request-validation-rule.interface";
 
 type IValidateRequest = <TRequest>(
     validationRules: IApiValidationRule[],
