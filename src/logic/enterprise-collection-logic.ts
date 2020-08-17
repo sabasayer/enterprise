@@ -1,4 +1,3 @@
-import { IEnterpriseCollectionLogic } from "./enterprise-collection-logic.interface";
 import { EnterpriseLogic } from "./enterprise-logic";
 import { IApiResponse, EnterpriseApi } from "../api";
 import { IValidationResult } from ".";

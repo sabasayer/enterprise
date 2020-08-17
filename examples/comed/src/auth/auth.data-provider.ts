@@ -1,13 +1,7 @@
-import { EnterpriseDataProvider } from "../../../../";
-import {
-    signInRequestOptions,
-    SignInRequest,
-    SignInResponseModel,
-} from "./auth.api";
-import { IApiResponse } from "../../../..";
-import { EnterpriseDataHouse } from "../../../..";
 import { EnumCacheType } from "@sabasayer/utils";
-import { EnterpriseApi } from "../../../../src/api";
+import { EnterpriseDataProvider, EnterpriseApi, IApiResponse } from "../../../../src/api";
+import { SignInRequest, SignInResponseModel, signInRequestOptions } from "./auth.api";
+import { EnterpriseDataHouse } from "../../../../src/data-house";
 
 export class AuthDataProvider extends EnterpriseDataProvider {
     private readonly signInResponseKey: string = "signInResponse";

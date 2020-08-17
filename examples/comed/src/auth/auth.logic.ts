@@ -1,8 +1,7 @@
 import { AuthDataProvider } from "./auth.data-provider";
-import { EnterpriseApi } from "../../../..";
 import { SignInRequest, SignInResponseModel } from "./auth.api";
-import { IApiResponse } from "../../../..";
 import { EnterpriseLogic } from "../../../..";
+import { EnterpriseApi, IApiResponse } from "../../../../src/api";
 
 export class AuthLogic extends EnterpriseLogic {
     static instance: AuthLogic;
