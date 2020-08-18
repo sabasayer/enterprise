@@ -2,16 +2,9 @@ import {
     EnterpriseCollectionLogic,
     IValidationResult,
 } from "../../../../src/logic";
-import {
-    OrderLaboratoryModel,
-    GetLaboratoryOrdersRequest,
-    SaveLaboratoryOrdersRequest,
-    DeleteLaboratoryOrdersRequest,
-    SaveLaboratoryOrderResponse,
-    DeleteLaboratoryOrdersResponse,
-} from "./laboratory-order.api";
+import { OrderLaboratoryModel } from "./laboratory-order.api";
 import { LaboratoryOrderCollectionProvider } from "./laboratory-order.collection-provider";
-import { EnterpriseApi, IApiResponse } from "../../../../src/api";
+import { EnterpriseApi } from "../../../../src/api";
 
 export class LaboratoryOrderLogic extends EnterpriseCollectionLogic<
     OrderLaboratoryModel,
