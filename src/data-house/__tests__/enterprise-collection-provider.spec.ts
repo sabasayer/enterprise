@@ -247,7 +247,7 @@ describe("EnterpriseCollectionProvider", () => {
     });
 
     it("should run side effects for subscriptions", async () => {
-        const provider = new EnterpriseCollectionProvider<IMockData,any,any>(
+        const provider = new EnterpriseCollectionProvider<IMockData,any,any,any,any>(
             enterpriseApi,
             {
                 typename: "test",

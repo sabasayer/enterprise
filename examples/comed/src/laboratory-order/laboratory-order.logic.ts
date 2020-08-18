@@ -15,13 +15,7 @@ import { EnterpriseApi, IApiResponse } from "../../../../src/api";
 
 export class LaboratoryOrderLogic extends EnterpriseCollectionLogic<
     OrderLaboratoryModel,
-    LaboratoryOrderCollectionProvider,
-    GetLaboratoryOrdersRequest,
-    undefined,
-    SaveLaboratoryOrdersRequest,
-    SaveLaboratoryOrderResponse,
-    DeleteLaboratoryOrdersRequest,
-    DeleteLaboratoryOrdersResponse
+    LaboratoryOrderCollectionProvider
 > {
     static instance: LaboratoryOrderLogic;
 
@@ -76,5 +70,4 @@ export class LaboratoryOrderLogic extends EnterpriseCollectionLogic<
     // }
 }
 
-
-LaboratoryOrderLogic.register()
+LaboratoryOrderLogic.register();

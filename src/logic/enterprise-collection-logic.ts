@@ -7,6 +7,13 @@ import {
     GetCollectionOptions,
 } from "../data-house";
 import { EnterpriseMapper } from "../mapper";
+import {
+    ExtractGetRequest,
+    ExtractSaveRequest,
+    ExtractSaveResponse,
+    ExtractDeleteRequest,
+    ExtractDeleteResponse,
+} from "../data-house/collection/enterprise-collection.helper";
 
 new ExtendArray();
 
@@ -14,18 +21,18 @@ export class EnterpriseCollectionLogic<
     TModel,
     TCollectionProvider extends EnterpriseCollectionProvider<
         TModel,
-        TGetRequest,
-        TSaveRequest,
-        TSaveResponse,
-        TDeleteRequest,
-        TDeleteResponse
+        any,
+        any,
+        any,
+        any,
+        any
     >,
-    TGetRequest,
     TViewModel = undefined,
-    TSaveRequest = undefined,
-    TSaveResponse = undefined,
-    TDeleteRequest = undefined,
-    TDeleteResponse = undefined
+    TGetRequest = ExtractGetRequest<TCollectionProvider>,
+    TSaveRequest = ExtractSaveRequest<TCollectionProvider>,
+    TSaveResponse = ExtractSaveResponse<TCollectionProvider>,
+    TDeleteRequest = ExtractDeleteRequest<TCollectionProvider>,
+    TDeleteResponse = ExtractDeleteResponse<TCollectionProvider>
 > extends EnterpriseLogic {
     protected provider: TCollectionProvider;
     protected mapper?: EnterpriseMapper<TModel, TViewModel>;
@@ -169,7 +176,9 @@ export class EnterpriseCollectionLogic<
         return this.provider.save(createSaveRequest(models as TModel[]));
     }
 
-    delete(options: TDeleteRequest) {
+    async delete(
+        options: TDeleteRequest
+    ): Promise<IApiResponse<TDeleteResponse>> {
         return this.provider.delete(options);
     }
 }

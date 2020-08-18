@@ -6,7 +6,6 @@ import { EnterpriseApi, EnterpriseCollectionLogic } from "../../../../dist";
 export class PatientLogic extends EnterpriseCollectionLogic<
     PatientModel,
     PatientCollectionProvider,
-    GetPatientRequest,
     Patient
 > {
     static instance: PatientLogic;

@@ -43,9 +43,7 @@ export interface IMockVmData {
 export class MockLogic extends EnterpriseCollectionLogic<
     IMockData,
     MockCollectionProvider,
-    {},
-    IMockVmData,
-    {}
+    IMockVmData
 > {
     static instance: MockLogic;
 
