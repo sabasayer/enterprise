@@ -3,7 +3,7 @@ import { validateRequest } from "./enterprise-api-validator";
 import { HTTP_SUCCESS_CODES } from "./enterprise-api.const";
 import { EnterpriseApiHelper } from "./enterprise-api.helper";
 import { EnterpriseApiOptions } from "./enterprise-api.options";
-import { EnterpriseApiPost, IEnterpriseApi } from "./enterprise.api.interfaces";
+import { IEnterpriseApi } from "./enterprise.api.interfaces";
 import { EnumRequestMethod } from "./enums/request-method.enum";
 
 export * from "./provider";
@@ -13,7 +13,6 @@ export {
     validateRequest,
     HTTP_SUCCESS_CODES,
     EnterpriseApiHelper,
-    EnterpriseApiPost,
     EnterpriseApiOptions,
     IEnterpriseApi,
     EnumRequestMethod,

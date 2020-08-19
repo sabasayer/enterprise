@@ -21,6 +21,6 @@ export interface EnterpriseApiOptions {
      * dataField = 'data'
      */
     dataField?: string;
-    createErrorMessagesFunc?: (respnse: AxiosResponse) => ErrorMessages;
+    createErrorMessagesFunc?: (response: AxiosResponse) => ErrorMessages;
     authTokenHeaderKey?: string;
 }

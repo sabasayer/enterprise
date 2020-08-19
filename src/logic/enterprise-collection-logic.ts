@@ -5,6 +5,7 @@ import { ExtendArray, UuidUtil } from "@sabasayer/utils";
 import {
     EnterpriseCollectionProvider,
     GetCollectionOptions,
+    IEnterpriseSubscription,
 } from "../data-house";
 import { EnterpriseMapper } from "../mapper";
 import {
@@ -49,6 +50,15 @@ export class EnterpriseCollectionLogic<
         this.vmIdField = vmIdField;
         if (mapper) this.mapper = new mapper();
     }
+
+    subscribe(options: IEnterpriseSubscription<TModel>) {
+        this.provider.subscribe(options);
+    }
+
+    unsubscribe(id: string) {
+        this.provider.unsubscribe(id);
+    }
+
 
     async get(
         request: TGetRequest,

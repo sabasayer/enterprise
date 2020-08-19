@@ -149,7 +149,7 @@ export class EnterpriseDataProvider extends EnterpriseCancellable {
     fileUpload(
         options: IEnterpriseRequestOptions,
         onUploadProgress?: (progressEvent: ProgressEvent) => void
-    ) {
+    ): Promise<AxiosResponse<any>> {
         if (!options.files?.length) throw new Error("files must not be empty");
 
         return this.api.upload(
@@ -237,5 +237,4 @@ export class EnterpriseDataProvider extends EnterpriseCancellable {
             data: data as TResponseModel,
         };
     }
-
 }
