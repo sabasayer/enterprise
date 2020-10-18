@@ -7,11 +7,18 @@ import {
     getPatientRequestOptions,
     savePatientsRequestOptions,
     deletePatientsRequestOptions,
+    SavePatientsRequest,
+    DeletePatientsRequest,
 } from "./patient.api";
 import { EnterpriseApi, GetCollectionOptions } from "../..";
 
 export class PatientCollectionProvider extends EnterpriseCollectionProvider<
-    Patient
+    Patient,
+    GetPatientRequest,
+    SavePatientsRequest,
+    Patient[],
+    DeletePatientsRequest,
+    Patient[]
 > {
     static instance: PatientCollectionProvider;
 
@@ -24,7 +31,6 @@ export class PatientCollectionProvider extends EnterpriseCollectionProvider<
             getRequestOptions: getPatientRequestOptions,
             saveRequestOptions: savePatientsRequestOptions,
             deleteRequestOptions: deletePatientsRequestOptions,
-            isEndpointRest: true,
         });
     }
 

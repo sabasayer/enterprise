@@ -1,11 +1,14 @@
-
 import {
     PatientModel,
     getPatientRequestOptions,
     GetPatientRequest,
 } from "./patient.api";
 import { EnumCacheType } from "@sabasayer/utils";
-import { EnterpriseCollectionProvider, EnterpriseApi, EnumProvideFromCacheStrategy } from "../../../../dist";
+import {
+    EnterpriseCollectionProvider,
+    EnumProvideFromCacheStrategy,
+} from "../../../../src/data-house";
+import { EnterpriseApi } from "../../../../src/api";
 
 export class PatientCollectionProvider extends EnterpriseCollectionProvider<
     PatientModel,

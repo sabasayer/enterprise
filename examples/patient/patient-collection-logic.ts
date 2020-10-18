@@ -6,61 +6,26 @@ import {
     SavePatientsRequest,
     DeletePatientsRequest,
 } from "./patient.api";
-import { IEnterpriseCollectionLogic } from "../..";
 import { ErrorMessages } from "../../src/shared/definitions/error-messages.interface";
 import { IApiResponse } from "../../src/api/provider/api-response.interface";
-import { IValidationResponse } from "../../src/logic/validation-response.interface";
+import { GetCollectionOptions } from "../../src/data-house";
+import { IValidationResult } from "../../src/logic";
 
 export class PatientCollectionLogic
-    implements IEnterpriseCollectionLogic<Patient> {
+    extends EnterpriseCollectionLogic<Patient,PatientCollectionProvider> {
     static instance: PatientCollectionLogic;
     provider: PatientCollectionProvider;
 
     constructor(api: EnterpriseApi) {
-        this.provider = new PatientCollectionProvider(api);
+        super(api,PatientCollectionProvider)
     }
 
     static initialize(api: EnterpriseApi) {
         this.instance = new PatientCollectionLogic(api);
     }
 
-    async get(options: GetPatientRequest, cancelTokenUniqueKey?: string) {
-        return this.provider.get(options, {
-            ids: options.key,
-            forceGetFromApi: !options.key?.length,
-            cancelTokenUniqueKey,
-        });
-    }
-
-    async getOne(options: GetPatientRequest, cancelTokenUniqueKey?: string) {
-        const result = await this.provider.get(options, {
-            ids: options.key,
-            forceGetFromApi: !options.key?.length,
-            cancelTokenUniqueKey,
-        });
-
-        return {
-            errorMessages: result.errorMessages,
-            data: result.data?.[0],
-        };
-    }
-
-    async save(options: SavePatientsRequest) {
-        const validationResult = this.validateMany(options.patients);
-        if (!validationResult.valid)
-            return {
-                errorMessages: validationResult.errorMessages,
-            };
-
-        return this.provider.save<Patient>(options);
-    }
-
-    async delete(options: DeletePatientsRequest) {
-        return this.provider.delete<boolean>(options);
-    }
-
     validate(model: Patient) {
-        let result: IValidationResponse = {
+        let result: IValidationResult = {
             valid: true,
             errorMessages: {},
         };
@@ -73,8 +38,8 @@ export class PatientCollectionLogic
         return result;
     }
 
-    validateMany(models: Patient[]) {
-        let result: IValidationResponse = {
+    async validateMany(models: Patient[]) {
+        let result: IValidationResult = {
             valid: true,
             errorMessages: {},
         };

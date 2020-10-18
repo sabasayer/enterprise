@@ -1,5 +1,5 @@
+import { EnterpriseMapper } from "../../../../src/mapper";
 import { Patient, PatientModel } from "./patient.api";
-import { EnterpriseMapper } from "../../../../dist";
 
 export class PatientMapper extends EnterpriseMapper<PatientModel, Patient> {
     constructor() {

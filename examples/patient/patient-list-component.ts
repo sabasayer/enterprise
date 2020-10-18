@@ -33,7 +33,7 @@ export class PatientListComponent {
     async getData(id?: string) {
         const result = await PatientCollectionLogic.instance.get(
             { key: [id] },
-            "1"
+            { cancelTokenUniqueKey: "1" }
         );
 
         if (result.errorMessages || result.canceled) {
