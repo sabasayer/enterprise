@@ -1,4 +1,4 @@
-import { ErrorMessages } from "../shared";
+import { ErrorMessages } from "../../shared";
 import { AxiosResponse } from "axios";
 
 export interface EnterpriseApiOptions {

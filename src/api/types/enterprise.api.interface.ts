@@ -1,5 +1,5 @@
 import { AxiosRequestConfig, AxiosPromise, AxiosInstance } from "axios";
-import { EnterpriseApiOptions } from ".";
+import { EnterpriseApiOptions } from "..";
 export interface IEnterpriseApi {
     dataField?: string;
 

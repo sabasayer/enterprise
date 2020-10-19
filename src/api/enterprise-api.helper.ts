@@ -1,4 +1,4 @@
-import { EnterpriseApiOptions } from "./enterprise-api.options";
+import { EnterpriseApiOptions } from "./types/enterprise-api.options";
 import { EnumRequestMethod } from "./enums/request-method.enum";
 import Axios from "axios";
 

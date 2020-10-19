@@ -1,8 +1,8 @@
-import { EnterpriseApiOptions } from "./enterprise-api.options";
+import { EnterpriseApiOptions } from "./types/enterprise-api.options";
 import cloneDeep from "lodash.clonedeep";
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosPromise } from "axios";
 import { EnterpriseApiHelper } from "./enterprise-api.helper";
-import { IEnterpriseApi } from "./enterprise.api.interfaces";
+import { IEnterpriseApi } from "./types/enterprise.api.interface";
 
 export class EnterpriseApi implements IEnterpriseApi {
     private options: EnterpriseApiOptions;
