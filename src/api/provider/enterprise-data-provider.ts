@@ -27,6 +27,10 @@ export class EnterpriseDataProvider extends EnterpriseCancellable {
         this.waitingRequests = new Map();
     }
 
+    get initialized() {
+        return !!this.api;
+    }
+
     protected initWaitingRequests() {
         this.waitingRequests = new Map();
         this.cancelTokens = new Map();

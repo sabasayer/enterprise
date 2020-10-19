@@ -1,10 +1,8 @@
-import {
-    IEnterpriseCollectionLogic,
-    EnterpriseCollectionLogic,
-} from "../../../..";
+import { EnterpriseCollectionLogic } from "../../../..";
 import { TenantModel, GetTenantsRequest } from "./tenant.api";
 import { EnterpriseApi } from "../../../..";
 import { TenantCollectionProvider } from "./tenant.collection-provider";
+import { IEnterpriseApi } from "../../../../src/api";
 
 export class TenantLogic extends EnterpriseCollectionLogic<
     TenantModel,
@@ -12,8 +10,8 @@ export class TenantLogic extends EnterpriseCollectionLogic<
 > {
     static instance: TenantLogic;
 
-    constructor(api: EnterpriseApi) {
-        super(new TenantCollectionProvider(api));
+    constructor(api: IEnterpriseApi) {
+        super(api, TenantCollectionProvider);
     }
 
     async get(options: GetTenantsRequest) {
