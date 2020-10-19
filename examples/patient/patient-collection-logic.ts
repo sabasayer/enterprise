@@ -1,26 +1,19 @@
 import { Patient } from "./patient";
-import { EnterpriseCollectionLogic, EnterpriseApi } from "../..";
 import { PatientCollectionProvider } from "./patient-collection-provider";
-import {
-    GetPatientRequest,
-    SavePatientsRequest,
-    DeletePatientsRequest,
-} from "./patient.api";
-import { ErrorMessages } from "../../src/shared/definitions/error-messages.interface";
-import { IApiResponse } from "../../src/api/provider/api-response.interface";
-import { GetCollectionOptions } from "../../src/data-house";
-import { IValidationResult } from "../../src/logic";
+import { EnterpriseCollectionLogic, IValidationResult } from "../../src/logic";
+import { IEnterpriseApi } from "../../src/api";
 
-export class PatientCollectionLogic
-    extends EnterpriseCollectionLogic<Patient,PatientCollectionProvider> {
+export class PatientCollectionLogic extends EnterpriseCollectionLogic<
+    Patient,
+    PatientCollectionProvider
+> {
     static instance: PatientCollectionLogic;
-    provider: PatientCollectionProvider;
 
-    constructor(api: EnterpriseApi) {
-        super(api,PatientCollectionProvider)
+    constructor(api: IEnterpriseApi) {
+        super(api, PatientCollectionProvider);
     }
 
-    static initialize(api: EnterpriseApi) {
+    static initialize(api: IEnterpriseApi) {
         this.instance = new PatientCollectionLogic(api);
     }
 

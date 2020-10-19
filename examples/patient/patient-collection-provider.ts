@@ -8,21 +8,14 @@ import {
     savePatientsRequestOptions,
     deletePatientsRequestOptions,
     SavePatientsRequest,
-    DeletePatientsRequest,
 } from "./patient.api";
-import { EnterpriseApi, GetCollectionOptions } from "../..";
 import { IEnterpriseApi } from "../../src/api";
 
 export class PatientCollectionProvider extends EnterpriseCollectionProvider<
     Patient,
     GetPatientRequest,
-    SavePatientsRequest,
-    Patient[],
-    DeletePatientsRequest,
-    Patient[]
+    SavePatientsRequest
 > {
-    static instance: PatientCollectionProvider;
-
     constructor(api: IEnterpriseApi) {
         super(api, {
             typename: "patient",
@@ -33,12 +26,5 @@ export class PatientCollectionProvider extends EnterpriseCollectionProvider<
             saveRequestOptions: savePatientsRequestOptions,
             deleteRequestOptions: deletePatientsRequestOptions,
         });
-    }
-
-    async get(
-        getRequest: GetPatientRequest,
-        getOptions?: GetCollectionOptions
-    ) {
-        return super.get(getRequest, getOptions);
     }
 }
