@@ -2,7 +2,7 @@
     "exclude": ["node_modules", "**/*.spec.ts", "src/__mocks__"],
     "include": ["src/**/*", "index.ts"],
     "compilerOptions": {
-        "target": "es5",
+        "target": "ES2015",
         "module": "commonjs",
         "lib": ["esnext", "es2017", "es7", "es6", "dom"],
         "declaration": true,
