@@ -1,6 +1,12 @@
 import { AxiosRequestConfig, AxiosPromise, AxiosInstance } from "axios";
 import { EnterpriseApiOptions } from ".";
 export interface IEnterpriseApi {
+    dataField?: string;
+
+    getAuthToken(): string | undefined;
+
+    setAuthToken(token:string):void;
+
     get(
         url: string,
         data?: Record<string, any>,
@@ -24,16 +30,16 @@ export interface IEnterpriseApi {
         data?: any,
         config?: AxiosRequestConfig
     ): AxiosPromise | never;
-        
+
     upload(
         url: string,
         files: File[],
         data?: any,
         dataKey?: string,
         onUploadProgress?: (progressEvent: ProgressEvent) => void
-    ): void;
+    ): AxiosPromise | never;
 
-    getAxios(): AxiosInstance | null;
+    getAxios(): AxiosInstance | undefined;
 
     setOptions(options: EnterpriseApiOptions): void;
 

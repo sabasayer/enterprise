@@ -11,6 +11,7 @@ import {
     DeletePatientsRequest,
 } from "./patient.api";
 import { EnterpriseApi, GetCollectionOptions } from "../..";
+import { IEnterpriseApi } from "../../src/api";
 
 export class PatientCollectionProvider extends EnterpriseCollectionProvider<
     Patient,
@@ -22,7 +23,7 @@ export class PatientCollectionProvider extends EnterpriseCollectionProvider<
 > {
     static instance: PatientCollectionProvider;
 
-    constructor(api: EnterpriseApi) {
+    constructor(api: IEnterpriseApi) {
         super(api, {
             typename: "patient",
             cacheStrategy: EnumCacheType.Memory,

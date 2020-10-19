@@ -1,16 +1,14 @@
 import { EnterpriseCollectionOptions } from "./enterprise-collection.options";
 import { EnumProvideFromCacheStrategy } from "./enums/provide-from-cache-strategy.enum";
-import { EnumCacheType } from "@sabasayer/utils";
-import { EnterpriseApi } from "../../api/enterpise-api";
 import { IApiResponse } from "../../api/provider/api-response.interface";
 import { EnterpriseDataProvider } from "../../api/provider/enterprise-data-provider";
-import { EnumRequestMethod } from "../../api/enums/request-method.enum";
 import { applyMixins } from "../../shared/mixin.helper";
 import { EnterpriseCollectionCacheProvider } from "../cache/enterprise-collection-cache-provider";
 import { GetCollectionOptions } from "./get-collection.options";
 import { EnterpriseApiHelper } from "../../api/enterprise-api.helper";
 import { EnterpriseObservable, IEnterpriseSubscription } from "../observable";
 import { EnterpriseObservableHouse } from "../observable/enterprise-observable-house";
+import { IEnterpriseApi } from "@/api";
 
 interface EnterpriseCollectionProvider<
     TModel,
@@ -33,7 +31,7 @@ class EnterpriseCollectionProvider<
     protected observable: EnterpriseObservable<TModel>;
 
     constructor(
-        api: EnterpriseApi,
+        api: IEnterpriseApi,
         options: EnterpriseCollectionOptions<TModel>
     ) {
         this.api = api;

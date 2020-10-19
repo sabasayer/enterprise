@@ -4,15 +4,16 @@ import {
     getTenantsRequestOptions,
     GetTenantsRequest,
 } from "./tenant.api";
-import { EnterpriseApi } from "../../../..";
 import { EnumCacheType } from "@sabasayer/utils";
 import { EnumProvideFromCacheStrategy } from "../../../..";
 import { GetCollectionOptions } from "../../../..";
+import { IEnterpriseApi } from "../../../../src/api";
 
 export class TenantCollectionProvider extends EnterpriseCollectionProvider<
-    TenantModel
+    TenantModel,
+    GetTenantsRequest
 > {
-    constructor(api: EnterpriseApi) {
+    constructor(api: IEnterpriseApi) {
         super(api, {
             typename: "tenant",
             cacheStrategy: EnumCacheType.SessionStorage,

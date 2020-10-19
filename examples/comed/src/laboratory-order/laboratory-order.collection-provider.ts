@@ -10,7 +10,7 @@ import {
     DeleteLaboratoryOrdersRequest,
     DeleteLaboratoryOrdersResponse,
 } from "./laboratory-order.api";
-import { EnterpriseApi } from "../../../../src/api";
+import { IEnterpriseApi } from "../../../../src/api";
 
 export class LaboratoryOrderCollectionProvider extends EnterpriseCollectionProvider<
     OrderLaboratoryModel,
@@ -20,7 +20,7 @@ export class LaboratoryOrderCollectionProvider extends EnterpriseCollectionProvi
     DeleteLaboratoryOrdersRequest,
     DeleteLaboratoryOrdersResponse
 > {
-    constructor(api: EnterpriseApi) {
+    constructor(api: IEnterpriseApi) {
         super(api, {
             typename: "laboratory-order",
             getRequestOptions: getLaboratoryOrdersRequestOptions,

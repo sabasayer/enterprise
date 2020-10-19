@@ -1,10 +1,10 @@
-import { EnterpriseApi } from "../api";
+import {IEnterpriseApi } from "../api";
 import { EnterpriseLogicBoot } from "./enterprise-logic.boot";
 
 export class EnterpriseLogic {
     static instance: EnterpriseLogic;
 
-    constructor(api?: EnterpriseApi) {}
+    constructor(api?: IEnterpriseApi) {}
 
     /**
      * Registers to LogicBoot static class. 

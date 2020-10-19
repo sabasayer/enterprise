@@ -6,8 +6,8 @@ import { IEnterpriseApi } from "./enterprise.api.interfaces";
 
 export class EnterpriseApi implements IEnterpriseApi {
     private options: EnterpriseApiOptions;
-    private axios: AxiosInstance | null = null;
-    private authToken: string | null = null;
+    private axios?: AxiosInstance ;
+    private authToken?: string ;
 
     constructor(options: EnterpriseApiOptions) {
         this.options = options;
@@ -92,7 +92,7 @@ export class EnterpriseApi implements IEnterpriseApi {
         data?: any,
         dataKey?: string,
         onUploadProgress?: (progressEvent: ProgressEvent) => void
-    ) {
+    ): AxiosPromise | never {
         if (!this.axios) throw new Error("axios is not initialized");
 
         let formData = new FormData();
@@ -108,7 +108,7 @@ export class EnterpriseApi implements IEnterpriseApi {
         return this.axios.post(url, formData, config);
     }
 
-    getAxios(): AxiosInstance | null {
+    getAxios(): AxiosInstance | undefined {
         return this.axios;
     }
 

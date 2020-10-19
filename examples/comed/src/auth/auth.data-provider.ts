@@ -1,12 +1,12 @@
 import { EnumCacheType } from "@sabasayer/utils";
-import { EnterpriseDataProvider, EnterpriseApi, IApiResponse } from "../../../../src/api";
+import { EnterpriseDataProvider, IApiResponse, IEnterpriseApi } from "../../../../src/api";
 import { SignInRequest, SignInResponseModel, signInRequestOptions } from "./auth.api";
 import { EnterpriseDataHouse } from "../../../../src/data-house";
 
 export class AuthDataProvider extends EnterpriseDataProvider {
     private readonly signInResponseKey: string = "signInResponse";
 
-    constructor(api: EnterpriseApi) {
+    constructor(api: IEnterpriseApi) {
         super(api);
         this.initAuthTokenFromStorage();
     }

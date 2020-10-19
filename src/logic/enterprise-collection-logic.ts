@@ -1,5 +1,5 @@
 import { EnterpriseLogic } from "./enterprise-logic";
-import { IApiResponse, EnterpriseApi } from "../api";
+import { IApiResponse, IEnterpriseApi } from "../api";
 import { IValidationResult } from ".";
 import { ExtendArray, UuidUtil } from "@sabasayer/utils";
 import {
@@ -40,8 +40,8 @@ export class EnterpriseCollectionLogic<
     protected vmIdField?: keyof TViewModel;
 
     constructor(
-        api: EnterpriseApi,
-        provider: { new (api: EnterpriseApi): TCollectionProvider },
+        api: IEnterpriseApi,
+        provider: { new (api: IEnterpriseApi): TCollectionProvider },
         mapper?: { new (): EnterpriseMapper<TModel, TViewModel> },
         vmIdField?: keyof TViewModel
     ) {

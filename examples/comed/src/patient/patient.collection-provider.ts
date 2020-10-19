@@ -8,13 +8,13 @@ import {
     EnterpriseCollectionProvider,
     EnumProvideFromCacheStrategy,
 } from "../../../../src/data-house";
-import { EnterpriseApi } from "../../../../src/api";
+import { IEnterpriseApi } from "../../../../src/api";
 
 export class PatientCollectionProvider extends EnterpriseCollectionProvider<
     PatientModel,
     GetPatientRequest
 > {
-    constructor(api: EnterpriseApi) {
+    constructor(api: IEnterpriseApi) {
         super(api, {
             typename: "patient",
             getRequestOptions: getPatientRequestOptions,

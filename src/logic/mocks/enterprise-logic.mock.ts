@@ -1,13 +1,11 @@
-import { EnterpriseApi } from "../../api";
+import { EnterpriseApi, IEnterpriseApi } from "../../api";
 import { EnterpriseCollectionProvider } from "../../data-house";
 import { IMockData } from "../../data-house/mocks/mock";
 import {
     EnterpriseCollectionLogic,
     IValidationResult,
-    EnterpriseLogicBoot,
 } from "..";
 import { EnterpriseMapper } from "../../mapper";
-import { enterpirseBoot } from "../../enterpirse.boot";
 
 class MockMapper extends EnterpriseMapper<IMockData, IMockVmData> {
     constructor() {
@@ -27,7 +25,7 @@ class MockCollectionProvider extends EnterpriseCollectionProvider<
     {},
     {}
 > {
-    constructor(api: EnterpriseApi) {
+    constructor(api: IEnterpriseApi) {
         super(api, {
             typename: "test",
             getRequestOptions: { url: "get" },

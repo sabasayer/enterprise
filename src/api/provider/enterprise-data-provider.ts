@@ -1,5 +1,4 @@
 import { IApiRequestValidationResult } from "./api-request-validation-result.interface";
-import { EnterpriseApi } from "../enterpise-api";
 import { IApiRequestOptions } from "./api-request-options.interface";
 import { validateRequest } from "../enterprise-api-validator";
 import Axios, {
@@ -16,12 +15,13 @@ import { ICancellableApiResponse } from "./cancellable-api-response.interface";
 import { EnterpriseApiHelper } from "../enterprise-api.helper";
 import { IEnterpriseRequestOptions } from "./enterprise-request-options.interface";
 import { EnterpriseCancellable } from "./enterprise-cancellable";
+import { IEnterpriseApi } from "..";
 
 export class EnterpriseDataProvider extends EnterpriseCancellable {
-    protected api: EnterpriseApi;
+    protected api: IEnterpriseApi;
     protected waitingRequests: Map<string, AxiosPromise>;
 
-    constructor(api: EnterpriseApi) {
+    constructor(api: IEnterpriseApi) {
         super();
         this.api = api;
         this.waitingRequests = new Map();
