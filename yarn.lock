@@ -4071,11 +4071,6 @@ end-of-stream@^1.0.0, end-of-stream@^1.1.0:
   dependencies:
     once "^1.4.0"
 
-enterprise@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/enterprise/-/enterprise-0.0.3.tgz#bead2ea29ff11f4133bb6670165fd7c07703a8a1"
-  integrity sha1-vq0uop/xH0Ezu2ZwFl/XwHcDqKE=
-
 entities@^1.1.1, entities@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/entities/-/entities-1.1.2.tgz#bdfa735299664dfafd34529ed4f8522a275fea56"

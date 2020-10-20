@@ -1,4 +1,4 @@
-import { EnterpriseCollectionProvider } from "@sabasayer/enterprise";
+import { EnterpriseCollectionProvider, ServiceRequest } from "@sabasayer/enterprise";
 import {
     OrderLaboratoryModel,
     GetLaboratoryOrdersRequest,
@@ -15,10 +15,8 @@ import { IEnterpriseApi } from "@sabasayer/enterprise";
 export class LaboratoryOrderCollectionProvider extends EnterpriseCollectionProvider<
     OrderLaboratoryModel,
     GetLaboratoryOrdersRequest,
-    SaveLaboratoryOrdersRequest,
-    SaveLaboratoryOrderResponse,
-    DeleteLaboratoryOrdersRequest,
-    DeleteLaboratoryOrdersResponse
+    ServiceRequest<SaveLaboratoryOrdersRequest,SaveLaboratoryOrderResponse>,
+    ServiceRequest<DeleteLaboratoryOrdersRequest,DeleteLaboratoryOrdersResponse>
 > {
     constructor(api: IEnterpriseApi) {
         super(api, {

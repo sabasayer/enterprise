@@ -11,25 +11,30 @@ import {
     IEnterpriseSubscription,
 } from "../../data-house/observable";
 import { EnterpriseObservableHouse } from "../../data-house/observable/enterprise-observable-house";
-import { IEnterpriseApi } from "../../api";
+import {
+    ExtractRequest,
+    ExtractResult,
+    IEnterpriseApi,
+    ServiceRequest,
+} from "../../api";
 
 interface EnterpriseCollectionProvider<
     TModel,
     TGetRequest,
-    TSaveRequest = undefined,
-    TDeleteRequest = undefined,
-    TSaveResponse = undefined,
-    TDeleteResponse = undefined
+    TSaveServiceRequest,
+    TDeleteServiceRequest
 > extends EnterpriseCollectionCacheProvider<TModel>,
         EnterpriseDataProvider {}
 
 class EnterpriseCollectionProvider<
     TModel,
     TGetRequest,
-    TSaveRequest = undefined,
-    TDeleteRequest = undefined,
-    TSaveResponse = undefined,
-    TDeleteResponse = undefined
+    TSaveServiceRequest = undefined,
+    TDeleteServiceRequest = undefined,
+    TSaveRequest = ExtractRequest<TSaveServiceRequest>,
+    TSaveResponse = ExtractResult<TSaveServiceRequest>,
+    TDeleteRequest = ExtractRequest<TDeleteServiceRequest>,
+    TDeleteResponse = ExtractResult<TDeleteServiceRequest>
 > {
     protected options: EnterpriseCollectionOptions<TModel>;
     protected observable: EnterpriseObservable<TModel>;

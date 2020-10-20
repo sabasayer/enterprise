@@ -1,19 +1,19 @@
 import { EnterpriseLogic } from "./enterprise-logic";
-import {  IEnterpriseApi } from "../api";
+import { IEnterpriseApi, ServiceRequest } from "../api";
 import { IValidationResult } from ".";
 import { ExtendArray, UuidUtil } from "@sabasayer/utils";
-import {
-    IEnterpriseSubscription,
-} from "../data-house";
+import { IEnterpriseSubscription } from "../data-house";
 import { EnterpriseMapper } from "../mapper";
 import {
     ExtractGetRequest,
     ExtractSaveRequest,
-    ExtractSaveResponse,
     ExtractDeleteRequest,
+    EnterpriseCollectionProvider,
     ExtractDeleteResponse,
-} from "../provider/collection/enterprise-collection.helper";
-import { EnterpriseCollectionProvider, GetCollectionOptions, IApiResponse } from "../provider";
+    ExtractSaveResponse,
+    GetCollectionOptions,
+    IApiResponse,
+} from "../../index";
 
 new ExtendArray();
 
@@ -21,11 +21,9 @@ export class EnterpriseCollectionLogic<
     TModel,
     TCollectionProvider extends EnterpriseCollectionProvider<
         TModel,
-        any,
-        any,
-        any,
-        any,
-        any
+        TGetRequest,
+        ServiceRequest<TSaveRequest, TSaveResponse>,
+        ServiceRequest<TDeleteRequest, TDeleteResponse>
     >,
     TViewModel = undefined,
     TGetRequest = ExtractGetRequest<TCollectionProvider>,
@@ -57,7 +55,6 @@ export class EnterpriseCollectionLogic<
     unsubscribe(id: string) {
         this.provider.unsubscribe(id);
     }
-
 
     async get(
         request: TGetRequest,

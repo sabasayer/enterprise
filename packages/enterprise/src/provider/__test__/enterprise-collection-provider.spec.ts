@@ -1,11 +1,14 @@
 import mockAxios from "jest-mock-axios";
-import { EnterpriseApi } from "../../api";
+import { EnterpriseApi, ServiceRequest } from "../../api";
 import { EnterpriseCollectionProvider } from "../collection/enterprise-collection-provider";
 import { IMockData } from "../../data-house/mocks/mock";
 import { EnumCacheType, ExtendArray } from "@sabasayer/utils";
 import { EnumProvideFromCacheStrategy } from "../collection/enums/provide-from-cache-strategy.enum";
 import { EnterpriseDataHouse } from "../../data-house/enterprise-data-house";
-import { IEnterpriseSubscription, EnterpriseObservable } from "../../data-house/observable";
+import {
+    IEnterpriseSubscription,
+    EnterpriseObservable,
+} from "../../data-house/observable";
 
 const enterpriseApi = new EnterpriseApi({
     baseUrl: "http://test.com",
@@ -18,7 +21,7 @@ describe("EnterpriseCollectionProvider", () => {
     });
 
     it("should call get", () => {
-        const provider = new EnterpriseCollectionProvider<IMockData,{}>(
+        const provider = new EnterpriseCollectionProvider<IMockData, {}>(
             enterpriseApi,
             { typename: "test", getRequestOptions: { url: "test" } }
         );
@@ -29,7 +32,7 @@ describe("EnterpriseCollectionProvider", () => {
     });
 
     it("should call save", () => {
-        const provider = new EnterpriseCollectionProvider<IMockData,any,any>(
+        const provider = new EnterpriseCollectionProvider<IMockData, any, any>(
             enterpriseApi,
             { typename: "test", saveRequestOptions: { url: "saveTest" } }
         );
@@ -46,10 +49,15 @@ describe("EnterpriseCollectionProvider", () => {
     });
 
     it("should call delete", () => {
-        const provider = new EnterpriseCollectionProvider<IMockData,any,any,any,any>(
-            enterpriseApi,
-            { typename: "test", deleteRequestOptions: { url: "deleteTest" } }
-        );
+        const provider = new EnterpriseCollectionProvider<
+            IMockData,
+            any,
+            ServiceRequest<any,any>,
+            ServiceRequest<any,any>
+        >(enterpriseApi, {
+            typename: "test",
+            deleteRequestOptions: { url: "deleteTest" },
+        });
 
         provider.delete({ id: 1 });
 
@@ -61,14 +69,16 @@ describe("EnterpriseCollectionProvider", () => {
     });
 
     it("should call get when cache is empty and set data to cache is true", () => {
-        const provider = new EnterpriseCollectionProvider<IMockData,any,any,any,any>(
-            enterpriseApi,
-            {
-                typename: "test",
-                cacheStrategy: EnumCacheType.Memory,
-                getRequestOptions: { url: "getTests" },
-            }
-        );
+        const provider = new EnterpriseCollectionProvider<
+            IMockData,
+            any,
+            any,
+            any
+        >(enterpriseApi, {
+            typename: "test",
+            cacheStrategy: EnumCacheType.Memory,
+            getRequestOptions: { url: "getTests" },
+        });
 
         provider.get({});
 
@@ -76,14 +86,16 @@ describe("EnterpriseCollectionProvider", () => {
     });
 
     it("should get data from cache and should'nt call get request", () => {
-        const provider = new EnterpriseCollectionProvider<IMockData,any,any,any,any>(
-            enterpriseApi,
-            {
-                typename: "test",
-                cacheStrategy: EnumCacheType.Memory,
-                getRequestOptions: { url: "getTests" },
-            }
-        );
+        const provider = new EnterpriseCollectionProvider<
+            IMockData,
+            any,
+            any,
+            any
+        >(enterpriseApi, {
+            typename: "test",
+            cacheStrategy: EnumCacheType.Memory,
+            getRequestOptions: { url: "getTests" },
+        });
 
         provider.setCache([{ name: "test", id: 1 }]);
 
@@ -93,14 +105,16 @@ describe("EnterpriseCollectionProvider", () => {
     });
 
     it("should not get data from cache and calls get when forceGetFromApi is true", () => {
-        const provider = new EnterpriseCollectionProvider<IMockData,any,any,any,any>(
-            enterpriseApi,
-            {
-                typename: "test",
-                cacheStrategy: EnumCacheType.Memory,
-                getRequestOptions: { url: "getTests" },
-            }
-        );
+        const provider = new EnterpriseCollectionProvider<
+            IMockData,
+            any,
+            any,
+            any
+        >(enterpriseApi, {
+            typename: "test",
+            cacheStrategy: EnumCacheType.Memory,
+            getRequestOptions: { url: "getTests" },
+        });
 
         provider.setCache([{ id: 1, name: "test" }]);
 
@@ -110,17 +124,18 @@ describe("EnterpriseCollectionProvider", () => {
     });
 
     it("should call get when items from cache is lacking", () => {
-        const provider = new EnterpriseCollectionProvider<IMockData,any,any,any,any>(
-            enterpriseApi,
-            {
-                typename: "test",
-                cacheStrategy: EnumCacheType.Memory,
-                getRequestOptions: { url: "getTests" },
-                provideFromCacheStrategy:
-                    EnumProvideFromCacheStrategy.CollectionId,
-                idField: "id",
-            }
-        );
+        const provider = new EnterpriseCollectionProvider<
+            IMockData,
+            any,
+            any,
+            any
+        >(enterpriseApi, {
+            typename: "test",
+            cacheStrategy: EnumCacheType.Memory,
+            getRequestOptions: { url: "getTests" },
+            provideFromCacheStrategy: EnumProvideFromCacheStrategy.CollectionId,
+            idField: "id",
+        });
 
         provider.setCache([{ id: 1, name: "test" }]);
 
@@ -130,27 +145,25 @@ describe("EnterpriseCollectionProvider", () => {
     });
 
     it("should set data to cache on save", async () => {
-        const provider = new EnterpriseCollectionProvider<IMockData,any,any,any,any>(
-            enterpriseApi,
-            {
-                typename: "test",
-                cacheStrategy: EnumCacheType.Memory,
-                saveRequestOptions: { url: "saveTests" },
-                provideFromCacheStrategy:
-                    EnumProvideFromCacheStrategy.CollectionId,
-                idField: "id",
-            }
-        );
+        const provider = new EnterpriseCollectionProvider<
+            IMockData,
+            any,
+            ServiceRequest<{ item: IMockData }, IMockData>,
+            any
+        >(enterpriseApi, {
+            typename: "test",
+            cacheStrategy: EnumCacheType.Memory,
+            saveRequestOptions: { url: "saveTests" },
+            provideFromCacheStrategy: EnumProvideFromCacheStrategy.CollectionId,
+            idField: "id",
+        });
 
         const data: IMockData = { id: 1, name: "new item" };
 
-        const request = provider.save(
-            { item: data },
-            (response) => {
-                const newData = { id: response.id, name: data.name };
-                return [newData];
-            }
-        );
+        const request = provider.save({ item: data }, (response:IMockData) => {
+            const newData = { id: response.id, name: data.name };
+            return [newData];
+        });
 
         mockAxios.mockResponse({ data: { id: 15 } });
 
@@ -162,17 +175,18 @@ describe("EnterpriseCollectionProvider", () => {
     });
 
     it("should remove data from cache on delete", async () => {
-        const provider = new EnterpriseCollectionProvider<IMockData,any,any,any,any>(
-            enterpriseApi,
-            {
-                typename: "test",
-                cacheStrategy: EnumCacheType.Memory,
-                deleteRequestOptions: { url: "deleteTests" },
-                provideFromCacheStrategy:
-                    EnumProvideFromCacheStrategy.CollectionId,
-                idField: "id",
-            }
-        );
+        const provider = new EnterpriseCollectionProvider<
+            IMockData,
+            any,
+            ServiceRequest<any,any>,
+            ServiceRequest<any,any>
+        >(enterpriseApi, {
+            typename: "test",
+            cacheStrategy: EnumCacheType.Memory,
+            deleteRequestOptions: { url: "deleteTests" },
+            provideFromCacheStrategy: EnumProvideFromCacheStrategy.CollectionId,
+            idField: "id",
+        });
 
         provider.setCache([{ id: 1, name: "test" }]);
 
@@ -186,14 +200,16 @@ describe("EnterpriseCollectionProvider", () => {
     });
 
     it("should publish added and removed for subscriptions", async () => {
-        const provider = new EnterpriseCollectionProvider<IMockData,any,any,any,any>(
-            enterpriseApi,
-            {
-                typename: "test",
-                saveRequestOptions: { url: "saveTests" },
-                deleteRequestOptions: { url: "deleteTests" },
-            }
-        );
+        const provider = new EnterpriseCollectionProvider<
+            IMockData,
+            any,
+            ServiceRequest<{},IMockData[]>,
+            ServiceRequest<{},number>
+        >(enterpriseApi, {
+            typename: "test",
+            saveRequestOptions: { url: "saveTests" },
+            deleteRequestOptions: { url: "deleteTests" },
+        });
 
         let addedItem: IMockData = {
             id: 0,
@@ -215,12 +231,9 @@ describe("EnterpriseCollectionProvider", () => {
 
         provider.subscribe(subscription);
 
-        const saveRequest = provider.save(
-            {},
-            (res: IMockData[]) => {
-                return res;
-            }
-        );
+        const saveRequest = provider.save({}, (res: IMockData[]) => {
+            return res;
+        });
 
         const savedData: IMockData[] = [
             { id: 1, name: "ali" },
@@ -247,14 +260,16 @@ describe("EnterpriseCollectionProvider", () => {
     });
 
     it("should run side effects for subscriptions", async () => {
-        const provider = new EnterpriseCollectionProvider<IMockData,any,any,any,any>(
-            enterpriseApi,
-            {
-                typename: "test",
-                saveRequestOptions: { url: "saveTests" },
-                relatedTypes: ["sideType"],
-            }
-        );
+        const provider = new EnterpriseCollectionProvider<
+            IMockData,
+            any,
+            ServiceRequest<{},IMockData[]>,
+            ServiceRequest<any,any>
+        >(enterpriseApi, {
+            typename: "test",
+            saveRequestOptions: { url: "saveTests" },
+            relatedTypes: ["sideType"],
+        });
 
         let isSideEffected: boolean = false;
 
@@ -274,7 +289,7 @@ describe("EnterpriseCollectionProvider", () => {
             return res;
         });
 
-        mockAxios.mockResponse({data:[]});
+        mockAxios.mockResponse({ data: [] });
 
         await request;
 

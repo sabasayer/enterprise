@@ -13,8 +13,7 @@
         "enterprise": "../../"
     },
     "dependencies": {
-        "@sabasayer/enterprise": "^1.0.16",
-        "enterprise": "^0.0.3"
+        "@sabasayer/enterprise": "^1.1.0"
     },
     "browsetslist": [
         "since 2017-06"

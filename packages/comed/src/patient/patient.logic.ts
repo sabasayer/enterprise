@@ -13,6 +13,7 @@ export class PatientLogic extends EnterpriseCollectionLogic<
 
     constructor(api: EnterpriseApi) {
         super(api, PatientCollectionProvider, PatientMapper);
+        
     }
 
     async getOne(request: GetPatientRequest) {

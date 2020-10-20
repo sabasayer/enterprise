@@ -2,6 +2,7 @@ import {
     EnterpriseCollectionProvider,
     IEnterpriseApi,
     EnterpriseCollectionLogic,
+    ServiceRequest,
 } from "./index";
 
 interface Model {
@@ -29,10 +30,8 @@ interface DeleteResponse {
 class TestProvider extends EnterpriseCollectionProvider<
     Model,
     GetRequest,
-    SaveRequest,
-    DeleteRequest,
-    SaveResponse,
-    DeleteResponse
+    ServiceRequest<SaveRequest, SaveResponse>,
+    ServiceRequest<DeleteRequest, DeleteResponse>
 > {
     constructor(api: IEnterpriseApi) {
         super(api, {

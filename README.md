@@ -13,7 +13,7 @@ UI frameworks ( vue , react vs.) dont need to know logic and where and how data 
 
 This projects acts as a guide for first 4 parts and also provides usefull tools.
 
-Check **examples** folder for usage examples.
+Check **examples.ts** file , **comed** and **patient** folder for usage examples.
 Check **docs** folder for detailed documents.
 
 # How to use ?
@@ -229,10 +229,12 @@ Also have get, save, delete, subscribe methods.
 class EnterpriseCollectionProvider<
     TModel,
     TGetRequest,
-    TSaveRequest = undefined,
-    TSaveResponse = undefined,
-    TDeleteRequest = undefined,
-    TDeleteResponse = undefined
+    TSaveServiceRequest = undefined,
+    TDeleteServiceRequest = undefined,
+    TSaveRequest = ExtractRequest<TSaveServiceRequest>,
+    TSaveResponse = ExtractResult<TSaveServiceRequest>,
+    TDeleteRequest = ExtractRequest<TDeleteServiceRequest>,
+    TDeleteResponse = ExtractResult<TDeleteServiceRequest>
 > {
 
     constructor(
@@ -285,6 +287,42 @@ class EnterpriseCollectionProvider<
         ids?: (string | number)[]
     ): Promise<IApiResponse<TDeleteResponse>> 
 }
+
+//usage
+
+interface Model {
+    name: string;
+}
+
+interface GetRequest {}
+
+interface SaveRequest {
+    models: Model[];
+}
+
+interface SaveResponse {
+    ids: number[];
+}
+
+interface DeleteRequest {
+    ids: number[];
+}
+
+interface DeleteResponse {
+    ids: Record<number, boolean>;
+}
+
+class TestProvider extends EnterpriseCollectionProvider<
+    Model,
+    GetRequest,
+    ServiceRequest<SaveRequest, SaveResponse>,
+    ServiceRequest<DeleteRequest, DeleteResponse>
+> {
+    constructor(api: IEnterpriseApi) {
+        super(api, {
+            typename: "model",
+        });
+    }
 
 ```
 
@@ -383,6 +421,28 @@ Uses `ExtractGetRequest` type helper to extract RequestTypes from `CollectionPro
     ): Promise<IApiResponse<TDeleteResponse>> 
 }
 
+//usage
+
+
+class TestLogic extends EnterpriseCollectionLogic<Model, TestProvider> {
+    static instance: TestLogic;
+
+    constructor(api: IEnterpriseApi) {
+        super(api, TestProvider);
+    }
+}
+
+TestLogic.instance.register();
+
+...
+
+TestLogic.instance.get({});
+TestLogic.instance.save([], (models) => ({
+    models,
+}));
+TestLogic.instance.delete({ ids: [] });
+
+
 ```
 
 # 7. EnterpriseMapper
@@ -435,3 +495,10 @@ class EnterpriseMapper<TModel, TViewModel> {
 
 
 ```
+
+
+#### For VsCode jest extension users
+
+set jest.pathToJest settings :
+
+"jest.pathToJest": "lerna run test --stream --"
