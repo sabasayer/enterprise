@@ -66,7 +66,7 @@ describe("Enterprise Api", () => {
             baseUrl: "http://test.com",
         });
 
-        const axios = api.getAxios();
+        api.getAxios();
 
         expect(mockAxios.create).toHaveBeenCalledWith({
             baseURL: "http://test.com/",
@@ -74,7 +74,7 @@ describe("Enterprise Api", () => {
     });
 
     it("should create axios with hostName ", () => {
-        const api = new EnterpriseApi({
+        new EnterpriseApi({
             hostName: "wololo.com",
         });
 
@@ -91,7 +91,7 @@ describe("Enterprise Api", () => {
             prefix: "json",
         });
 
-        const axios = api.getAxios();
+        api.getAxios();
 
         expect(mockAxios.create).toHaveBeenCalledWith({
             baseURL: "https://myWebsite.com/tr-tr/json/",
@@ -103,7 +103,7 @@ describe("Enterprise Api", () => {
             hostName: "myWebsite.com",
         });
 
-        const axios = api.getAxios();
+        api.getAxios();
 
         expect(mockAxios.create).toHaveBeenCalledWith({
             baseURL: "//myWebsite.com/",
@@ -126,7 +126,7 @@ describe("Enterprise Api", () => {
             },
         });
 
-        const axios = api.getAxios();
+        api.getAxios();
 
         expect(mockAxios.create).toHaveBeenCalledWith({
             baseURL: "//test.com/",
@@ -135,7 +135,7 @@ describe("Enterprise Api", () => {
 
     it("should throw error if hostName and baseUrls is empty", () => {
         try {
-            const api = new EnterpriseApi({});
+            new EnterpriseApi({});
         } catch (e) {
             expect(e.message).toBe(
                 "hostName , endPoints or baseUrl is required"

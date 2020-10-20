@@ -2,7 +2,7 @@ import mockAxios from "jest-mock-axios";
 import { EnterpriseApi, ServiceRequest } from "../../api";
 import { EnterpriseCollectionProvider } from "../collection/enterprise-collection-provider";
 import { IMockData } from "../../data-house/mocks/mock";
-import { EnumCacheType, ExtendArray } from "@sabasayer/utils";
+import { EnumCacheType } from "@sabasayer/utils";
 import { EnumProvideFromCacheStrategy } from "../collection/enums/provide-from-cache-strategy.enum";
 import { EnterpriseDataHouse } from "../../data-house/enterprise-data-house";
 import {

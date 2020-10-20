@@ -83,7 +83,7 @@
 					</li>
 				</ol>
 				<p>This projects acts as a guide for first 4 parts and also provides usefull tools.</p>
-				<p>Check <strong>examples</strong> folder for usage examples.
+				<p>Check <strong>examples.ts</strong> file , <strong>comed</strong> and <strong>patient</strong> folder for usage examples.
 				Check <strong>docs</strong> folder for detailed documents.</p>
 				<a href="#how-to-use-" id="how-to-use-" style="color: inherit; text-decoration: none;">
 					<h1>How to use ?</h1>
@@ -91,13 +91,13 @@
 				<p>Main part of this framework is <code>EnterpriseApi</code> class which handles requests.</p>
 				<p>To create <code>EnterpriseApi</code> instance </p>
 				<pre><code class="language-typescript"><span class="hljs-keyword">const</span> enterpriseApi = enterpirseBoot({
-    languagePrefix: <span class="hljs-string">&quot;tr-tr&quot;</span>,
-    dataField: <span class="hljs-string">&quot;data&quot;</span>,
-    hostName:<span class="hljs-string">&#x27;myHostName.com&#x27;</span>,
-    headers: {
+    <span class="hljs-attr">languagePrefix</span>: <span class="hljs-string">&quot;tr-tr&quot;</span>,
+    <span class="hljs-attr">dataField</span>: <span class="hljs-string">&quot;data&quot;</span>,
+    <span class="hljs-attr">hostName</span>:<span class="hljs-string">&#x27;myHostName.com&#x27;</span>,
+    <span class="hljs-attr">headers</span>: {
         <span class="hljs-string">&quot;content-type&quot;</span>: <span class="hljs-string">&quot;application/json&quot;</span>,
     },
-    authTokenHeaderKey: <span class="hljs-string">&quot;x-authentication-token&quot;</span>
+    <span class="hljs-attr">authTokenHeaderKey</span>: <span class="hljs-string">&quot;x-authentication-token&quot;</span>
 });
 </code></pre>
 				<p>This will ensure that all <code>Logic</code> classes injected <code>EnterpriseApi</code> instance</p>
@@ -108,19 +108,19 @@
 				<p>Fore example if we have <code>User</code> model we will have minimum 2 files in *<em>User</em> folder* :</p>
 				<p><code>UserDataProvider</code> , <code>UserLogic</code> </p>
 				<p><code>DataProvider</code> and <code>Logic</code> accepts <strong>EnterpriseApi</strong> object at the constructor</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> UserDataProvider <span class="hljs-keyword">extends</span> EnterpriseDataProvider {
-    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">api: EnterpriseApi</span>) {
+				<pre><code class="language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserDataProvider</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">EnterpriseDataProvider</span> </span>{
+    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">api: EnterpriseApi</span>)</span> {
         <span class="hljs-built_in">super</span>(api);
     }
     ...
 }
 
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> UserLogic <span class="hljs-keyword">extends</span> EnterpriseLogic {
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserLogic</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">EnterpriseLogic</span> </span>{
     <span class="hljs-keyword">static</span> instance: UserLogic;
     <span class="hljs-keyword">private</span> provider: UserDataProvider;
 
-    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">api: EnterpriseApi</span>) {
+    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">api: EnterpriseApi</span>)</span> {
         <span class="hljs-built_in">super</span>();
         <span class="hljs-built_in">this</span>.provider = <span class="hljs-keyword">new</span> UserDataProvider(api);
     }
@@ -141,7 +141,7 @@ AuthLogic.register();
 				<p>Manages the communication with api&#39;s with help of <strong>axios</strong></p>
 				<p>To use initialize an object from <strong>EnterpriseApi</strong> class</p>
 				<pre><code class="language-typescript"><span class="hljs-keyword">const</span> enterpriseApi = <span class="hljs-keyword">new</span> EnterpriseApi({
-    baseUrl: <span class="hljs-string">&#x27;http://mytest.api.io&#x27;</span>
+    <span class="hljs-attr">baseUrl</span>: <span class="hljs-string">&#x27;http://mytest.api.io&#x27;</span>
 });</code></pre>
 				<p>constructor requires an object typeof <code>EnterpriseApiOptions</code></p>
 				<pre><code class="language-typescript"><span class="hljs-keyword">interface</span> EnterpriseApiOptions {
@@ -180,36 +180,36 @@ AuthLogic.register();
 					<h1>2. Enterprise Data House</h1>
 				</a>
 				<p>Handler for cached data. It is an <strong>static</strong> class.</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">class</span> EnterpriseDataHouse {
+				<pre><code class="language-typescript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EnterpriseDataHouse</span> </span>{
     <span class="hljs-keyword">static</span> instance: EnterpriseDataHouse;
 
     get&lt;TModel&gt;(
         <span class="hljs-keyword">type</span>: EnumCacheType,
-        typename: <span class="hljs-built_in">string</span>,
+        <span class="hljs-attr">typename</span>: <span class="hljs-built_in">string</span>,
         uniqueCacheKey?: <span class="hljs-built_in">string</span>
     ): TModel[] 
 
     set&lt;TModel&gt;(
         <span class="hljs-keyword">type</span>: EnumCacheType,
-        typename: <span class="hljs-built_in">string</span>,
-        collection: TModel[],
+        <span class="hljs-attr">typename</span>: <span class="hljs-built_in">string</span>,
+        <span class="hljs-attr">collection</span>: TModel[],
         uniqueCacheKey?: <span class="hljs-built_in">string</span>
     ): <span class="hljs-built_in">void</span>
 
-    clear(<span class="hljs-keyword">type</span>: EnumCacheType, typename: <span class="hljs-built_in">string</span>, uniqueCacheKey?: <span class="hljs-built_in">string</span>)  
+    clear(<span class="hljs-keyword">type</span>: EnumCacheType, <span class="hljs-attr">typename</span>: <span class="hljs-built_in">string</span>, uniqueCacheKey?: <span class="hljs-built_in">string</span>)  
 
     addItems&lt;TModel&gt;(
         <span class="hljs-keyword">type</span>: EnumCacheType,
-        typename: <span class="hljs-built_in">string</span>,
-        collection: TModel[],
+        <span class="hljs-attr">typename</span>: <span class="hljs-built_in">string</span>,
+        <span class="hljs-attr">collection</span>: TModel[],
         compareFunc?: <span class="hljs-function">(<span class="hljs-params">cachedItem: TModel, item: TModel</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>,
         uniqueCacheKey?: <span class="hljs-built_in">string</span>
     ): <span class="hljs-built_in">void</span> 
 
     removeItems&lt;TModel&gt;(
         <span class="hljs-keyword">type</span>: EnumCacheType,
-        typename: <span class="hljs-built_in">string</span>,
-        filterFunc: <span class="hljs-function">(<span class="hljs-params">item: TModel</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>
+        <span class="hljs-attr">typename</span>: <span class="hljs-built_in">string</span>,
+        <span class="hljs-attr">filterFunc</span>: <span class="hljs-function">(<span class="hljs-params">item: TModel</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>
     )
 }
 </code></pre>
@@ -218,30 +218,30 @@ AuthLogic.register();
 				</a>
 				<p>Handles api requests. Request object validation , cancalleble requests, prevent same requests.
 				Extends <code>EnterpriseCancellable</code> which handles request cancellation</p>
-				<pre><code class="language-typescript"> <span class="hljs-keyword">class</span> EnterpriseDataProvider <span class="hljs-keyword">extends</span> EnterpriseCancellable {
+				<pre><code class="language-typescript"> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EnterpriseDataProvider</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">EnterpriseCancellable</span> </span>{
 
-     <span class="hljs-keyword">constructor</span>(<span class="hljs-params">api: EnterpriseApi</span>)
+     <span class="hljs-title">constructor</span>(<span class="hljs-params">api: EnterpriseApi</span>)
 
     /**
-     * Returns cancel token and response.
+     * <span class="hljs-title">Returns</span> <span class="hljs-title">cancel</span> <span class="hljs-title">token</span> <span class="hljs-title">and</span> <span class="hljs-title">response</span>.
      */
-    cancellableApiRequest&lt;TRequest, TResponseModel&gt;(<span class="hljs-params">
+    <span class="hljs-title">cancellableApiRequest</span>&lt;<span class="hljs-title">TRequest</span>, <span class="hljs-title">TResponseModel</span>&gt;(<span class="hljs-params">
         options: IApiRequestOptions,
         request: TRequest,
         mustCheckWaitingRequest: <span class="hljs-built_in">boolean</span> = <span class="hljs-literal">true</span>
-    </span>): ICancellableApiResponse&lt;TResponseModel&gt; ;
+    </span>): <span class="hljs-title">ICancellableApiResponse</span>&lt;<span class="hljs-title">TResponseModel</span>&gt; ;
 
     <span class="hljs-comment">/**
      * Validates request, handles cancelation and response
-     * @param cancelTokenUniqueKey unique string for grouping sameRequest.
+     * <span class="hljs-doctag">@param </span>cancelTokenUniqueKey unique string for grouping sameRequest.
      * Cancels existing waiting promises with same unique key and request.
-     * @param mustCheckWaitingRequest Prevents paralel same request
+     * <span class="hljs-doctag">@param </span>mustCheckWaitingRequest Prevents paralel same request
      */</span>
     <span class="hljs-keyword">async</span> apiRequest&lt;TRequest, TResponseModel&gt;(
         options: IApiRequestOptions,
-        request: TRequest,
+        <span class="hljs-attr">request</span>: TRequest,
         cancelTokenUniqueKey?: <span class="hljs-built_in">string</span>,
-        mustCheckWaitingRequest: <span class="hljs-built_in">boolean</span> = <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">mustCheckWaitingRequest</span>: <span class="hljs-built_in">boolean</span> = <span class="hljs-literal">true</span>,
         config?: AxiosRequestConfig
     ): <span class="hljs-built_in">Promise</span>&lt;IApiResponse&lt;TResponseModel&gt;&gt; ;
 
@@ -258,81 +258,119 @@ AuthLogic.register();
 				</a>
 				<p>Extends <code>EnterpriseCollectionProvider</code> and <code>EnterpriseCollectionCacheProvider</code> which handles caching for collections.</p>
 				<p>Also have get, save, delete, subscribe methods.</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">class</span> EnterpriseCollectionProvider&lt;
-    TModel,
-    TGetRequest,
-    TSaveRequest = <span class="hljs-literal">undefined</span>,
-    TSaveResponse = <span class="hljs-literal">undefined</span>,
-    TDeleteRequest = <span class="hljs-literal">undefined</span>,
-    TDeleteResponse = <span class="hljs-literal">undefined</span>
+				<pre><code class="language-typescript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EnterpriseCollectionProvider</span>&lt;
+    <span class="hljs-title">TModel</span>,
+    <span class="hljs-title">TGetRequest</span>,
+    <span class="hljs-title">TSaveServiceRequest</span> </span>= <span class="hljs-literal">undefined</span>,
+    TDeleteServiceRequest = <span class="hljs-literal">undefined</span>,
+    TSaveRequest = ExtractRequest&lt;TSaveServiceRequest&gt;,
+    TSaveResponse = ExtractResult&lt;TSaveServiceRequest&gt;,
+    TDeleteRequest = ExtractRequest&lt;TDeleteServiceRequest&gt;,
+    TDeleteResponse = ExtractResult&lt;TDeleteServiceRequest&gt;
 &gt; {
 
-    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">
+    <span class="hljs-title">constructor</span>(<span class="hljs-params">
         api: EnterpriseApi,
         options: EnterpriseCollectionOptions&lt;TModel&gt;
     </span>)
 
-    subscribe(<span class="hljs-params">options: IEnterpriseSubscription&lt;TModel&gt;</span>) 
+    <span class="hljs-title">subscribe</span>(<span class="hljs-params">options: IEnterpriseSubscription&lt;TModel&gt;</span>) 
 
-    unsubscribe(<span class="hljs-params">id: <span class="hljs-built_in">string</span></span>) 
+    <span class="hljs-title">unsubscribe</span>(<span class="hljs-params">id: <span class="hljs-built_in">string</span></span>) 
 
     /**
-     * Decides where data will be provided by options.
-     * Cache or Api
-     * @param getOptions how to compare and get data
-     * @param apiFunc api call function to get from backend
+     * <span class="hljs-title">Decides</span> <span class="hljs-title">where</span> <span class="hljs-title">data</span> <span class="hljs-title">will</span> <span class="hljs-title">be</span> <span class="hljs-title">provided</span> <span class="hljs-title">by</span> <span class="hljs-title">options</span>.
+     * <span class="hljs-title">Cache</span> <span class="hljs-title">or</span> <span class="hljs-title">Api</span>
+     * @<span class="hljs-title">param</span> <span class="hljs-title">getOptions</span> <span class="hljs-title">how</span> <span class="hljs-title">to</span> <span class="hljs-title">compare</span> <span class="hljs-title">and</span> <span class="hljs-title">get</span> <span class="hljs-title">data</span>
+     * @<span class="hljs-title">param</span> <span class="hljs-title">apiFunc</span> <span class="hljs-title">api</span> <span class="hljs-title">call</span> <span class="hljs-title">function</span> <span class="hljs-title">to</span> <span class="hljs-title">get</span> <span class="hljs-title">from</span> <span class="hljs-title">backend</span>
      */
-    async get(<span class="hljs-params">
+    <span class="hljs-title">async</span> <span class="hljs-title">get</span>(<span class="hljs-params">
         getRequest: TGetRequest,
         getOptions?: GetCollectionOptions&lt;TModel&gt;
-    </span>): Promise&lt;IApiResponse&lt;TModel[]&gt; | never&gt;
+    </span>): <span class="hljs-title">Promise</span>&lt;<span class="hljs-title">IApiResponse</span>&lt;<span class="hljs-title">TModel</span>[]&gt; | <span class="hljs-title">never</span>&gt;
 
-    createRequestHash&lt;TRequest&gt;(<span class="hljs-params">request: TRequest</span>) 
+    <span class="hljs-title">createRequestHash</span>&lt;<span class="hljs-title">TRequest</span>&gt;(<span class="hljs-params">request: TRequest</span>) 
 
     /**
-     * @param cancelTokenUniqueKey Group cancel tokens by this key.
-     * And cancel previous ones with same key
+     * @<span class="hljs-title">param</span> <span class="hljs-title">cancelTokenUniqueKey</span> <span class="hljs-title">Group</span> <span class="hljs-title">cancel</span> <span class="hljs-title">tokens</span> <span class="hljs-title">by</span> <span class="hljs-title">this</span> <span class="hljs-title">key</span>.
+     * <span class="hljs-title">And</span> <span class="hljs-title">cancel</span> <span class="hljs-title">previous</span> <span class="hljs-title">ones</span> <span class="hljs-title">with</span> <span class="hljs-title">same</span> <span class="hljs-title">key</span>
      */
-    async getFromApi&lt;TGetRequest&gt;(<span class="hljs-params">
+    <span class="hljs-title">async</span> <span class="hljs-title">getFromApi</span>&lt;<span class="hljs-title">TGetRequest</span>&gt;(<span class="hljs-params">
         request: TGetRequest,
         cancelTokenUniqueKey?: <span class="hljs-built_in">string</span>
-    </span>): Promise&lt;IApiResponse&lt;TModel[]&gt;&gt; 
+    </span>): <span class="hljs-title">Promise</span>&lt;<span class="hljs-title">IApiResponse</span>&lt;<span class="hljs-title">TModel</span>[]&gt;&gt; 
 
     /**
-     * @param mapResponseToModel Runs after request succeeded,
-     * creates array for saving to cache
+     * @<span class="hljs-title">param</span> <span class="hljs-title">mapResponseToModel</span> <span class="hljs-title">Runs</span> <span class="hljs-title">after</span> <span class="hljs-title">request</span> <span class="hljs-title">succeeded</span>,
+     * <span class="hljs-title">creates</span> <span class="hljs-title">array</span> <span class="hljs-title">for</span> <span class="hljs-title">saving</span> <span class="hljs-title">to</span> <span class="hljs-title">cache</span>
      */
-    async save(<span class="hljs-params">
+    <span class="hljs-title">async</span> <span class="hljs-title">save</span>(<span class="hljs-params">
         request: TSaveRequest,
         mapResponseToModel?: (response: TSaveResponse) =&gt; TModel[]
-    </span>): Promise&lt;IApiResponse&lt;TSaveResponse&gt;&gt; 
+    </span>): <span class="hljs-title">Promise</span>&lt;<span class="hljs-title">IApiResponse</span>&lt;<span class="hljs-title">TSaveResponse</span>&gt;&gt; 
 
-    handleSideEffects(<span class="hljs-params"></span>) 
+    <span class="hljs-title">handleSideEffects</span>(<span class="hljs-params"></span>) 
 
     /**
-     * @param ids Removed item ids to remove from cache
+     * @<span class="hljs-title">param</span> <span class="hljs-title">ids</span> <span class="hljs-title">Removed</span> <span class="hljs-title">item</span> <span class="hljs-title">ids</span> <span class="hljs-title">to</span> <span class="hljs-title">remove</span> <span class="hljs-title">from</span> <span class="hljs-title">cache</span>
      */
-    async delete(<span class="hljs-params">
+    <span class="hljs-title">async</span> <span class="hljs-title">delete</span>(<span class="hljs-params">
         request: TDeleteRequest,
         ids?: (<span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span>)[]
-    </span>): Promise&lt;IApiResponse&lt;TDeleteResponse&gt;&gt; 
+    </span>): <span class="hljs-title">Promise</span>&lt;<span class="hljs-title">IApiResponse</span>&lt;<span class="hljs-title">TDeleteResponse</span>&gt;&gt; 
 }
+
+//<span class="hljs-title">usage</span>
+
+<span class="hljs-title">interface</span> <span class="hljs-title">Model</span> {
+    <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-keyword">interface</span> GetRequest {}
+
+<span class="hljs-keyword">interface</span> SaveRequest {
+    <span class="hljs-attr">models</span>: Model[];
+}
+
+<span class="hljs-keyword">interface</span> SaveResponse {
+    <span class="hljs-attr">ids</span>: <span class="hljs-built_in">number</span>[];
+}
+
+<span class="hljs-keyword">interface</span> DeleteRequest {
+    <span class="hljs-attr">ids</span>: <span class="hljs-built_in">number</span>[];
+}
+
+<span class="hljs-keyword">interface</span> DeleteResponse {
+    <span class="hljs-attr">ids</span>: Record&lt;<span class="hljs-built_in">number</span>, <span class="hljs-built_in">boolean</span>&gt;;
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestProvider</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">EnterpriseCollectionProvider</span>&lt;
+    <span class="hljs-title">Model</span>,
+    <span class="hljs-title">GetRequest</span>,
+    <span class="hljs-title">ServiceRequest</span>&lt;<span class="hljs-title">SaveRequest</span>, <span class="hljs-title">SaveResponse</span>&gt;,
+    <span class="hljs-title">ServiceRequest</span>&lt;<span class="hljs-title">DeleteRequest</span>, <span class="hljs-title">DeleteResponse</span>&gt;
+&gt; </span>{
+    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">api: IEnterpriseApi</span>)</span> {
+        <span class="hljs-built_in">super</span>(api, {
+            <span class="hljs-attr">typename</span>: <span class="hljs-string">&quot;model&quot;</span>,
+        });
+    }
 </code></pre>
 				<a href="#5-enterpriselogic" id="5-enterpriselogic" style="color: inherit; text-decoration: none;">
 					<h1>5. EnterpriseLogic</h1>
 				</a>
 				<p>Write Business Logic code inside this class. UI only uses this class</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">class</span> EnterpriseLogic {
+				<pre><code class="language-typescript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EnterpriseLogic</span> </span>{
     <span class="hljs-keyword">static</span> instance: EnterpriseLogic;
 
-    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">api?: EnterpriseApi</span>) 
+    <span class="hljs-title">constructor</span>(<span class="hljs-params">api?: EnterpriseApi</span>) 
 
     /**
-     * Registers to LogicBoot static class. 
-     * Registered logics will use main EnterpriseApi.
-     * Don&#x27;t register if you want to use different EnterpriseApi
+     * <span class="hljs-title">Registers</span> <span class="hljs-title">to</span> <span class="hljs-title">LogicBoot</span> <span class="hljs-title">static</span> <span class="hljs-title">class</span>. 
+     * <span class="hljs-title">Registered</span> <span class="hljs-title">logics</span> <span class="hljs-title">will</span> <span class="hljs-title">use</span> <span class="hljs-title">main</span> <span class="hljs-title">EnterpriseApi</span>.
+     * <span class="hljs-title">Don</span>&#x27;<span class="hljs-title">t</span> <span class="hljs-title">register</span> <span class="hljs-title">if</span> <span class="hljs-title">you</span> <span class="hljs-title">want</span> <span class="hljs-title">to</span> <span class="hljs-title">use</span> <span class="hljs-title">different</span> <span class="hljs-title">EnterpriseApi</span>
      */
-    static register(<span class="hljs-params"></span>)
+    <span class="hljs-title">static</span> <span class="hljs-title">register</span>(<span class="hljs-params"></span>)
 }
 </code></pre>
 				<a href="#6-enterprisecollectionlogic" id="6-enterprisecollectionlogic" style="color: inherit; text-decoration: none;">
@@ -340,17 +378,17 @@ AuthLogic.register();
 				</a>
 				<p>Business Logic for collections.</p>
 				<p>Uses <code>ExtractGetRequest</code> type helper to extract RequestTypes from <code>CollectionProvider</code></p>
-				<pre><code class="language-typescript"> <span class="hljs-keyword">class</span> EnterpriseCollectionLogic&lt;
-    TModel,
-    TCollectionProvider <span class="hljs-keyword">extends</span> EnterpriseCollectionProvider&lt;
-        TModel,
-        <span class="hljs-built_in">any</span>,
-        <span class="hljs-built_in">any</span>,
-        <span class="hljs-built_in">any</span>,
-        <span class="hljs-built_in">any</span>,
-        <span class="hljs-built_in">any</span>
+				<pre><code class="language-typescript"> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EnterpriseCollectionLogic</span>&lt;
+    <span class="hljs-title">TModel</span>,
+    <span class="hljs-title">TCollectionProvider</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">EnterpriseCollectionProvider</span>&lt;
+        <span class="hljs-title">TModel</span>,
+        <span class="hljs-title">any</span>,
+        <span class="hljs-title">any</span>,
+        <span class="hljs-title">any</span>,
+        <span class="hljs-title">any</span>,
+        <span class="hljs-title">any</span>
     &gt;,
-    TViewModel = <span class="hljs-literal">undefined</span>,
+    <span class="hljs-title">TViewModel</span> </span>= <span class="hljs-literal">undefined</span>,
     TGetRequest = ExtractGetRequest&lt;TCollectionProvider&gt;,
     TSaveRequest = ExtractSaveRequest&lt;TCollectionProvider&gt;,
     TSaveResponse = ExtractSaveResponse&lt;TCollectionProvider&gt;,
@@ -358,34 +396,34 @@ AuthLogic.register();
     TDeleteResponse = ExtractDeleteResponse&lt;TCollectionProvider&gt;
 &gt; <span class="hljs-keyword">extends</span> EnterpriseLogic {
 
-    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">
+    <span class="hljs-title">constructor</span>(<span class="hljs-params">
         api: EnterpriseApi,
         provider: { <span class="hljs-keyword">new</span> (api: EnterpriseApi): TCollectionProvider },
         mapper?: { <span class="hljs-keyword">new</span> (): EnterpriseMapper&lt;TModel, TViewModel&gt; },
         vmIdField?: keyof TViewModel
     </span>) 
 
-    subscribe(<span class="hljs-params">options: IEnterpriseSubscription&lt;TModel&gt;</span>)
+    <span class="hljs-title">subscribe</span>(<span class="hljs-params">options: IEnterpriseSubscription&lt;TModel&gt;</span>)
 
-    unsubscribe(<span class="hljs-params">id: <span class="hljs-built_in">string</span></span>) 
+    <span class="hljs-title">unsubscribe</span>(<span class="hljs-params">id: <span class="hljs-built_in">string</span></span>) 
 
-    async get(<span class="hljs-params">
+    <span class="hljs-title">async</span> <span class="hljs-title">get</span>(<span class="hljs-params">
         request: TGetRequest,
         getOptions?: GetCollectionOptions&lt;TModel&gt;
-    </span>): Promise&lt;
-        IApiResponse&lt;(<span class="hljs-params">TViewModel <span class="hljs-keyword">extends</span> <span class="hljs-literal">undefined</span> ? TModel : TViewModel</span>)[]&gt;
+    </span>): <span class="hljs-title">Promise</span>&lt;
+        <span class="hljs-title">IApiResponse</span>&lt;(<span class="hljs-params">TViewModel <span class="hljs-keyword">extends</span> <span class="hljs-literal">undefined</span> ? TModel : TViewModel</span>)[]&gt;
     &gt; 
 
-    async getOne(<span class="hljs-params">
+    <span class="hljs-title">async</span> <span class="hljs-title">getOne</span>(<span class="hljs-params">
         request: TGetRequest,
         getOptions?: GetCollectionOptions&lt;TModel&gt;
-    </span>): Promise&lt;
-        IApiResponse&lt;TViewModel extends undefined ? TModel : TViewModel&gt;
+    </span>): <span class="hljs-title">Promise</span>&lt;
+        <span class="hljs-title">IApiResponse</span>&lt;<span class="hljs-title">TViewModel</span> <span class="hljs-title">extends</span> <span class="hljs-title">undefined</span> ? <span class="hljs-title">TModel</span> : <span class="hljs-title">TViewModel</span>&gt;
     &gt; 
 
-    validate?(<span class="hljs-params">
+    <span class="hljs-title">validate</span>?(<span class="hljs-params">
         model: TViewModel <span class="hljs-keyword">extends</span> <span class="hljs-literal">undefined</span> ? TModel : TViewModel
-    </span>): IValidationResult | Promise&lt;IValidationResult&gt;;
+    </span>): <span class="hljs-title">IValidationResult</span> | <span class="hljs-title">Promise</span>&lt;<span class="hljs-title">IValidationResult</span>&gt;;
 
     <span class="hljs-keyword">async</span> validateMany(
         models: (TViewModel <span class="hljs-keyword">extends</span> <span class="hljs-literal">undefined</span> ? TModel : TViewModel)[]
@@ -395,18 +433,40 @@ AuthLogic.register();
 
     <span class="hljs-keyword">async</span> saveOne(
         model: TViewModel <span class="hljs-keyword">extends</span> <span class="hljs-literal">undefined</span> ? TModel : TViewModel,
-        createSaveRequest: <span class="hljs-function">(<span class="hljs-params">model: TModel</span>) =&gt;</span> TSaveRequest
+        <span class="hljs-attr">createSaveRequest</span>: <span class="hljs-function">(<span class="hljs-params">model: TModel</span>) =&gt;</span> TSaveRequest
     ): <span class="hljs-built_in">Promise</span>&lt;IApiResponse&lt;TSaveResponse&gt;&gt; 
 
     <span class="hljs-keyword">async</span> save(
         models: (TViewModel <span class="hljs-keyword">extends</span> <span class="hljs-literal">undefined</span> ? TModel : TViewModel)[],
-        createSaveRequest: <span class="hljs-function">(<span class="hljs-params">models: TModel[]</span>) =&gt;</span> TSaveRequest
+        <span class="hljs-attr">createSaveRequest</span>: <span class="hljs-function">(<span class="hljs-params">models: TModel[]</span>) =&gt;</span> TSaveRequest
     ): <span class="hljs-built_in">Promise</span>&lt;IApiResponse&lt;TSaveResponse&gt;&gt; 
 
     <span class="hljs-keyword">async</span> <span class="hljs-keyword">delete</span>(
         options: TDeleteRequest
     ): <span class="hljs-built_in">Promise</span>&lt;IApiResponse&lt;TDeleteResponse&gt;&gt; 
 }
+
+<span class="hljs-comment">//usage</span>
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestLogic</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">EnterpriseCollectionLogic</span>&lt;<span class="hljs-title">Model</span>, <span class="hljs-title">TestProvider</span>&gt; </span>{
+    <span class="hljs-keyword">static</span> instance: TestLogic;
+
+    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">api: IEnterpriseApi</span>)</span> {
+        <span class="hljs-built_in">super</span>(api, TestProvider);
+    }
+}
+
+TestLogic.instance.register();
+
+...
+
+TestLogic.instance.get({});
+TestLogic.instance.save([], <span class="hljs-function">(<span class="hljs-params">models</span>) =&gt;</span> ({
+    models,
+}));
+TestLogic.instance.delete({ <span class="hljs-attr">ids</span>: [] });
+
 </code></pre>
 				<a href="#7-enterprisemapper" id="7-enterprisemapper" style="color: inherit; text-decoration: none;">
 					<h1>7. EnterpriseMapper</h1>
@@ -435,11 +495,11 @@ AuthLogic.register();
 ...
 
 
-<span class="hljs-keyword">class</span> EnterpriseMapper&lt;TModel, TViewModel&gt; {
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EnterpriseMapper</span>&lt;<span class="hljs-title">TModel</span>, <span class="hljs-title">TViewModel</span>&gt; </span>{
 
-    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">options: EnterpriseMapperOptions&lt;TModel, TViewModel&gt;</span>)
+    <span class="hljs-title">constructor</span>(<span class="hljs-params">options: EnterpriseMapperOptions&lt;TModel, TViewModel&gt;</span>)
 
-    defaultViewModel?(<span class="hljs-params"></span>): TViewModel;
+    <span class="hljs-title">defaultViewModel</span>?(<span class="hljs-params"></span>): <span class="hljs-title">TViewModel</span>;
 
     mapListToVm(models?: TModel[]): TViewModel[]
 
@@ -455,6 +515,11 @@ AuthLogic.register();
 }
 
 </code></pre>
+				<a href="#for-vscode-jest-extension-users" id="for-vscode-jest-extension-users" style="color: inherit; text-decoration: none;">
+					<h4>For VsCode jest extension users</h4>
+				</a>
+				<p>set jest.pathToJest settings :</p>
+				<p>&quot;jest.pathToJest&quot;: &quot;lerna run test --stream --&quot;</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -479,46 +544,22 @@ AuthLogic.register();
 						<a href="modules/_src_api_enterprise_api_helper_.html">&quot;src/api/enterprise-<wbr>api.helper&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/_src_api_enterprise_api_options_.html">&quot;src/api/enterprise-<wbr>api.options&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_src_api_enterprise_api_interfaces_.html">&quot;src/api/enterprise.api.interfaces&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
 						<a href="modules/_src_api_enums_request_method_enum_.html">&quot;src/api/enums/request-<wbr>method.enum&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/_src_api_index_.html">&quot;src/api/index&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/_src_api_provider_api_request_options_interface_.html">&quot;src/api/provider/api-<wbr>request-<wbr>options.interface&quot;</a>
+						<a href="modules/_src_api_types_enterprise_api_options_.html">&quot;src/api/types/enterprise-<wbr>api.options&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/_src_api_provider_api_request_validation_result_interface_.html">&quot;src/api/provider/api-<wbr>request-<wbr>validation-<wbr>result.interface&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_src_api_provider_api_request_validation_rule_interface_.html">&quot;src/api/provider/api-<wbr>request-<wbr>validation-<wbr>rule.interface&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_src_api_provider_api_response_interface_.html">&quot;src/api/provider/api-<wbr>response.interface&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_src_api_provider_cancellable_api_response_interface_.html">&quot;src/api/provider/cancellable-<wbr>api-<wbr>response.interface&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_src_api_provider_enterprise_cancellable_.html">&quot;src/api/provider/enterprise-<wbr>cancellable&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_src_api_provider_enterprise_data_provider_.html">&quot;src/api/provider/enterprise-<wbr>data-<wbr>provider&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_src_api_provider_enterprise_request_options_interface_.html">&quot;src/api/provider/enterprise-<wbr>request-<wbr>options.interface&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_src_api_provider_index_.html">&quot;src/api/provider/index&quot;</a>
+						<a href="modules/_src_api_types_enterprise_api_interface_.html">&quot;src/api/types/enterprise.api.interface&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/_src_data_house_cache_enterprise_collection_cache_provider_.html">&quot;src/data-<wbr>house/cache/enterprise-<wbr>collection-<wbr>cache-<wbr>provider&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_data_house_cache_enterprise_collection_cache_provider_interface_.html">&quot;src/data-<wbr>house/cache/enterprise-<wbr>collection-<wbr>cache-<wbr>provider.interface&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/_src_data_house_cache_enterprise_collection_cache_options_.html">&quot;src/data-<wbr>house/cache/enterprise-<wbr>collection-<wbr>cache.options&quot;</a>
@@ -527,25 +568,10 @@ AuthLogic.register();
 						<a href="modules/_src_data_house_cache_index_.html">&quot;src/data-<wbr>house/cache/index&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/_src_data_house_collection_enterprise_collection_provider_.html">&quot;src/data-<wbr>house/collection/enterprise-<wbr>collection-<wbr>provider&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_src_data_house_collection_enterprise_collection_helper_.html">&quot;src/data-<wbr>house/collection/enterprise-<wbr>collection.helper&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_src_data_house_collection_enterprise_collection_options_.html">&quot;src/data-<wbr>house/collection/enterprise-<wbr>collection.options&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_src_data_house_collection_enums_provide_from_cache_strategy_enum_.html">&quot;src/data-<wbr>house/collection/enums/provide-<wbr>from-<wbr>cache-<wbr>strategy.enum&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_src_data_house_collection_get_collection_options_.html">&quot;src/data-<wbr>house/collection/get-<wbr>collection.options&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_src_data_house_collection_index_.html">&quot;src/data-<wbr>house/collection/index&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
 						<a href="modules/_src_data_house_enterprise_data_house_.html">&quot;src/data-<wbr>house/enterprise-<wbr>data-<wbr>house&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_data_house_enterprise_data_house_interface_.html">&quot;src/data-<wbr>house/enterprise-<wbr>data-<wbr>house.interface&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/_src_data_house_index_.html">&quot;src/data-<wbr>house/index&quot;</a>
@@ -558,6 +584,9 @@ AuthLogic.register();
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/_src_data_house_observable_enterprise_observable_house_.html">&quot;src/data-<wbr>house/observable/enterprise-<wbr>observable-<wbr>house&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_data_house_observable_enterprise_observable_interface_.html">&quot;src/data-<wbr>house/observable/enterprise-<wbr>observable.interface&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/_src_data_house_observable_enterprise_subscription_interface_.html">&quot;src/data-<wbr>house/observable/enterprise-<wbr>subscription.interface&quot;</a>
@@ -573,6 +602,9 @@ AuthLogic.register();
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/_src_logic_enterprise_collection_logic_.html">&quot;src/logic/enterprise-<wbr>collection-<wbr>logic&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_logic_enterprise_collection_logic_interface_.html">&quot;src/logic/enterprise-<wbr>collection-<wbr>logic.interface&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/_src_logic_enterprise_logic_.html">&quot;src/logic/enterprise-<wbr>logic&quot;</a>
@@ -593,19 +625,76 @@ AuthLogic.register();
 						<a href="modules/_src_mapper_enterprise_mapper_.html">&quot;src/mapper/enterprise-<wbr>mapper&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/_src_mapper_enterprise_mapper_options_.html">&quot;src/mapper/enterprise-<wbr>mapper.options&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
 						<a href="modules/_src_mapper_index_.html">&quot;src/mapper/index&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/_src_mapper_map_field_interface_.html">&quot;src/mapper/map-<wbr>field.interface&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_src_mapper_map_options_interface_.html">&quot;src/mapper/map-<wbr>options.interface&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
 						<a href="modules/_src_mapper_mocks_mock_.html">&quot;src/mapper/mocks/mock&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_mapper_types_enterprise_mapper_options_.html">&quot;src/mapper/types/enterprise-<wbr>mapper.options&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_mapper_types_map_field_interface_.html">&quot;src/mapper/types/map-<wbr>field.interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_mapper_types_map_options_interface_.html">&quot;src/mapper/types/map-<wbr>options.interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_provider_collection_enterprise_collection_provider_.html">&quot;src/provider/collection/enterprise-<wbr>collection-<wbr>provider&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_provider_collection_enums_provide_from_cache_strategy_enum_.html">&quot;src/provider/collection/enums/provide-<wbr>from-<wbr>cache-<wbr>strategy.enum&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_provider_collection_index_.html">&quot;src/provider/collection/index&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_provider_collection_types_enterprise_collection_helper_.html">&quot;src/provider/collection/types/enterprise-<wbr>collection.helper&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_provider_collection_types_enterprise_collection_options_.html">&quot;src/provider/collection/types/enterprise-<wbr>collection.options&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_provider_collection_types_get_collection_options_.html">&quot;src/provider/collection/types/get-<wbr>collection.options&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_provider_enterprise_cancellable_.html">&quot;src/provider/enterprise-<wbr>cancellable&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_provider_enterprise_data_provider_.html">&quot;src/provider/enterprise-<wbr>data-<wbr>provider&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_provider_index_.html">&quot;src/provider/index&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_provider_types_api_request_options_interface_.html">&quot;src/provider/types/api-<wbr>request-<wbr>options.interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_provider_types_api_request_params_interface_.html">&quot;src/provider/types/api-<wbr>request-<wbr>params.interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_provider_types_api_request_validation_result_interface_.html">&quot;src/provider/types/api-<wbr>request-<wbr>validation-<wbr>result.interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_provider_types_api_request_validation_rule_interface_.html">&quot;src/provider/types/api-<wbr>request-<wbr>validation-<wbr>rule.interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_provider_types_api_response_interface_.html">&quot;src/provider/types/api-<wbr>response.interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_provider_types_cancellable_api_response_interface_.html">&quot;src/provider/types/cancellable-<wbr>api-<wbr>response.interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_provider_types_enterprise_data_provider_interface_.html">&quot;src/provider/types/enterprise-<wbr>data-<wbr>provider.interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_provider_types_enterprise_request_options_interface_.html">&quot;src/provider/types/enterprise-<wbr>request-<wbr>options.interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_provider_types_service_request_helper_.html">&quot;src/provider/types/service-<wbr>request.helper&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_provider_types_service_request_interface_.html">&quot;src/provider/types/service-<wbr>request.interface&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/_src_shared_definitions_error_messages_interface_.html">&quot;src/shared/definitions/error-<wbr>messages.interface&quot;</a>

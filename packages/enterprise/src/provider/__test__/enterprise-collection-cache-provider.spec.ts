@@ -1,5 +1,5 @@
 import { EnterpriseCollectionCacheProvider } from "../../data-house/cache/enterprise-collection-cache-provider";
-import { EnumCacheType, ExtendArray, cache } from "@sabasayer/utils";
+import { EnumCacheType, ExtendArray } from "@sabasayer/utils";
 import { EnumProvideFromCacheStrategy } from "../collection/enums/provide-from-cache-strategy.enum";
 import { IMockData, createMock } from "../../data-house/mocks/mock";
 import { EnterpriseDataHouse } from "../../data-house/enterprise-data-house";

@@ -49,7 +49,7 @@ describe("Enterprise Data Provider", () => {
             cancelTokenUniqueKey: "1",
         });
 
-        const request2 = provider.apiRequest({
+        provider.apiRequest({
             options: { url: "patient" },
             request: { id: 2 },
             cancelTokenUniqueKey: "1",

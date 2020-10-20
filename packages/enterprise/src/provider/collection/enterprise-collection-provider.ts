@@ -6,24 +6,12 @@ import { applyMixins } from "../../shared/mixin.helper";
 import { EnterpriseCollectionCacheProvider } from "../../data-house/cache/enterprise-collection-cache-provider";
 import { GetCollectionOptions } from "./types/get-collection.options";
 import { EnterpriseApiHelper } from "../../api/enterprise-api.helper";
-import {
-    EnterpriseObservable,
-    IEnterpriseSubscription,
-} from "../../data-house/observable";
+import { EnterpriseObservable, IEnterpriseSubscription } from "../../data-house/observable";
 import { EnterpriseObservableHouse } from "../../data-house/observable/enterprise-observable-house";
-import {
-    ExtractRequest,
-    ExtractResult,
-    IEnterpriseApi,
-    ServiceRequest,
-} from "../../api";
+import { ExtractRequest, ExtractResult, IEnterpriseApi } from "../../api";
 
-interface EnterpriseCollectionProvider<
-    TModel,
-    TGetRequest,
-    TSaveServiceRequest,
-    TDeleteServiceRequest
-> extends EnterpriseCollectionCacheProvider<TModel>,
+interface EnterpriseCollectionProvider<TModel, TGetRequest, TSaveServiceRequest, TDeleteServiceRequest>
+    extends EnterpriseCollectionCacheProvider<TModel>,
         EnterpriseDataProvider {}
 
 class EnterpriseCollectionProvider<
@@ -39,16 +27,16 @@ class EnterpriseCollectionProvider<
     protected options: EnterpriseCollectionOptions<TModel>;
     protected observable: EnterpriseObservable<TModel>;
 
-    constructor(
-        api: IEnterpriseApi,
-        options: EnterpriseCollectionOptions<TModel>
-    ) {
+    constructor(api: IEnterpriseApi, options: EnterpriseCollectionOptions<TModel>) {
         this.api = api;
         this.options = options;
         this.observable = new EnterpriseObservable(options.typename);
         this.initWaitingRequests();
     }
 
+    /**
+     * Subscribe for changes at the model
+     */
     subscribe(options: IEnterpriseSubscription<TModel>) {
         this.observable.subscribe(options);
     }
@@ -68,30 +56,18 @@ class EnterpriseCollectionProvider<
         getOptions?: GetCollectionOptions<TModel>
     ): Promise<IApiResponse<TModel[]> | never> {
         if (!this.options.cacheStrategy) {
-            return this.getFromApi(
-                getRequest,
-                getOptions?.cancelTokenUniqueKey
-            );
+            return this.getFromApi(getRequest, getOptions?.cancelTokenUniqueKey);
         }
 
-        let result = !getOptions?.forceGetFromApi
-            ? this.getFromCache(getOptions)
-            : [];
+        let result = !getOptions?.forceGetFromApi ? this.getFromCache(getOptions) : [];
 
         if (getRequest) {
-            const isCacheResultLacking = this.isCacheResultLacking(
-                result,
-                getOptions
-            );
+            const isCacheResultLacking = this.isCacheResultLacking(result, getOptions);
 
             if (isCacheResultLacking) {
-                const apiResult = await this.getFromApi(
-                    getRequest,
-                    getOptions?.cancelTokenUniqueKey
-                );
+                const apiResult = await this.getFromApi(getRequest, getOptions?.cancelTokenUniqueKey);
 
-                if (apiResult.errorMessages || apiResult.canceled)
-                    return apiResult;
+                if (apiResult.errorMessages || apiResult.canceled) return apiResult;
 
                 result = apiResult.data ?? [];
             }
@@ -106,8 +82,7 @@ class EnterpriseCollectionProvider<
     }
 
     createRequestHash<TRequest>(request: TRequest) {
-        return this.options.provideFromCacheStrategy ==
-            EnumProvideFromCacheStrategy.RequestParamsHash
+        return this.options.provideFromCacheStrategy == EnumProvideFromCacheStrategy.RequestParamsHash
             ? EnterpriseApiHelper.createDataHash(request)
             : undefined;
     }
@@ -123,8 +98,7 @@ class EnterpriseCollectionProvider<
         if (!this.options.getRequestOptions)
             return {
                 errorMessages: {
-                    "collection-provider-error":
-                        "get request options is absent",
+                    "collection-provider-error": "get request options is absent",
                 },
             };
 
@@ -146,8 +120,7 @@ class EnterpriseCollectionProvider<
         if (!this.options.saveRequestOptions)
             return {
                 errorMessages: {
-                    "collection-provider-error":
-                        "save request options is absent",
+                    "collection-provider-error": "save request options is absent",
                 },
             };
 
@@ -156,12 +129,7 @@ class EnterpriseCollectionProvider<
             request,
         });
 
-        if (
-            !result.errorMessages &&
-            !result.canceled &&
-            result.data &&
-            mapResponseToModel
-        ) {
+        if (!result.errorMessages && !result.canceled && result.data && mapResponseToModel) {
             const items = mapResponseToModel(result.data);
             this.observable.addedMany(items);
             this.handleSideEffects();
@@ -187,15 +155,11 @@ class EnterpriseCollectionProvider<
     /**
      * @param ids Removed item ids to remove from cache
      */
-    async delete(
-        request: TDeleteRequest,
-        ids?: (string | number)[]
-    ): Promise<IApiResponse<TDeleteResponse>> {
+    async delete(request: TDeleteRequest, ids?: (string | number)[]): Promise<IApiResponse<TDeleteResponse>> {
         if (!this.options.deleteRequestOptions)
             return {
                 errorMessages: {
-                    "collection-provider-error":
-                        "delete request options is absent",
+                    "collection-provider-error": "delete request options is absent",
                 },
             };
 
@@ -215,9 +179,6 @@ class EnterpriseCollectionProvider<
     }
 }
 
-applyMixins(EnterpriseCollectionProvider, [
-    EnterpriseDataProvider,
-    EnterpriseCollectionCacheProvider,
-]);
+applyMixins(EnterpriseCollectionProvider, [EnterpriseDataProvider, EnterpriseCollectionCacheProvider]);
 
 export { EnterpriseCollectionProvider };

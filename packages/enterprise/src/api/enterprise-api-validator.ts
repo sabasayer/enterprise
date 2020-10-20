@@ -11,5 +11,7 @@ export const validateRequest: IValidateRequest = <TRequest>(
     request: TRequest
 ) => {
     //TODO: implement validation
+    console.log({validationRules,request});
+    
     return { valid: true };
 };

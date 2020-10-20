@@ -10,10 +10,8 @@ new ExtendArray();
 export class EnterpriseObservable<TModel>
     implements IEnterpriseObservable<TModel> {
     private subscriptions: IEnterpriseSubscription<TModel>[] = [];
-    private type: string = "";
 
     constructor(type: string) {
-        this.type = type;
         EnterpriseObservableHouse.instance.register(type, this);
     }
 

@@ -76,7 +76,7 @@
 						<h4>TModel</h4>
 					</li>
 					<li>
-						<h4>TCollectionProvider<span class="tsd-signature-symbol">: </span><a href="_src_data_house_collection_enterprise_collection_provider_.enterprisecollectionprovider.html" class="tsd-signature-type">EnterpriseCollectionProvider</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TModel</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<h4>TCollectionProvider<span class="tsd-signature-symbol">: </span><a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html" class="tsd-signature-type">EnterpriseCollectionProvider</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TModel</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TGetRequest</span><span class="tsd-signature-symbol">, </span><a href="../interfaces/_src_provider_types_service_request_interface_.servicerequest.html" class="tsd-signature-type">ServiceRequest</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TSaveRequest</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TSaveResponse</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><a href="../interfaces/_src_provider_types_service_request_interface_.servicerequest.html" class="tsd-signature-type">ServiceRequest</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDeleteRequest</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TDeleteResponse</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 					</li>
 					<li>
 						<h4>TViewModel</h4>
@@ -114,6 +114,12 @@
 							</li>
 						</ul>
 					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implements</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html" class="tsd-signature-type">IEnterpriseCollectionLogic</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TModel</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TViewModel</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TGetRequest</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TSaveRequest</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TSaveResponse</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TDeleteRequest</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TDeleteResponse</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -160,20 +166,20 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Enterprise<wbr>Collection<wbr>Logic<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><a href="_src_api_enterpise_api_.enterpriseapi.html" class="tsd-signature-type">EnterpriseApi</a>, provider<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>constructor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span>, mapper<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>constructor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span>, vmIdField<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">TViewModel</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html" class="tsd-signature-type">EnterpriseCollectionLogic</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Enterprise<wbr>Collection<wbr>Logic<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_api_types_enterprise_api_interface_.ienterpriseapi.html" class="tsd-signature-type">IEnterpriseApi</a>, provider<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>constructor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span>, mapper<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>constructor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span>, vmIdField<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">TViewModel</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html" class="tsd-signature-type">EnterpriseCollectionLogic</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_src_logic_enterprise_logic_.enterpriselogic.html">EnterpriseLogic</a>.<a href="_src_logic_enterprise_logic_.enterpriselogic.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/logic/enterprise-collection-logic.ts#L40">src/logic/enterprise-collection-logic.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-collection-logic.ts#L49">src/logic/enterprise-collection-logic.ts:49</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>api: <a href="_src_api_enterpise_api_.enterpriseapi.html" class="tsd-signature-type">EnterpriseApi</a></h5>
+									<h5>api: <a href="../interfaces/_src_api_types_enterprise_api_interface_.ienterpriseapi.html" class="tsd-signature-type">IEnterpriseApi</a></h5>
 								</li>
 								<li>
 									<h5>provider: <span class="tsd-signature-symbol">{ </span>constructor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></h5>
@@ -181,19 +187,19 @@
 										<li class="tsd-parameter">
 											<h5>constructor<span class="tsd-signature-symbol">: </span>function</h5>
 											<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-type-literal">
-												<li class="tsd-signature tsd-kind-icon">new __type<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><a href="_src_api_enterpise_api_.enterpriseapi.html" class="tsd-signature-type">EnterpriseApi</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TCollectionProvider</span></li>
+												<li class="tsd-signature tsd-kind-icon">new __type<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_api_types_enterprise_api_interface_.ienterpriseapi.html" class="tsd-signature-type">IEnterpriseApi</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TCollectionProvider</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
 													<aside class="tsd-sources">
 														<ul>
-															<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/logic/enterprise-collection-logic.ts#L44">src/logic/enterprise-collection-logic.ts:44</a></li>
+															<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-collection-logic.ts#L53">src/logic/enterprise-collection-logic.ts:53</a></li>
 														</ul>
 													</aside>
 													<h4 class="tsd-parameters-title">Parameters</h4>
 													<ul class="tsd-parameters">
 														<li>
-															<h5>api: <a href="_src_api_enterpise_api_.enterpriseapi.html" class="tsd-signature-type">EnterpriseApi</a></h5>
+															<h5>api: <a href="../interfaces/_src_api_types_enterprise_api_interface_.ienterpriseapi.html" class="tsd-signature-type">IEnterpriseApi</a></h5>
 														</li>
 													</ul>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TCollectionProvider</span></h4>
@@ -222,7 +228,7 @@
 					<div class="tsd-signature tsd-kind-icon">mapper<span class="tsd-signature-symbol">:</span> <a href="_src_mapper_enterprise_mapper_.enterprisemapper.html" class="tsd-signature-type">EnterpriseMapper</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TModel</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TViewModel</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/logic/enterprise-collection-logic.ts#L39">src/logic/enterprise-collection-logic.ts:39</a></li>
+							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-collection-logic.ts#L48">src/logic/enterprise-collection-logic.ts:48</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -232,7 +238,7 @@
 					<div class="tsd-signature tsd-kind-icon">provider<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TCollectionProvider</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/logic/enterprise-collection-logic.ts#L38">src/logic/enterprise-collection-logic.ts:38</a></li>
+							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-collection-logic.ts#L47">src/logic/enterprise-collection-logic.ts:47</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -242,7 +248,7 @@
 					<div class="tsd-signature tsd-kind-icon">vm<wbr>IdField<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">TViewModel</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/logic/enterprise-collection-logic.ts#L40">src/logic/enterprise-collection-logic.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-collection-logic.ts#L49">src/logic/enterprise-collection-logic.ts:49</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -253,7 +259,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_src_logic_enterprise_logic_.enterpriselogic.html">EnterpriseLogic</a>.<a href="_src_logic_enterprise_logic_.enterpriselogic.html#instance">instance</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/logic/enterprise-logic.ts#L5">src/logic/enterprise-logic.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-logic.ts#L5">src/logic/enterprise-logic.ts:5</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -264,13 +270,14 @@
 					<a name="delete" class="tsd-anchor"></a>
 					<h3>delete</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">delete<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TDeleteRequest</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_api_provider_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDeleteResponse</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">delete<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TDeleteRequest</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDeleteResponse</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html">IEnterpriseCollectionLogic</a>.<a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html#delete">delete</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/logic/enterprise-collection-logic.ts#L189">src/logic/enterprise-collection-logic.ts:189</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-collection-logic.ts#L197">src/logic/enterprise-collection-logic.ts:197</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -279,7 +286,7 @@
 									<h5>options: <span class="tsd-signature-type">TDeleteRequest</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_api_provider_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDeleteResponse</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDeleteResponse</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -287,13 +294,14 @@
 					<a name="get" class="tsd-anchor"></a>
 					<h3>get</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span>request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TGetRequest</span>, getOptions<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_src_data_house_collection_get_collection_options_.getcollectionoptions.html" class="tsd-signature-type">GetCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TModel</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_api_provider_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span>request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TGetRequest</span>, getOptions<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_src_provider_collection_types_get_collection_options_.getcollectionoptions.html" class="tsd-signature-type">GetCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TModel</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html">IEnterpriseCollectionLogic</a>.<a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html#get">get</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/logic/enterprise-collection-logic.ts#L63">src/logic/enterprise-collection-logic.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-collection-logic.ts#L71">src/logic/enterprise-collection-logic.ts:71</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -302,10 +310,10 @@
 									<h5>request: <span class="tsd-signature-type">TGetRequest</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> getOptions: <a href="../interfaces/_src_data_house_collection_get_collection_options_.getcollectionoptions.html" class="tsd-signature-type">GetCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TModel</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> getOptions: <a href="../interfaces/_src_provider_collection_types_get_collection_options_.getcollectionoptions.html" class="tsd-signature-type">GetCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TModel</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_api_provider_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -318,8 +326,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html">IEnterpriseCollectionLogic</a>.<a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html#getidfromitem">getIdFromItem</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/logic/enterprise-collection-logic.ts#L145">src/logic/enterprise-collection-logic.ts:145</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-collection-logic.ts#L153">src/logic/enterprise-collection-logic.ts:153</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -336,13 +345,14 @@
 					<a name="getone" class="tsd-anchor"></a>
 					<h3>get<wbr>One</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>One<span class="tsd-signature-symbol">(</span>request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TGetRequest</span>, getOptions<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_src_data_house_collection_get_collection_options_.getcollectionoptions.html" class="tsd-signature-type">GetCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TModel</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_api_provider_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TViewModel</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> ? </span><span class="tsd-signature-type">TModel</span><span class="tsd-signature-symbol"> : </span><span class="tsd-signature-type">TViewModel</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>One<span class="tsd-signature-symbol">(</span>request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TGetRequest</span>, getOptions<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_src_provider_collection_types_get_collection_options_.getcollectionoptions.html" class="tsd-signature-type">GetCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TModel</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TViewModel</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> ? </span><span class="tsd-signature-type">TModel</span><span class="tsd-signature-symbol"> : </span><span class="tsd-signature-type">TViewModel</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html">IEnterpriseCollectionLogic</a>.<a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html#getone">getOne</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/logic/enterprise-collection-logic.ts#L92">src/logic/enterprise-collection-logic.ts:92</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-collection-logic.ts#L100">src/logic/enterprise-collection-logic.ts:100</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -351,10 +361,10 @@
 									<h5>request: <span class="tsd-signature-type">TGetRequest</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> getOptions: <a href="../interfaces/_src_data_house_collection_get_collection_options_.getcollectionoptions.html" class="tsd-signature-type">GetCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TModel</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> getOptions: <a href="../interfaces/_src_provider_collection_types_get_collection_options_.getcollectionoptions.html" class="tsd-signature-type">GetCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TModel</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_api_provider_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TViewModel</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> ? </span><span class="tsd-signature-type">TModel</span><span class="tsd-signature-symbol"> : </span><span class="tsd-signature-type">TViewModel</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TViewModel</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> ? </span><span class="tsd-signature-type">TModel</span><span class="tsd-signature-symbol"> : </span><span class="tsd-signature-type">TViewModel</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -362,13 +372,13 @@
 					<a name="save" class="tsd-anchor"></a>
 					<h3>save</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">save<span class="tsd-signature-symbol">(</span>models<span class="tsd-signature-symbol">: </span>, createSaveRequest<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>models<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TModel</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">TSaveRequest</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_api_provider_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TSaveResponse</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">save<span class="tsd-signature-symbol">(</span>models<span class="tsd-signature-symbol">: </span>, createSaveRequest<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>models<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TModel</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">TSaveRequest</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TSaveResponse</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/logic/enterprise-collection-logic.ts#L169">src/logic/enterprise-collection-logic.ts:169</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-collection-logic.ts#L177">src/logic/enterprise-collection-logic.ts:177</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -398,7 +408,7 @@
 									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_api_provider_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TSaveResponse</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TSaveResponse</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -406,13 +416,13 @@
 					<a name="saveone" class="tsd-anchor"></a>
 					<h3>save<wbr>One</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">save<wbr>One<span class="tsd-signature-symbol">(</span>model<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TViewModel</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> ? </span><span class="tsd-signature-type">TModel</span><span class="tsd-signature-symbol"> : </span><span class="tsd-signature-type">TViewModel</span>, createSaveRequest<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>model<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TModel</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">TSaveRequest</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_api_provider_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TSaveResponse</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">save<wbr>One<span class="tsd-signature-symbol">(</span>model<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TViewModel</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> ? </span><span class="tsd-signature-type">TModel</span><span class="tsd-signature-symbol"> : </span><span class="tsd-signature-type">TViewModel</span>, createSaveRequest<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>model<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TModel</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">TSaveRequest</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TSaveResponse</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/logic/enterprise-collection-logic.ts#L150">src/logic/enterprise-collection-logic.ts:150</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-collection-logic.ts#L158">src/logic/enterprise-collection-logic.ts:158</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -442,7 +452,7 @@
 									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_api_provider_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TSaveResponse</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TSaveResponse</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -455,8 +465,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html">IEnterpriseCollectionLogic</a>.<a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html#subscribe">subscribe</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/logic/enterprise-collection-logic.ts#L54">src/logic/enterprise-collection-logic.ts:54</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-collection-logic.ts#L63">src/logic/enterprise-collection-logic.ts:63</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -478,8 +489,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html">IEnterpriseCollectionLogic</a>.<a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html#unsubscribe">unsubscribe</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/logic/enterprise-collection-logic.ts#L58">src/logic/enterprise-collection-logic.ts:58</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-collection-logic.ts#L67">src/logic/enterprise-collection-logic.ts:67</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -501,8 +513,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html">IEnterpriseCollectionLogic</a>.<a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html#validate">validate</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/logic/enterprise-collection-logic.ts#L113">src/logic/enterprise-collection-logic.ts:113</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-collection-logic.ts#L121">src/logic/enterprise-collection-logic.ts:121</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -524,8 +537,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html">IEnterpriseCollectionLogic</a>.<a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html#validatemany">validateMany</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/logic/enterprise-collection-logic.ts#L117">src/logic/enterprise-collection-logic.ts:117</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-collection-logic.ts#L125">src/logic/enterprise-collection-logic.ts:125</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -549,14 +563,15 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_src_logic_enterprise_logic_.enterpriselogic.html">EnterpriseLogic</a>.<a href="_src_logic_enterprise_logic_.enterpriselogic.html#register">register</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/logic/enterprise-logic.ts#L14">src/logic/enterprise-logic.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-logic.ts#L15">src/logic/enterprise-logic.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Registers to LogicBoot static class.
 										Registered logics will use main EnterpriseApi.
-									Don&#39;t register if you want to use different EnterpriseApi</p>
+										Don&#39;t register if you want to use different EnterpriseApi
+									If you dont call register, you need to manualy create instance property</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>

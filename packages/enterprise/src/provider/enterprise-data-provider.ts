@@ -33,6 +33,116 @@ export class EnterpriseDataProvider extends EnterpriseCancellable implements IEn
         this.cancelTokens = new Map();
     }
 
+    protected createRequest(options: IEnterpriseRequestOptions): AxiosPromise {
+        switch (options.method) {
+            case EnumRequestMethod.GET:
+                return this.api.get(options.url, options.data, options.config);
+            case EnumRequestMethod.PUT:
+                return this.api.put(options.url, options.data, options.config);
+            case EnumRequestMethod.DELETE:
+                return this.api.delete(options.url, options.data, options.config);
+            default:
+                return this.api.post(options.url, options.data, options.config);
+        }
+    }
+
+    protected async createResponse(options: IEnterpriseRequestOptions): Promise<AxiosResponse> {
+        let mustCheckWaitingRequest = options.mustCheckWaitingRequest ?? true;
+
+        let response: AxiosResponse<any>;
+        let request: AxiosPromise;
+
+        const key = EnterpriseApiHelper.createUniqueKey(options.url, options.data, options.method);
+
+        if (mustCheckWaitingRequest) {
+            request = this.checkWaitinRequest(key, options);
+        } else {
+            request = this.createRequest(options);
+            this.waitingRequests.set(key, request);
+        }
+
+        response = await request;
+        this.waitingRequests.delete(key);
+
+        return response;
+    }
+
+    protected checkWaitinRequest(key: string, options: IEnterpriseRequestOptions): AxiosPromise {
+        let request: AxiosPromise;
+
+        const waitingRequest = this.waitingRequests.get(key);
+        if (waitingRequest) {
+            request = waitingRequest;
+        } else {
+            request = this.createRequest(options);
+            this.waitingRequests.set(key, request);
+        }
+
+        return request;
+    }
+
+    protected async baseRequest<TResponseModel>(
+        options: IEnterpriseRequestOptions
+    ): Promise<IApiResponse<TResponseModel>> {
+        try {
+            const response = await this.createResponse(options);
+
+            return this.createResult(response);
+        } catch (e) {
+            return this.handleBaseRequestError(e);
+        }
+    }
+
+    protected handleBaseRequestError<TResponseModel>(e: AxiosError): IApiResponse<TResponseModel> {
+        const error = e as AxiosError;
+
+        if (Axios.isCancel(e)) {
+            return { canceled: true };
+        }
+
+        const createErrorMessagesFunc = this.api.getOptions().createErrorMessagesFunc;
+
+        if (error.response && createErrorMessagesFunc) {
+            return {
+                errorMessages: createErrorMessagesFunc(error.response),
+            };
+        }
+
+        return {
+            errorMessages: { [error.name]: error.message },
+        };
+    }
+
+    protected createResult<TResponseModel>(response: AxiosResponse<any>): IApiResponse<TResponseModel> {
+        const data = this.api.dataField ? response.data[this.api.dataField] : response.data;
+
+        const isSuccess = HTTP_SUCCESS_CODES.includes(response.status);
+
+        if (isSuccess)
+            return {
+                data: data as TResponseModel,
+            };
+
+        return this.createNotSuccessResult(response, data);
+    }
+
+    protected createNotSuccessResult<TResponseModel>(
+        response: AxiosResponse<any>,
+        data: any
+    ): IApiResponse<TResponseModel> {
+        const createErrorMessagesFunc = this.api.getOptions().createErrorMessagesFunc;
+
+        if (response && createErrorMessagesFunc) {
+            return {
+                errorMessages: createErrorMessagesFunc(response),
+            };
+        }
+
+        return {
+            errorMessages: { "server error": data },
+        };
+    }
+
     /**
      * override for extra validation. Dont forget to call super()
      */
@@ -70,8 +180,7 @@ export class EnterpriseDataProvider extends EnterpriseCancellable implements IEn
 
     /**
      * Validates request, handles cancelation and response
-     * @param cancelTokenUniqueKey unique string for grouping sameRequest.
-     * Cancels existing waiting promises with same unique key and request.
+     * @param cancelTokenUniqueKey Unique string for grouping sameRequest. Cancels existing waiting promises with same unique key and request.
      * @param mustCheckWaitingRequest Prevents paralel same request
      */
     async apiRequest<TRequest, TResponseModel>(
@@ -110,42 +219,6 @@ export class EnterpriseDataProvider extends EnterpriseCancellable implements IEn
         return response;
     }
 
-    /**
-     * @param {string} mustCheckWaitingRequest : default true.
-     * Prevents paralel same requests
-     */
-    protected async baseRequest<TResponseModel>(
-        options: IEnterpriseRequestOptions
-    ): Promise<IApiResponse<TResponseModel>> {
-        try {
-            const response = await this.createResponse(options);
-
-            return this.createResult(response);
-        } catch (e) {
-            return this.handleBaseRequestError(e);
-        }
-    }
-
-    protected handleBaseRequestError<TResponseModel>(e: AxiosError): IApiResponse<TResponseModel> {
-        const error = e as AxiosError;
-
-        if (Axios.isCancel(e)) {
-            return { canceled: true };
-        }
-
-        const createErrorMessagesFunc = this.api.getOptions().createErrorMessagesFunc;
-
-        if (error.response && createErrorMessagesFunc) {
-            return {
-                errorMessages: createErrorMessagesFunc(error.response),
-            };
-        }
-
-        return {
-            errorMessages: { [error.name]: error.message },
-        };
-    }
-
     fileUpload(
         options: IEnterpriseRequestOptions,
         onUploadProgress?: (progressEvent: ProgressEvent) => void
@@ -159,83 +232,5 @@ export class EnterpriseDataProvider extends EnterpriseCancellable implements IEn
             options.dataKeyOnFileUpload,
             onUploadProgress
         );
-    }
-
-    private createRequest(options: IEnterpriseRequestOptions): AxiosPromise {
-        switch (options.method) {
-            case EnumRequestMethod.GET:
-                return this.api.get(options.url, options.data, options.config);
-            case EnumRequestMethod.PUT:
-                return this.api.put(options.url, options.data, options.config);
-            case EnumRequestMethod.DELETE:
-                return this.api.delete(options.url, options.data, options.config);
-            default:
-                return this.api.post(options.url, options.data, options.config);
-        }
-    }
-
-    private async createResponse(options: IEnterpriseRequestOptions): Promise<AxiosResponse> {
-        let mustCheckWaitingRequest = options.mustCheckWaitingRequest ?? true;
-
-        let response: AxiosResponse<any>;
-        let request: AxiosPromise;
-
-        const key = EnterpriseApiHelper.createUniqueKey(options.url, options.data, options.method);
-
-        if (mustCheckWaitingRequest) {
-            request = this.checkWaitinRequest(key, options);
-        } else {
-            request = this.createRequest(options);
-            this.waitingRequests.set(key, request);
-        }
-
-        response = await request;
-        this.waitingRequests.delete(key);
-
-        return response;
-    }
-
-    private checkWaitinRequest(key: string, options: IEnterpriseRequestOptions): AxiosPromise {
-        let request: AxiosPromise;
-
-        const waitingRequest = this.waitingRequests.get(key);
-        if (waitingRequest) {
-            request = waitingRequest;
-        } else {
-            request = this.createRequest(options);
-            this.waitingRequests.set(key, request);
-        }
-
-        return request;
-    }
-
-    protected createResult<TResponseModel>(response: AxiosResponse<any>): IApiResponse<TResponseModel> {
-        const data = this.api.dataField ? response.data[this.api.dataField] : response.data;
-
-        const isSuccess = HTTP_SUCCESS_CODES.includes(response.status);
-
-        if (isSuccess)
-            return {
-                data: data as TResponseModel,
-            };
-
-        return this.createNotSuccessResult(response, data);
-    }
-
-    protected createNotSuccessResult<TResponseModel>(
-        response: AxiosResponse<any>,
-        data: any
-    ): IApiResponse<TResponseModel> {
-        const createErrorMessagesFunc = this.api.getOptions().createErrorMessagesFunc;
-
-        if (response && createErrorMessagesFunc) {
-            return {
-                errorMessages: createErrorMessagesFunc(response),
-            };
-        }
-
-        return {
-            errorMessages: { "server error": data },
-        };
     }
 }

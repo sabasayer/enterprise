@@ -1,6 +1,6 @@
 import { isDevelopment } from "../helpers";
 import cloneDeep from "lodash.clonedeep";
-import { CacheUtil, EnumCacheType, cache, ExtendArray } from "@sabasayer/utils";
+import { CacheUtil, EnumCacheType, ExtendArray } from "@sabasayer/utils";
 import { IEnterpriseDataHouse } from "./enterprise-data-house.interface";
 
 new ExtendArray();
@@ -19,6 +19,7 @@ export class EnterpriseDataHouse implements IEnterpriseDataHouse {
         if (isDevelopment()) this.debug();
     }
 
+    //@ts-ignore
     private static initialize = (() => {
         EnterpriseDataHouse.instance = new EnterpriseDataHouse();
     })();
@@ -27,25 +28,15 @@ export class EnterpriseDataHouse implements IEnterpriseDataHouse {
         window.enterpriseDataHouse = this;
     }
 
-    get<TModel>(
-        type: EnumCacheType,
-        typename: string,
-        uniqueCacheKey?: string
-    ): TModel[] {
+    get<TModel>(type: EnumCacheType, typename: string, uniqueCacheKey?: string): TModel[] {
         const key = uniqueCacheKey ?? typename;
 
-        if (type === EnumCacheType.Memory)
-            return this.getFromInMemoryCache(key);
+        if (type === EnumCacheType.Memory) return this.getFromInMemoryCache(key);
 
         return CacheUtil.getFromCache(type, key) ?? [];
     }
 
-    set<TModel>(
-        type: EnumCacheType,
-        typename: string,
-        collection: TModel[],
-        uniqueCacheKey?: string
-    ): void {
+    set<TModel>(type: EnumCacheType, typename: string, collection: TModel[], uniqueCacheKey?: string): void {
         const key = uniqueCacheKey ?? typename;
 
         if (type === EnumCacheType.Memory) {
@@ -86,10 +77,7 @@ export class EnterpriseDataHouse implements IEnterpriseDataHouse {
         }
 
         const statement = compareFunc
-            ? (newItem: TModel) =>
-                  !!cachedItems?.every(
-                      (cachedItem) => !compareFunc(cachedItem, newItem)
-                  )
+            ? (newItem: TModel) => !!cachedItems?.every((cachedItem) => !compareFunc(cachedItem, newItem))
             : undefined;
 
         cachedItems.pushRange(collection, statement);
@@ -99,11 +87,7 @@ export class EnterpriseDataHouse implements IEnterpriseDataHouse {
         this.set(type, key, cachedItems);
     }
 
-    removeItems<TModel>(
-        type: EnumCacheType,
-        typename: string,
-        filterFunc: (item: TModel) => boolean
-    ): void {
+    removeItems<TModel>(type: EnumCacheType, typename: string, filterFunc: (item: TModel) => boolean): void {
         if (type == EnumCacheType.Memory) {
             const collection = this.getFromInMemoryCache(typename, false);
             collection.findRemove(filterFunc);
@@ -119,10 +103,7 @@ export class EnterpriseDataHouse implements IEnterpriseDataHouse {
      * Get cloned values for immutability of stored data
      * @param typename stored typename
      */
-    private getFromInMemoryCache(
-        typename: string,
-        clone: boolean = true
-    ): any[] {
+    private getFromInMemoryCache(typename: string, clone: boolean = true): any[] {
         const collection = this.collections.get(typename) ?? [];
 
         return clone ? cloneDeep(collection) : collection;

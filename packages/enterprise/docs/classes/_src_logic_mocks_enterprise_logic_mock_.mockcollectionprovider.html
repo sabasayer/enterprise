@@ -62,7 +62,7 @@
 					<a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html">MockCollectionProvider</a>
 				</li>
 			</ul>
-			<h1>Class MockCollectionProvider&lt;TSaveResponse, TDeleteRequest, TDeleteResponse, TSaveResponse, TDeleteRequest, TDeleteResponse&gt;</h1>
+			<h1>Class MockCollectionProvider&lt;TDeleteServiceRequest, TDeleteServiceRequest, TSaveRequest, TSaveResponse, TDeleteRequest, TDeleteResponse&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -73,13 +73,13 @@
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
 					<li>
-						<h4>TSaveResponse</h4>
+						<h4>TDeleteServiceRequest</h4>
 					</li>
 					<li>
-						<h4>TDeleteRequest</h4>
+						<h4>TDeleteServiceRequest</h4>
 					</li>
 					<li>
-						<h4>TDeleteResponse</h4>
+						<h4>TSaveRequest</h4>
 					</li>
 					<li>
 						<h4>TSaveResponse</h4>
@@ -96,13 +96,20 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="_src_data_house_collection_enterprise_collection_provider_.enterprisecollectionprovider.html" class="tsd-signature-type">EnterpriseCollectionProvider</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">&gt;</span>
+						<a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html" class="tsd-signature-type">EnterpriseCollectionProvider</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">&gt;</span>
 						<ul class="tsd-hierarchy">
 							<li>
 								<span class="target">MockCollectionProvider</span>
 							</li>
 						</ul>
 					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implements</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../interfaces/_src_data_house_cache_enterprise_collection_cache_provider_interface_.ienterprisecollectioncacheprovider.html" class="tsd-signature-type">IEnterpriseCollectionCacheProvider</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">&gt;</span></li>
+					<li><a href="../interfaces/_src_provider_types_enterprise_data_provider_interface_.ienterprisedataprovider.html" class="tsd-signature-type">IEnterpriseDataProvider</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -126,16 +133,27 @@
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-inherited tsd-is-not-exported">
+							<h3>Accessors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#initialized" class="tsd-kind-icon">initialized</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-inherited tsd-is-not-exported">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#additemstocache" class="tsd-kind-icon">add<wbr>Items<wbr>ToCache</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#apirequest" class="tsd-kind-icon">api<wbr>Request</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#baserequest" class="tsd-kind-icon">base<wbr>Request</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#cancelpreviouspromises" class="tsd-kind-icon">cancel<wbr>Previous<wbr>Promises</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#cancellableapirequest" class="tsd-kind-icon">cancellable<wbr>Api<wbr>Request</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#checkidoptions" class="tsd-kind-icon">check<wbr>IdOptions</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#checkwaitinrequest" class="tsd-kind-icon">check<wbr>Waitin<wbr>Request</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#clearcache" class="tsd-kind-icon">clear<wbr>Cache</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#createcanceltokenkey" class="tsd-kind-icon">create<wbr>Cancel<wbr>Token<wbr>Key</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#createnotsuccessresult" class="tsd-kind-icon">create<wbr>Not<wbr>Success<wbr>Result</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#createrequest" class="tsd-kind-icon">create<wbr>Request</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#createrequesthash" class="tsd-kind-icon">create<wbr>Request<wbr>Hash</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#createresponse" class="tsd-kind-icon">create<wbr>Response</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#createresult" class="tsd-kind-icon">create<wbr>Result</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#delete" class="tsd-kind-icon">delete</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#deletecanceltokens" class="tsd-kind-icon">delete<wbr>Cancel<wbr>Tokens</a></li>
@@ -147,13 +165,13 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#getfromapi" class="tsd-kind-icon">get<wbr>From<wbr>Api</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#getfromcache" class="tsd-kind-icon">get<wbr>From<wbr>Cache</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#getidfromitem" class="tsd-kind-icon">get<wbr>IdFrom<wbr>Item</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#handlebaserequesterror" class="tsd-kind-icon">handle<wbr>Base<wbr>Request<wbr>Error</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#handlecancelation" class="tsd-kind-icon">handle<wbr>Cancelation</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#handlesideeffects" class="tsd-kind-icon">handle<wbr>Side<wbr>Effects</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#initwaitingrequests" class="tsd-kind-icon">init<wbr>Waiting<wbr>Requests</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#iscacheresultlacking" class="tsd-kind-icon">is<wbr>Cache<wbr>Result<wbr>Lacking</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#registercanceltoken" class="tsd-kind-icon">register<wbr>Cancel<wbr>Token</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#removeitemsfromcache" class="tsd-kind-icon">remove<wbr>Items<wbr>From<wbr>Cache</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#request" class="tsd-kind-icon">request</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#save" class="tsd-kind-icon">save</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#setcache" class="tsd-kind-icon">set<wbr>Cache</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#subscribe" class="tsd-kind-icon">subscribe</a></li>
@@ -170,20 +188,20 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Mock<wbr>Collection<wbr>Provider<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><a href="_src_api_enterpise_api_.enterpriseapi.html" class="tsd-signature-type">EnterpriseApi</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html" class="tsd-signature-type">MockCollectionProvider</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Mock<wbr>Collection<wbr>Provider<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_api_types_enterprise_api_interface_.ienterpriseapi.html" class="tsd-signature-type">IEnterpriseApi</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html" class="tsd-signature-type">MockCollectionProvider</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="_src_data_house_cache_enterprise_collection_cache_provider_.enterprisecollectioncacheprovider.html">EnterpriseCollectionCacheProvider</a>.<a href="_src_data_house_cache_enterprise_collection_cache_provider_.enterprisecollectioncacheprovider.html#constructor">constructor</a></p>
+								<p>Overrides <a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/logic/mocks/enterprise-logic.mock.ts#L29">src/logic/mocks/enterprise-logic.mock.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/mocks/enterprise-logic.mock.ts#L27">src/logic/mocks/enterprise-logic.mock.ts:27</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>api: <a href="_src_api_enterpise_api_.enterpriseapi.html" class="tsd-signature-type">EnterpriseApi</a></h5>
+									<h5>api: <a href="../interfaces/_src_api_types_enterprise_api_interface_.ienterpriseapi.html" class="tsd-signature-type">IEnterpriseApi</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html" class="tsd-signature-type">MockCollectionProvider</a></h4>
@@ -196,11 +214,11 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
 					<a name="api" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> api</h3>
-					<div class="tsd-signature tsd-kind-icon">api<span class="tsd-signature-symbol">:</span> <a href="_src_api_enterpise_api_.enterpriseapi.html" class="tsd-signature-type">EnterpriseApi</a></div>
+					<div class="tsd-signature tsd-kind-icon">api<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_src_api_types_enterprise_api_interface_.ienterpriseapi.html" class="tsd-signature-type">IEnterpriseApi</a></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="_src_api_provider_enterprise_data_provider_.enterprisedataprovider.html">EnterpriseDataProvider</a>.<a href="_src_api_provider_enterprise_data_provider_.enterprisedataprovider.html#api">api</a></p>
+						<p>Inherited from <a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html">EnterpriseDataProvider</a>.<a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html#api">api</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/api/provider/enterprise-data-provider.ts#L21">src/api/provider/enterprise-data-provider.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/enterprise-data-provider.ts#L18">src/provider/enterprise-data-provider.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -209,9 +227,9 @@
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> cancel<wbr>Tokens</h3>
 					<div class="tsd-signature tsd-kind-icon">cancel<wbr>Tokens<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CancelTokenSource</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="_src_api_provider_enterprise_cancellable_.enterprisecancellable.html">EnterpriseCancellable</a>.<a href="_src_api_provider_enterprise_cancellable_.enterprisecancellable.html#canceltokens">cancelTokens</a></p>
+						<p>Inherited from <a href="_src_provider_enterprise_cancellable_.enterprisecancellable.html">EnterpriseCancellable</a>.<a href="_src_provider_enterprise_cancellable_.enterprisecancellable.html#canceltokens">cancelTokens</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/api/provider/enterprise-cancellable.ts#L6">src/api/provider/enterprise-cancellable.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/enterprise-cancellable.ts#L6">src/provider/enterprise-cancellable.ts:6</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -220,21 +238,21 @@
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> observable</h3>
 					<div class="tsd-signature tsd-kind-icon">observable<span class="tsd-signature-symbol">:</span> <a href="_src_data_house_observable_enterprise_observable_.enterpriseobservable.html" class="tsd-signature-type">EnterpriseObservable</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="_src_data_house_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_data_house_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#observable">observable</a></p>
+						<p>Inherited from <a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#observable">observable</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/data-house/collection/enterprise-collection-provider.ts#L33">src/data-house/collection/enterprise-collection-provider.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/collection/enterprise-collection-provider.ts#L28">src/provider/collection/enterprise-collection-provider.ts:28</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-protected tsd-is-not-exported">
 					<a name="options" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> options</h3>
-					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_src_data_house_collection_enterprise_collection_options_.enterprisecollectionoptions.html" class="tsd-signature-type">EnterpriseCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_src_provider_collection_types_enterprise_collection_options_.enterprisecollectionoptions.html" class="tsd-signature-type">EnterpriseCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="_src_data_house_cache_enterprise_collection_cache_provider_.enterprisecollectioncacheprovider.html">EnterpriseCollectionCacheProvider</a>.<a href="_src_data_house_cache_enterprise_collection_cache_provider_.enterprisecollectioncacheprovider.html#options">options</a></p>
+						<p>Inherited from <a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#options">options</a></p>
 						<p>Overrides EnterpriseCollectionProvider.options</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/data-house/cache/enterprise-collection-cache-provider.ts#L9">src/data-house/cache/enterprise-collection-cache-provider.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/data-house/cache/enterprise-collection-cache-provider.ts#L11">src/data-house/cache/enterprise-collection-cache-provider.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -243,11 +261,32 @@
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> waiting<wbr>Requests</h3>
 					<div class="tsd-signature tsd-kind-icon">waiting<wbr>Requests<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">AxiosPromise</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="_src_api_provider_enterprise_data_provider_.enterprisedataprovider.html">EnterpriseDataProvider</a>.<a href="_src_api_provider_enterprise_data_provider_.enterprisedataprovider.html#waitingrequests">waitingRequests</a></p>
+						<p>Inherited from <a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html">EnterpriseDataProvider</a>.<a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html#waitingrequests">waitingRequests</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/api/provider/enterprise-data-provider.ts#L22">src/api/provider/enterprise-data-provider.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/enterprise-data-provider.ts#L19">src/provider/enterprise-data-provider.ts:19</a></li>
 						</ul>
 					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited tsd-is-not-exported">
+				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
+					<a name="initialized" class="tsd-anchor"></a>
+					<h3>initialized</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> initialized<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html">EnterpriseDataProvider</a>.<a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html#initialized">initialized</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/enterprise-data-provider.ts#L27">src/provider/enterprise-data-provider.ts:27</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-inherited tsd-is-not-exported">
@@ -261,9 +300,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_data_house_cache_enterprise_collection_cache_provider_.enterprisecollectioncacheprovider.html">EnterpriseCollectionCacheProvider</a>.<a href="_src_data_house_cache_enterprise_collection_cache_provider_.enterprisecollectioncacheprovider.html#additemstocache">addItemsToCache</a></p>
+								<p>Inherited from <a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#additemstocache">addItemsToCache</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/data-house/cache/enterprise-collection-cache-provider.ts#L30">src/data-house/cache/enterprise-collection-cache-provider.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/data-house/cache/enterprise-collection-cache-provider.ts#L32">src/data-house/cache/enterprise-collection-cache-provider.ts:32</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -288,14 +327,15 @@
 					<a name="apirequest" class="tsd-anchor"></a>
 					<h3>api<wbr>Request</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">api<wbr>Request&lt;TRequest, TResponseModel&gt;<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_api_provider_api_request_options_interface_.iapirequestoptions.html" class="tsd-signature-type">IApiRequestOptions</a>, request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TRequest</span>, cancelTokenUniqueKey<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, mustCheckWaitingRequest<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span>, config<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">AxiosRequestConfig</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_api_provider_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResponseModel</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">api<wbr>Request&lt;TRequest, TResponseModel&gt;<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_provider_types_api_request_params_interface_.iapirequestparams.html" class="tsd-signature-type">IApiRequestParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TRequest</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResponseModel</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_api_provider_enterprise_data_provider_.enterprisedataprovider.html">EnterpriseDataProvider</a>.<a href="_src_api_provider_enterprise_data_provider_.enterprisedataprovider.html#apirequest">apiRequest</a></p>
+								<p>Implementation of <a href="../interfaces/_src_provider_types_enterprise_data_provider_interface_.ienterprisedataprovider.html">IEnterpriseDataProvider</a>.<a href="../interfaces/_src_provider_types_enterprise_data_provider_interface_.ienterprisedataprovider.html#apirequest">apiRequest</a></p>
+								<p>Inherited from <a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html">EnterpriseDataProvider</a>.<a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html#apirequest">apiRequest</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/api/provider/enterprise-data-provider.ts#L77">src/api/provider/enterprise-data-provider.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/enterprise-data-provider.ts#L186">src/provider/enterprise-data-provider.ts:186</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -315,29 +355,40 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>options: <a href="../interfaces/_src_api_provider_api_request_options_interface_.iapirequestoptions.html" class="tsd-signature-type">IApiRequestOptions</a></h5>
-								</li>
-								<li>
-									<h5>request: <span class="tsd-signature-type">TRequest</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> cancelTokenUniqueKey: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>unique string for grouping sameRequest.
-										Cancels existing waiting promises with same unique key and request.</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> mustCheckWaitingRequest: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Prevents paralel same request</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> config: <span class="tsd-signature-type">AxiosRequestConfig</span></h5>
+									<h5>params: <a href="../interfaces/_src_provider_types_api_request_params_interface_.iapirequestparams.html" class="tsd-signature-type">IApiRequestParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TRequest</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_api_provider_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResponseModel</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResponseModel</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-not-exported">
+					<a name="baserequest" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> base<wbr>Request</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">base<wbr>Request&lt;TResponseModel&gt;<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_provider_types_enterprise_request_options_interface_.ienterpriserequestoptions.html" class="tsd-signature-type">IEnterpriseRequestOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResponseModel</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html">EnterpriseDataProvider</a>.<a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html#baserequest">baseRequest</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/enterprise-data-provider.ts#L84">src/provider/enterprise-data-provider.ts:84</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>TResponseModel</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>options: <a href="../interfaces/_src_provider_types_enterprise_request_options_interface_.ienterpriserequestoptions.html" class="tsd-signature-type">IEnterpriseRequestOptions</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResponseModel</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -350,9 +401,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_api_provider_enterprise_cancellable_.enterprisecancellable.html">EnterpriseCancellable</a>.<a href="_src_api_provider_enterprise_cancellable_.enterprisecancellable.html#cancelpreviouspromises">cancelPreviousPromises</a></p>
+								<p>Inherited from <a href="_src_provider_enterprise_cancellable_.enterprisecancellable.html">EnterpriseCancellable</a>.<a href="_src_provider_enterprise_cancellable_.enterprisecancellable.html#cancelpreviouspromises">cancelPreviousPromises</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/api/provider/enterprise-cancellable.ts#L24">src/api/provider/enterprise-cancellable.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/enterprise-cancellable.ts#L17">src/provider/enterprise-cancellable.ts:17</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -369,14 +420,15 @@
 					<a name="cancellableapirequest" class="tsd-anchor"></a>
 					<h3>cancellable<wbr>Api<wbr>Request</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">cancellable<wbr>Api<wbr>Request&lt;TRequest, TResponseModel&gt;<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_api_provider_api_request_options_interface_.iapirequestoptions.html" class="tsd-signature-type">IApiRequestOptions</a>, request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TRequest</span>, mustCheckWaitingRequest<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_api_provider_cancellable_api_response_interface_.icancellableapiresponse.html" class="tsd-signature-type">ICancellableApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResponseModel</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">cancellable<wbr>Api<wbr>Request&lt;TRequest, TResponseModel&gt;<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_provider_types_api_request_options_interface_.iapirequestoptions.html" class="tsd-signature-type">IApiRequestOptions</a>, request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TRequest</span>, mustCheckWaitingRequest<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_provider_types_cancellable_api_response_interface_.icancellableapiresponse.html" class="tsd-signature-type">ICancellableApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResponseModel</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_api_provider_enterprise_data_provider_.enterprisedataprovider.html">EnterpriseDataProvider</a>.<a href="_src_api_provider_enterprise_data_provider_.enterprisedataprovider.html#cancellableapirequest">cancellableApiRequest</a></p>
+								<p>Implementation of <a href="../interfaces/_src_provider_types_enterprise_data_provider_interface_.ienterprisedataprovider.html">IEnterpriseDataProvider</a>.<a href="../interfaces/_src_provider_types_enterprise_data_provider_interface_.ienterprisedataprovider.html#cancellableapirequest">cancellableApiRequest</a></p>
+								<p>Inherited from <a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html">EnterpriseDataProvider</a>.<a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html#cancellableapirequest">cancellableApiRequest</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/api/provider/enterprise-data-provider.ts#L53">src/api/provider/enterprise-data-provider.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/enterprise-data-provider.ts#L164">src/provider/enterprise-data-provider.ts:164</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -396,7 +448,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>options: <a href="../interfaces/_src_api_provider_api_request_options_interface_.iapirequestoptions.html" class="tsd-signature-type">IApiRequestOptions</a></h5>
+									<h5>options: <a href="../interfaces/_src_provider_types_api_request_options_interface_.iapirequestoptions.html" class="tsd-signature-type">IApiRequestOptions</a></h5>
 								</li>
 								<li>
 									<h5>request: <span class="tsd-signature-type">TRequest</span></h5>
@@ -405,7 +457,7 @@
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> mustCheckWaitingRequest: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_api_provider_cancellable_api_response_interface_.icancellableapiresponse.html" class="tsd-signature-type">ICancellableApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResponseModel</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_provider_types_cancellable_api_response_interface_.icancellableapiresponse.html" class="tsd-signature-type">ICancellableApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResponseModel</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -418,12 +470,39 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_data_house_cache_enterprise_collection_cache_provider_.enterprisecollectioncacheprovider.html">EnterpriseCollectionCacheProvider</a>.<a href="_src_data_house_cache_enterprise_collection_cache_provider_.enterprisecollectioncacheprovider.html#checkidoptions">checkIdOptions</a></p>
+								<p>Inherited from <a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#checkidoptions">checkIdOptions</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/data-house/cache/enterprise-collection-cache-provider.ts#L169">src/data-house/cache/enterprise-collection-cache-provider.ts:169</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/data-house/cache/enterprise-collection-cache-provider.ts#L179">src/data-house/cache/enterprise-collection-cache-provider.ts:179</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">never</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
+					<a name="checkwaitinrequest" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> check<wbr>Waitin<wbr>Request</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">check<wbr>Waitin<wbr>Request<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_provider_types_enterprise_request_options_interface_.ienterpriserequestoptions.html" class="tsd-signature-type">IEnterpriseRequestOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AxiosPromise</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html">EnterpriseDataProvider</a>.<a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html#checkwaitinrequest">checkWaitinRequest</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/enterprise-data-provider.ts#L70">src/provider/enterprise-data-provider.ts:70</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>key: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>options: <a href="../interfaces/_src_provider_types_enterprise_request_options_interface_.ienterpriserequestoptions.html" class="tsd-signature-type">IEnterpriseRequestOptions</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AxiosPromise</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -436,9 +515,10 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_data_house_cache_enterprise_collection_cache_provider_.enterprisecollectioncacheprovider.html">EnterpriseCollectionCacheProvider</a>.<a href="_src_data_house_cache_enterprise_collection_cache_provider_.enterprisecollectioncacheprovider.html#clearcache">clearCache</a></p>
+								<p>Implementation of <a href="../interfaces/_src_data_house_cache_enterprise_collection_cache_provider_interface_.ienterprisecollectioncacheprovider.html">IEnterpriseCollectionCacheProvider</a>.<a href="../interfaces/_src_data_house_cache_enterprise_collection_cache_provider_interface_.ienterprisecollectioncacheprovider.html#clearcache">clearCache</a></p>
+								<p>Inherited from <a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#clearcache">clearCache</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/data-house/cache/enterprise-collection-cache-provider.ts#L102">src/data-house/cache/enterprise-collection-cache-provider.ts:102</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/data-house/cache/enterprise-collection-cache-provider.ts#L104">src/data-house/cache/enterprise-collection-cache-provider.ts:104</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -455,26 +535,83 @@
 					<a name="createcanceltokenkey" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> create<wbr>Cancel<wbr>Token<wbr>Key</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Cancel<wbr>Token<wbr>Key<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_api_provider_api_request_options_interface_.iapirequestoptions.html" class="tsd-signature-type">IApiRequestOptions</a>, uniqueKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Cancel<wbr>Token<wbr>Key<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_provider_types_api_request_options_interface_.iapirequestoptions.html" class="tsd-signature-type">IApiRequestOptions</a>, uniqueKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_api_provider_enterprise_cancellable_.enterprisecancellable.html">EnterpriseCancellable</a>.<a href="_src_api_provider_enterprise_cancellable_.enterprisecancellable.html#createcanceltokenkey">createCancelTokenKey</a></p>
+								<p>Inherited from <a href="_src_provider_enterprise_cancellable_.enterprisecancellable.html">EnterpriseCancellable</a>.<a href="_src_provider_enterprise_cancellable_.enterprisecancellable.html#createcanceltokenkey">createCancelTokenKey</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/api/provider/enterprise-cancellable.ts#L12">src/api/provider/enterprise-cancellable.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/enterprise-cancellable.ts#L12">src/provider/enterprise-cancellable.ts:12</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>options: <a href="../interfaces/_src_api_provider_api_request_options_interface_.iapirequestoptions.html" class="tsd-signature-type">IApiRequestOptions</a></h5>
+									<h5>options: <a href="../interfaces/_src_provider_types_api_request_options_interface_.iapirequestoptions.html" class="tsd-signature-type">IApiRequestOptions</a></h5>
 								</li>
 								<li>
 									<h5>uniqueKey: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-not-exported">
+					<a name="createnotsuccessresult" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> create<wbr>Not<wbr>Success<wbr>Result</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Not<wbr>Success<wbr>Result&lt;TResponseModel&gt;<span class="tsd-signature-symbol">(</span>response<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResponseModel</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html">EnterpriseDataProvider</a>.<a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html#createnotsuccessresult">createNotSuccessResult</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/enterprise-data-provider.ts#L129">src/provider/enterprise-data-provider.ts:129</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>TResponseModel</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>response: <span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>data: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResponseModel</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
+					<a name="createrequest" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> create<wbr>Request</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Request<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_provider_types_enterprise_request_options_interface_.ienterpriserequestoptions.html" class="tsd-signature-type">IEnterpriseRequestOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AxiosPromise</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html">EnterpriseDataProvider</a>.<a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html#createrequest">createRequest</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/enterprise-data-provider.ts#L36">src/provider/enterprise-data-provider.ts:36</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>options: <a href="../interfaces/_src_provider_types_enterprise_request_options_interface_.ienterpriserequestoptions.html" class="tsd-signature-type">IEnterpriseRequestOptions</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AxiosPromise</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -487,9 +624,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_data_house_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_data_house_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#createrequesthash">createRequestHash</a></p>
+								<p>Inherited from <a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#createrequesthash">createRequestHash</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/data-house/collection/enterprise-collection-provider.ts#L101">src/data-house/collection/enterprise-collection-provider.ts:101</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/collection/enterprise-collection-provider.ts#L84">src/provider/collection/enterprise-collection-provider.ts:84</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -508,18 +645,42 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-not-exported">
-					<a name="createresult" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> create<wbr>Result</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Result&lt;TResponseModel&gt;<span class="tsd-signature-symbol">(</span>response<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_api_provider_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResponseModel</span><span class="tsd-signature-symbol">&gt;</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
+					<a name="createresponse" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> create<wbr>Response</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Response<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_provider_types_enterprise_request_options_interface_.ienterpriserequestoptions.html" class="tsd-signature-type">IEnterpriseRequestOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_api_provider_enterprise_data_provider_.enterprisedataprovider.html">EnterpriseDataProvider</a>.<a href="_src_api_provider_enterprise_data_provider_.enterprisedataprovider.html#createresult">createResult</a></p>
+								<p>Inherited from <a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html">EnterpriseDataProvider</a>.<a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html#createresponse">createResponse</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/api/provider/enterprise-data-provider.ts#L214">src/api/provider/enterprise-data-provider.ts:214</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/enterprise-data-provider.ts#L49">src/provider/enterprise-data-provider.ts:49</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>options: <a href="../interfaces/_src_provider_types_enterprise_request_options_interface_.ienterpriserequestoptions.html" class="tsd-signature-type">IEnterpriseRequestOptions</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-not-exported">
+					<a name="createresult" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> create<wbr>Result</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Result&lt;TResponseModel&gt;<span class="tsd-signature-symbol">(</span>response<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResponseModel</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html">EnterpriseDataProvider</a>.<a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html#createresult">createResult</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/enterprise-data-provider.ts#L116">src/provider/enterprise-data-provider.ts:116</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -534,7 +695,7 @@
 									<h5>response: <span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_api_provider_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResponseModel</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResponseModel</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -542,14 +703,14 @@
 					<a name="delete" class="tsd-anchor"></a>
 					<h3>delete</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">delete<span class="tsd-signature-symbol">(</span>request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TDeleteRequest</span>, ids<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_api_provider_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDeleteResponse</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">delete<span class="tsd-signature-symbol">(</span>request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TDeleteRequest</span>, ids<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDeleteResponse</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_data_house_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_data_house_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#delete">delete</a></p>
+								<p>Inherited from <a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#delete">delete</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/data-house/collection/enterprise-collection-provider.ts#L183">src/data-house/collection/enterprise-collection-provider.ts:183</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/collection/enterprise-collection-provider.ts#L158">src/provider/collection/enterprise-collection-provider.ts:158</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -566,7 +727,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_api_provider_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDeleteResponse</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDeleteResponse</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -574,20 +735,20 @@
 					<a name="deletecanceltokens" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> delete<wbr>Cancel<wbr>Tokens</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">delete<wbr>Cancel<wbr>Tokens<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_api_provider_api_request_options_interface_.iapirequestoptions.html" class="tsd-signature-type">IApiRequestOptions</a>, uniqueKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">delete<wbr>Cancel<wbr>Tokens<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_provider_types_api_request_options_interface_.iapirequestoptions.html" class="tsd-signature-type">IApiRequestOptions</a>, uniqueKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_api_provider_enterprise_cancellable_.enterprisecancellable.html">EnterpriseCancellable</a>.<a href="_src_api_provider_enterprise_cancellable_.enterprisecancellable.html#deletecanceltokens">deleteCancelTokens</a></p>
+								<p>Inherited from <a href="_src_provider_enterprise_cancellable_.enterprisecancellable.html">EnterpriseCancellable</a>.<a href="_src_provider_enterprise_cancellable_.enterprisecancellable.html#deletecanceltokens">deleteCancelTokens</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/api/provider/enterprise-cancellable.ts#L33">src/api/provider/enterprise-cancellable.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/enterprise-cancellable.ts#L26">src/provider/enterprise-cancellable.ts:26</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>options: <a href="../interfaces/_src_api_provider_api_request_options_interface_.iapirequestoptions.html" class="tsd-signature-type">IApiRequestOptions</a></h5>
+									<h5>options: <a href="../interfaces/_src_provider_types_api_request_options_interface_.iapirequestoptions.html" class="tsd-signature-type">IApiRequestOptions</a></h5>
 								</li>
 								<li>
 									<h5>uniqueKey: <span class="tsd-signature-type">string</span></h5>
@@ -601,20 +762,20 @@
 					<a name="fileupload" class="tsd-anchor"></a>
 					<h3>file<wbr>Upload</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">file<wbr>Upload<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_api_provider_enterprise_request_options_interface_.ienterpriserequestoptions.html" class="tsd-signature-type">IEnterpriseRequestOptions</a>, onUploadProgress<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>progressEvent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ProgressEvent</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">file<wbr>Upload<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_provider_types_enterprise_request_options_interface_.ienterpriserequestoptions.html" class="tsd-signature-type">IEnterpriseRequestOptions</a>, onUploadProgress<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>progressEvent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ProgressEvent</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_api_provider_enterprise_data_provider_.enterprisedataprovider.html">EnterpriseDataProvider</a>.<a href="_src_api_provider_enterprise_data_provider_.enterprisedataprovider.html#fileupload">fileUpload</a></p>
+								<p>Inherited from <a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html">EnterpriseDataProvider</a>.<a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html#fileupload">fileUpload</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/api/provider/enterprise-data-provider.ts#L149">src/api/provider/enterprise-data-provider.ts:149</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/enterprise-data-provider.ts#L222">src/provider/enterprise-data-provider.ts:222</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>options: <a href="../interfaces/_src_api_provider_enterprise_request_options_interface_.ienterpriserequestoptions.html" class="tsd-signature-type">IEnterpriseRequestOptions</a></h5>
+									<h5>options: <a href="../interfaces/_src_provider_types_enterprise_request_options_interface_.ienterpriserequestoptions.html" class="tsd-signature-type">IEnterpriseRequestOptions</a></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> onUploadProgress: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>progressEvent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ProgressEvent</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span></h5>
@@ -628,14 +789,14 @@
 					<a name="filterbycacheprovidestrategy" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> filter<wbr>ByCache<wbr>Provide<wbr>Strategy</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">filter<wbr>ByCache<wbr>Provide<wbr>Strategy<span class="tsd-signature-symbol">(</span>all<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">[]</span>, getOptions<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_src_data_house_collection_get_collection_options_.getcollectionoptions.html" class="tsd-signature-type">GetCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">filter<wbr>ByCache<wbr>Provide<wbr>Strategy<span class="tsd-signature-symbol">(</span>all<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">[]</span>, getOptions<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_src_provider_collection_types_get_collection_options_.getcollectionoptions.html" class="tsd-signature-type">GetCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_data_house_cache_enterprise_collection_cache_provider_.enterprisecollectioncacheprovider.html">EnterpriseCollectionCacheProvider</a>.<a href="_src_data_house_cache_enterprise_collection_cache_provider_.enterprisecollectioncacheprovider.html#filterbycacheprovidestrategy">filterByCacheProvideStrategy</a></p>
+								<p>Inherited from <a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#filterbycacheprovidestrategy">filterByCacheProvideStrategy</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/data-house/cache/enterprise-collection-cache-provider.ts#L135">src/data-house/cache/enterprise-collection-cache-provider.ts:135</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/data-house/cache/enterprise-collection-cache-provider.ts#L145">src/data-house/cache/enterprise-collection-cache-provider.ts:145</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -644,7 +805,7 @@
 									<h5>all: <a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> getOptions: <a href="../interfaces/_src_data_house_collection_get_collection_options_.getcollectionoptions.html" class="tsd-signature-type">GetCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> getOptions: <a href="../interfaces/_src_provider_collection_types_get_collection_options_.getcollectionoptions.html" class="tsd-signature-type">GetCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">[]</span></h4>
@@ -655,14 +816,14 @@
 					<a name="filterbyidoptions" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> filter<wbr>ById<wbr>Options</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">filter<wbr>ById<wbr>Options<span class="tsd-signature-symbol">(</span>all<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">[]</span>, getOptions<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_src_data_house_collection_get_collection_options_.getcollectionoptions.html" class="tsd-signature-type">GetCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">filter<wbr>ById<wbr>Options<span class="tsd-signature-symbol">(</span>all<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">[]</span>, getOptions<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_src_provider_collection_types_get_collection_options_.getcollectionoptions.html" class="tsd-signature-type">GetCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_data_house_cache_enterprise_collection_cache_provider_.enterprisecollectioncacheprovider.html">EnterpriseCollectionCacheProvider</a>.<a href="_src_data_house_cache_enterprise_collection_cache_provider_.enterprisecollectioncacheprovider.html#filterbyidoptions">filterByIdOptions</a></p>
+								<p>Inherited from <a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#filterbyidoptions">filterByIdOptions</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/data-house/cache/enterprise-collection-cache-provider.ts#L147">src/data-house/cache/enterprise-collection-cache-provider.ts:147</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/data-house/cache/enterprise-collection-cache-provider.ts#L157">src/data-house/cache/enterprise-collection-cache-provider.ts:157</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -671,7 +832,7 @@
 									<h5>all: <a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> getOptions: <a href="../interfaces/_src_data_house_collection_get_collection_options_.getcollectionoptions.html" class="tsd-signature-type">GetCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> getOptions: <a href="../interfaces/_src_provider_collection_types_get_collection_options_.getcollectionoptions.html" class="tsd-signature-type">GetCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">[]</span></h4>
@@ -682,14 +843,14 @@
 					<a name="get" class="tsd-anchor"></a>
 					<h3>get</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span>getRequest<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{}</span>, getOptions<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_src_data_house_collection_get_collection_options_.getcollectionoptions.html" class="tsd-signature-type">GetCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_api_provider_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span>getRequest<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{}</span>, getOptions<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_src_provider_collection_types_get_collection_options_.getcollectionoptions.html" class="tsd-signature-type">GetCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_data_house_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_data_house_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#get">get</a></p>
+								<p>Inherited from <a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#get">get</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/data-house/collection/enterprise-collection-provider.ts#L59">src/data-house/collection/enterprise-collection-provider.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/collection/enterprise-collection-provider.ts#L54">src/provider/collection/enterprise-collection-provider.ts:54</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -706,13 +867,13 @@
 									</ul>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> getOptions: <a href="../interfaces/_src_data_house_collection_get_collection_options_.getcollectionoptions.html" class="tsd-signature-type">GetCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> getOptions: <a href="../interfaces/_src_provider_collection_types_get_collection_options_.getcollectionoptions.html" class="tsd-signature-type">GetCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>how to compare and get data</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_api_provider_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -725,9 +886,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_data_house_cache_enterprise_collection_cache_provider_.enterprisecollectioncacheprovider.html">EnterpriseCollectionCacheProvider</a>.<a href="_src_data_house_cache_enterprise_collection_cache_provider_.enterprisecollectioncacheprovider.html#getallfromcache">getAllFromCache</a></p>
+								<p>Inherited from <a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#getallfromcache">getAllFromCache</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/data-house/cache/enterprise-collection-cache-provider.ts#L124">src/data-house/cache/enterprise-collection-cache-provider.ts:124</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/data-house/cache/enterprise-collection-cache-provider.ts#L134">src/data-house/cache/enterprise-collection-cache-provider.ts:134</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -747,14 +908,14 @@
 					<a name="getfromapi" class="tsd-anchor"></a>
 					<h3>get<wbr>From<wbr>Api</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>From<wbr>Api&lt;TGetRequest&gt;<span class="tsd-signature-symbol">(</span>request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TGetRequest</span>, cancelTokenUniqueKey<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_api_provider_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>From<wbr>Api&lt;TGetRequest&gt;<span class="tsd-signature-symbol">(</span>request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TGetRequest</span>, cancelTokenUniqueKey<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_data_house_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_data_house_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#getfromapi">getFromApi</a></p>
+								<p>Inherited from <a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#getfromapi">getFromApi</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/data-house/collection/enterprise-collection-provider.ts#L112">src/data-house/collection/enterprise-collection-provider.ts:112</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/collection/enterprise-collection-provider.ts#L94">src/provider/collection/enterprise-collection-provider.ts:94</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -778,7 +939,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_api_provider_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -786,20 +947,21 @@
 					<a name="getfromcache" class="tsd-anchor"></a>
 					<h3>get<wbr>From<wbr>Cache</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>From<wbr>Cache<span class="tsd-signature-symbol">(</span>getOptions<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_src_data_house_collection_get_collection_options_.getcollectionoptions.html" class="tsd-signature-type">GetCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">&gt;</span>, uniqueCacheKey<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>From<wbr>Cache<span class="tsd-signature-symbol">(</span>getOptions<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_src_provider_collection_types_get_collection_options_.getcollectionoptions.html" class="tsd-signature-type">GetCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">&gt;</span>, uniqueCacheKey<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_data_house_cache_enterprise_collection_cache_provider_.enterprisecollectioncacheprovider.html">EnterpriseCollectionCacheProvider</a>.<a href="_src_data_house_cache_enterprise_collection_cache_provider_.enterprisecollectioncacheprovider.html#getfromcache">getFromCache</a></p>
+								<p>Implementation of <a href="../interfaces/_src_data_house_cache_enterprise_collection_cache_provider_interface_.ienterprisecollectioncacheprovider.html">IEnterpriseCollectionCacheProvider</a>.<a href="../interfaces/_src_data_house_cache_enterprise_collection_cache_provider_interface_.ienterprisecollectioncacheprovider.html#getfromcache">getFromCache</a></p>
+								<p>Inherited from <a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#getfromcache">getFromCache</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/data-house/cache/enterprise-collection-cache-provider.ts#L88">src/data-house/cache/enterprise-collection-cache-provider.ts:88</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/data-house/cache/enterprise-collection-cache-provider.ts#L90">src/data-house/cache/enterprise-collection-cache-provider.ts:90</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> getOptions: <a href="../interfaces/_src_data_house_collection_get_collection_options_.getcollectionoptions.html" class="tsd-signature-type">GetCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> getOptions: <a href="../interfaces/_src_provider_collection_types_get_collection_options_.getcollectionoptions.html" class="tsd-signature-type">GetCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> uniqueCacheKey: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
@@ -818,9 +980,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_data_house_cache_enterprise_collection_cache_provider_.enterprisecollectioncacheprovider.html">EnterpriseCollectionCacheProvider</a>.<a href="_src_data_house_cache_enterprise_collection_cache_provider_.enterprisecollectioncacheprovider.html#getidfromitem">getIdFromItem</a></p>
+								<p>Inherited from <a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#getidfromitem">getIdFromItem</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/data-house/cache/enterprise-collection-cache-provider.ts#L174">src/data-house/cache/enterprise-collection-cache-provider.ts:174</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/data-house/cache/enterprise-collection-cache-provider.ts#L115">src/data-house/cache/enterprise-collection-cache-provider.ts:115</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -833,24 +995,54 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
-					<a name="handlecancelation" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> handle<wbr>Cancelation</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">handle<wbr>Cancelation<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_api_provider_api_request_options_interface_.iapirequestoptions.html" class="tsd-signature-type">IApiRequestOptions</a>, uniqueKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CancelTokenSource</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-not-exported">
+					<a name="handlebaserequesterror" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> handle<wbr>Base<wbr>Request<wbr>Error</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">handle<wbr>Base<wbr>Request<wbr>Error&lt;TResponseModel&gt;<span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AxiosError</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResponseModel</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_api_provider_enterprise_cancellable_.enterprisecancellable.html">EnterpriseCancellable</a>.<a href="_src_api_provider_enterprise_cancellable_.enterprisecancellable.html#handlecancelation">handleCancelation</a></p>
+								<p>Inherited from <a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html">EnterpriseDataProvider</a>.<a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html#handlebaserequesterror">handleBaseRequestError</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/api/provider/enterprise-cancellable.ts#L52">src/api/provider/enterprise-cancellable.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/enterprise-data-provider.ts#L96">src/provider/enterprise-data-provider.ts:96</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>TResponseModel</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>e: <span class="tsd-signature-type">AxiosError</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResponseModel</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
+					<a name="handlecancelation" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> handle<wbr>Cancelation</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">handle<wbr>Cancelation<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_provider_types_api_request_options_interface_.iapirequestoptions.html" class="tsd-signature-type">IApiRequestOptions</a>, uniqueKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CancelTokenSource</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_src_provider_enterprise_cancellable_.enterprisecancellable.html">EnterpriseCancellable</a>.<a href="_src_provider_enterprise_cancellable_.enterprisecancellable.html#handlecancelation">handleCancelation</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/enterprise-cancellable.ts#L42">src/provider/enterprise-cancellable.ts:42</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>options: <a href="../interfaces/_src_api_provider_api_request_options_interface_.iapirequestoptions.html" class="tsd-signature-type">IApiRequestOptions</a></h5>
+									<h5>options: <a href="../interfaces/_src_provider_types_api_request_options_interface_.iapirequestoptions.html" class="tsd-signature-type">IApiRequestOptions</a></h5>
 								</li>
 								<li>
 									<h5>uniqueKey: <span class="tsd-signature-type">string</span></h5>
@@ -869,9 +1061,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_data_house_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_data_house_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#handlesideeffects">handleSideEffects</a></p>
+								<p>Inherited from <a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#handlesideeffects">handleSideEffects</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/data-house/collection/enterprise-collection-provider.ts#L168">src/data-house/collection/enterprise-collection-provider.ts:168</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/collection/enterprise-collection-provider.ts#L143">src/provider/collection/enterprise-collection-provider.ts:143</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -887,9 +1079,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_api_provider_enterprise_data_provider_.enterprisedataprovider.html">EnterpriseDataProvider</a>.<a href="_src_api_provider_enterprise_data_provider_.enterprisedataprovider.html#initwaitingrequests">initWaitingRequests</a></p>
+								<p>Inherited from <a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html">EnterpriseDataProvider</a>.<a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html#initwaitingrequests">initWaitingRequests</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/api/provider/enterprise-data-provider.ts#L30">src/api/provider/enterprise-data-provider.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/enterprise-data-provider.ts#L31">src/provider/enterprise-data-provider.ts:31</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -900,14 +1092,14 @@
 					<a name="iscacheresultlacking" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> is<wbr>Cache<wbr>Result<wbr>Lacking</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">is<wbr>Cache<wbr>Result<wbr>Lacking<span class="tsd-signature-symbol">(</span>result<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">[]</span>, getOptions<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_src_data_house_collection_get_collection_options_.getcollectionoptions.html" class="tsd-signature-type">GetCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Cache<wbr>Result<wbr>Lacking<span class="tsd-signature-symbol">(</span>result<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">[]</span>, getOptions<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_src_provider_collection_types_get_collection_options_.getcollectionoptions.html" class="tsd-signature-type">GetCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_data_house_cache_enterprise_collection_cache_provider_.enterprisecollectioncacheprovider.html">EnterpriseCollectionCacheProvider</a>.<a href="_src_data_house_cache_enterprise_collection_cache_provider_.enterprisecollectioncacheprovider.html#iscacheresultlacking">isCacheResultLacking</a></p>
+								<p>Inherited from <a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#iscacheresultlacking">isCacheResultLacking</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/data-house/cache/enterprise-collection-cache-provider.ts#L113">src/data-house/cache/enterprise-collection-cache-provider.ts:113</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/data-house/cache/enterprise-collection-cache-provider.ts#L123">src/data-house/cache/enterprise-collection-cache-provider.ts:123</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -916,7 +1108,7 @@
 									<h5>result: <a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> getOptions: <a href="../interfaces/_src_data_house_collection_get_collection_options_.getcollectionoptions.html" class="tsd-signature-type">GetCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> getOptions: <a href="../interfaces/_src_provider_collection_types_get_collection_options_.getcollectionoptions.html" class="tsd-signature-type">GetCollectionOptions</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -932,9 +1124,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_api_provider_enterprise_cancellable_.enterprisecancellable.html">EnterpriseCancellable</a>.<a href="_src_api_provider_enterprise_cancellable_.enterprisecancellable.html#registercanceltoken">registerCancelToken</a></p>
+								<p>Inherited from <a href="_src_provider_enterprise_cancellable_.enterprisecancellable.html">EnterpriseCancellable</a>.<a href="_src_provider_enterprise_cancellable_.enterprisecancellable.html#registercanceltoken">registerCancelToken</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/api/provider/enterprise-cancellable.ts#L41">src/api/provider/enterprise-cancellable.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/enterprise-cancellable.ts#L31">src/provider/enterprise-cancellable.ts:31</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -959,9 +1151,10 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_data_house_cache_enterprise_collection_cache_provider_.enterprisecollectioncacheprovider.html">EnterpriseCollectionCacheProvider</a>.<a href="_src_data_house_cache_enterprise_collection_cache_provider_.enterprisecollectioncacheprovider.html#removeitemsfromcache">removeItemsFromCache</a></p>
+								<p>Implementation of <a href="../interfaces/_src_data_house_cache_enterprise_collection_cache_provider_interface_.ienterprisecollectioncacheprovider.html">IEnterpriseCollectionCacheProvider</a>.<a href="../interfaces/_src_data_house_cache_enterprise_collection_cache_provider_interface_.ienterprisecollectioncacheprovider.html#removeitemsfromcache">removeItemsFromCache</a></p>
+								<p>Inherited from <a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#removeitemsfromcache">removeItemsFromCache</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/data-house/cache/enterprise-collection-cache-provider.ts#L68">src/data-house/cache/enterprise-collection-cache-provider.ts:68</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/data-house/cache/enterprise-collection-cache-provider.ts#L70">src/data-house/cache/enterprise-collection-cache-provider.ts:70</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -982,50 +1175,18 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-not-exported">
-					<a name="request" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> request</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">request&lt;TResponseModel&gt;<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_api_provider_enterprise_request_options_interface_.ienterpriserequestoptions.html" class="tsd-signature-type">IEnterpriseRequestOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_api_provider_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResponseModel</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_api_provider_enterprise_data_provider_.enterprisedataprovider.html">EnterpriseDataProvider</a>.<a href="_src_api_provider_enterprise_data_provider_.enterprisedataprovider.html#request">request</a></p>
-								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/api/provider/enterprise-data-provider.ts#L120">src/api/provider/enterprise-data-provider.ts:120</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-							</div>
-							<h4 class="tsd-type-parameters-title">Type parameters</h4>
-							<ul class="tsd-type-parameters">
-								<li>
-									<h4>TResponseModel</h4>
-								</li>
-							</ul>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>options: <a href="../interfaces/_src_api_provider_enterprise_request_options_interface_.ienterpriserequestoptions.html" class="tsd-signature-type">IEnterpriseRequestOptions</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_api_provider_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TResponseModel</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 					<a name="save" class="tsd-anchor"></a>
 					<h3>save</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">save<span class="tsd-signature-symbol">(</span>request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{}</span>, mapResponseToModel<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>response<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TSaveResponse</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_api_provider_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TSaveResponse</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">save<span class="tsd-signature-symbol">(</span>request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TSaveRequest</span>, mapResponseToModel<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>response<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TSaveResponse</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TSaveResponse</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_data_house_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_data_house_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#save">save</a></p>
+								<p>Inherited from <a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#save">save</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/data-house/collection/enterprise-collection-provider.ts#L135">src/data-house/collection/enterprise-collection-provider.ts:135</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/collection/enterprise-collection-provider.ts#L116">src/provider/collection/enterprise-collection-provider.ts:116</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1033,9 +1194,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>request: <span class="tsd-signature-symbol">{}</span></h5>
-									<ul class="tsd-parameters">
-									</ul>
+									<h5>request: <span class="tsd-signature-type">TSaveRequest</span></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> mapResponseToModel: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>response<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TSaveResponse</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span></h5>
@@ -1045,7 +1204,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_api_provider_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TSaveResponse</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TSaveResponse</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -1058,9 +1217,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_data_house_cache_enterprise_collection_cache_provider_.enterprisecollectioncacheprovider.html">EnterpriseCollectionCacheProvider</a>.<a href="_src_data_house_cache_enterprise_collection_cache_provider_.enterprisecollectioncacheprovider.html#setcache">setCache</a></p>
+								<p>Inherited from <a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#setcache">setCache</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/data-house/cache/enterprise-collection-cache-provider.ts#L15">src/data-house/cache/enterprise-collection-cache-provider.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/data-house/cache/enterprise-collection-cache-provider.ts#L17">src/data-house/cache/enterprise-collection-cache-provider.ts:17</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1085,11 +1244,16 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_data_house_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_data_house_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#subscribe">subscribe</a></p>
+								<p>Inherited from <a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#subscribe">subscribe</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/data-house/collection/enterprise-collection-provider.ts#L45">src/data-house/collection/enterprise-collection-provider.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/collection/enterprise-collection-provider.ts#L40">src/provider/collection/enterprise-collection-provider.ts:40</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Subscribe for changes at the model</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1109,9 +1273,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_data_house_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_data_house_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#unsubscribe">unsubscribe</a></p>
+								<p>Inherited from <a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html">EnterpriseCollectionProvider</a>.<a href="_src_provider_collection_enterprise_collection_provider_.enterprisecollectionprovider.html#unsubscribe">unsubscribe</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/data-house/collection/enterprise-collection-provider.ts#L49">src/data-house/collection/enterprise-collection-provider.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/collection/enterprise-collection-provider.ts#L44">src/provider/collection/enterprise-collection-provider.ts:44</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1128,14 +1292,14 @@
 					<a name="validaterequest" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> validate<wbr>Request</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">validate<wbr>Request&lt;TRequest&gt;<span class="tsd-signature-symbol">(</span>requestOptions<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_api_provider_api_request_options_interface_.iapirequestoptions.html" class="tsd-signature-type">IApiRequestOptions</a>, request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TRequest</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_api_provider_api_request_validation_result_interface_.iapirequestvalidationresult.html" class="tsd-signature-type">IApiRequestValidationResult</a></li>
+						<li class="tsd-signature tsd-kind-icon">validate<wbr>Request&lt;TRequest&gt;<span class="tsd-signature-symbol">(</span>requestOptions<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_provider_types_api_request_options_interface_.iapirequestoptions.html" class="tsd-signature-type">IApiRequestOptions</a>, request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TRequest</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_provider_types_api_request_validation_result_interface_.iapirequestvalidationresult.html" class="tsd-signature-type">IApiRequestValidationResult</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_src_api_provider_enterprise_data_provider_.enterprisedataprovider.html">EnterpriseDataProvider</a>.<a href="_src_api_provider_enterprise_data_provider_.enterprisedataprovider.html#validaterequest">validateRequest</a></p>
+								<p>Inherited from <a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html">EnterpriseDataProvider</a>.<a href="_src_provider_enterprise_data_provider_.enterprisedataprovider.html#validaterequest">validateRequest</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/bc3d5c1/src/api/provider/enterprise-data-provider.ts#L38">src/api/provider/enterprise-data-provider.ts:38</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/enterprise-data-provider.ts#L149">src/provider/enterprise-data-provider.ts:149</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1152,13 +1316,13 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>requestOptions: <a href="../interfaces/_src_api_provider_api_request_options_interface_.iapirequestoptions.html" class="tsd-signature-type">IApiRequestOptions</a></h5>
+									<h5>requestOptions: <a href="../interfaces/_src_provider_types_api_request_options_interface_.iapirequestoptions.html" class="tsd-signature-type">IApiRequestOptions</a></h5>
 								</li>
 								<li>
 									<h5>request: <span class="tsd-signature-type">TRequest</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_api_provider_api_request_validation_result_interface_.iapirequestvalidationresult.html" class="tsd-signature-type">IApiRequestValidationResult</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_provider_types_api_request_validation_result_interface_.iapirequestvalidationresult.html" class="tsd-signature-type">IApiRequestValidationResult</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -1200,11 +1364,17 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
 								<a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#waitingrequests" class="tsd-kind-icon">waiting<wbr>Requests</a>
 							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
+								<a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#initialized" class="tsd-kind-icon">initialized</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 								<a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#additemstocache" class="tsd-kind-icon">add<wbr>Items<wbr>ToCache</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-not-exported">
 								<a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#apirequest" class="tsd-kind-icon">api<wbr>Request</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-not-exported">
+								<a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#baserequest" class="tsd-kind-icon">base<wbr>Request</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
 								<a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#cancelpreviouspromises" class="tsd-kind-icon">cancel<wbr>Previous<wbr>Promises</a>
@@ -1215,14 +1385,26 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
 								<a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#checkidoptions" class="tsd-kind-icon">check<wbr>IdOptions</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
+								<a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#checkwaitinrequest" class="tsd-kind-icon">check<wbr>Waitin<wbr>Request</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 								<a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#clearcache" class="tsd-kind-icon">clear<wbr>Cache</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
 								<a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#createcanceltokenkey" class="tsd-kind-icon">create<wbr>Cancel<wbr>Token<wbr>Key</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-not-exported">
+								<a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#createnotsuccessresult" class="tsd-kind-icon">create<wbr>Not<wbr>Success<wbr>Result</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
+								<a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#createrequest" class="tsd-kind-icon">create<wbr>Request</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-not-exported">
 								<a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#createrequesthash" class="tsd-kind-icon">create<wbr>Request<wbr>Hash</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
+								<a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#createresponse" class="tsd-kind-icon">create<wbr>Response</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-not-exported">
 								<a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#createresult" class="tsd-kind-icon">create<wbr>Result</a>
@@ -1257,6 +1439,9 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 								<a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#getidfromitem" class="tsd-kind-icon">get<wbr>IdFrom<wbr>Item</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-not-exported">
+								<a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#handlebaserequesterror" class="tsd-kind-icon">handle<wbr>Base<wbr>Request<wbr>Error</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-not-exported">
 								<a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#handlecancelation" class="tsd-kind-icon">handle<wbr>Cancelation</a>
 							</li>
@@ -1274,9 +1459,6 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 								<a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#removeitemsfromcache" class="tsd-kind-icon">remove<wbr>Items<wbr>From<wbr>Cache</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-not-exported">
-								<a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#request" class="tsd-kind-icon">request</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 								<a href="_src_logic_mocks_enterprise_logic_mock_.mockcollectionprovider.html#save" class="tsd-kind-icon">save</a>

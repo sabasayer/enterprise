@@ -1,6 +1,4 @@
-import { EnterpriseApi } from '../enterpise-api';
 import { EnterpriseApiHelper } from '../enterprise-api.helper';
-import {CancelTokenSource} from 'axios';
 
 
 describe("Enterprise Api Helper ", () => {

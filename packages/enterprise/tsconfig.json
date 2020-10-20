@@ -13,6 +13,8 @@
         "moduleResolution": "node",
         "paths": {
             "@/*": ["src/*"]
-        }
+        },
+        "noUnusedLocals": true
     }
 }
+                                      

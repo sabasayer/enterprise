@@ -1,4 +1,3 @@
-import { mapField } from "./map-field.interface";
 import { MapOptions } from "./map-options.interface";
 
 export type EnterpriseMapperOptions<TModel, TViewModel> = {

@@ -1,8 +1,3 @@
-import {
-    ExtractRequest,
-    ExtractResult,
-} from "../../types/service-request.helper";
-import { ServiceRequest } from "../../types/service-request.interface";
 import { EnterpriseCollectionProvider } from "../enterprise-collection-provider";
 
 export type ExtractGetRequest<A> = A extends EnterpriseCollectionProvider<

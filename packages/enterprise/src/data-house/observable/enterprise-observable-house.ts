@@ -19,6 +19,7 @@ export class EnterpriseObservableHouse {
         window.enterpiseObservableHouse = this;
     }
 
+    //@ts-ignore
     private static initialize = (() => {
         EnterpriseObservableHouse.instance = new EnterpriseObservableHouse();
     })();
