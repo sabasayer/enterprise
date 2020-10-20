@@ -1,10 +1,10 @@
-import { EnterpriseCollectionOptions } from "./enterprise-collection.options";
+import { EnterpriseCollectionOptions } from "./types/enterprise-collection.options";
 import { EnumProvideFromCacheStrategy } from "./enums/provide-from-cache-strategy.enum";
 import { IApiResponse } from "../types/api-response.interface";
 import { EnterpriseDataProvider } from "../enterprise-data-provider";
 import { applyMixins } from "../../shared/mixin.helper";
 import { EnterpriseCollectionCacheProvider } from "../../data-house/cache/enterprise-collection-cache-provider";
-import { GetCollectionOptions } from "./get-collection.options";
+import { GetCollectionOptions } from "./types/get-collection.options";
 import { EnterpriseApiHelper } from "../../api/enterprise-api.helper";
 import {
     EnterpriseObservable,
@@ -128,11 +128,11 @@ class EnterpriseCollectionProvider<
                 },
             };
 
-        return this.apiRequest(
-            this.options.getRequestOptions,
+        return this.apiRequest({
+            options: this.options.getRequestOptions,
             request,
-            cancelTokenUniqueKey
-        );
+            cancelTokenUniqueKey,
+        });
     }
 
     /**
@@ -151,10 +151,10 @@ class EnterpriseCollectionProvider<
                 },
             };
 
-        const result = await this.apiRequest<TSaveRequest, TSaveResponse>(
-            this.options.saveRequestOptions,
-            request
-        );
+        const result = await this.apiRequest<TSaveRequest, TSaveResponse>({
+            options: this.options.saveRequestOptions,
+            request,
+        });
 
         if (
             !result.errorMessages &&
@@ -199,10 +199,10 @@ class EnterpriseCollectionProvider<
                 },
             };
 
-        const result = await this.apiRequest<TDeleteRequest, TDeleteResponse>(
-            this.options.deleteRequestOptions,
-            request
-        );
+        const result = await this.apiRequest<TDeleteRequest, TDeleteResponse>({
+            options: this.options.deleteRequestOptions,
+            request,
+        });
 
         if (!result.errorMessages && !result.canceled && ids) {
             this.observable.removedMany(ids);

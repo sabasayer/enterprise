@@ -1,13 +1,7 @@
 import { IApiRequestValidationResult } from "./types/api-request-validation-result.interface";
 import { IApiRequestOptions } from "./types/api-request-options.interface";
 import { validateRequest } from "../api/enterprise-api-validator";
-import Axios, {
-    AxiosResponse,
-    AxiosRequestConfig,
-    AxiosPromise,
-    AxiosError,
-    CancelTokenSource,
-} from "axios";
+import Axios, { AxiosResponse, AxiosPromise, AxiosError } from "axios";
 import { IApiResponse } from "./types/api-response.interface";
 import { HTTP_SUCCESS_CODES } from "../api/enterprise-api.const";
 import { EnumRequestMethod } from "../api/enums/request-method.enum";
@@ -16,8 +10,11 @@ import { EnterpriseApiHelper } from "../api/enterprise-api.helper";
 import { IEnterpriseRequestOptions } from "./types/enterprise-request-options.interface";
 import { EnterpriseCancellable } from "./enterprise-cancellable";
 import { IEnterpriseApi } from "../api";
+import { IApiRequestParams } from "./types/api-request-params.interface";
+import cloneDeep from "lodash/cloneDeep";
+import { IEnterpriseDataProvider } from "./types/enterprise-data-provider.interface";
 
-export class EnterpriseDataProvider extends EnterpriseCancellable {
+export class EnterpriseDataProvider extends EnterpriseCancellable implements IEnterpriseDataProvider {
     protected api: IEnterpriseApi;
     protected waitingRequests: Map<string, AxiosPromise>;
 
@@ -61,13 +58,12 @@ export class EnterpriseDataProvider extends EnterpriseCancellable {
     ): ICancellableApiResponse<TResponseModel> {
         const source = EnterpriseApiHelper.createCancelToken();
 
-        const response = this.apiRequest<TRequest, TResponseModel>(
+        const response = this.apiRequest<TRequest, TResponseModel>({
             options,
             request,
-            undefined,
             mustCheckWaitingRequest,
-            { cancelToken: source.token }
-        );
+            config: { cancelToken: source.token },
+        });
 
         return { response, token: source };
     }
@@ -79,12 +75,12 @@ export class EnterpriseDataProvider extends EnterpriseCancellable {
      * @param mustCheckWaitingRequest Prevents paralel same request
      */
     async apiRequest<TRequest, TResponseModel>(
-        options: IApiRequestOptions,
-        request: TRequest,
-        cancelTokenUniqueKey?: string,
-        mustCheckWaitingRequest: boolean = true,
-        config?: AxiosRequestConfig
+        params: IApiRequestParams<TRequest>
     ): Promise<IApiResponse<TResponseModel>> {
+        let { options, request, cancelTokenUniqueKey, mustCheckWaitingRequest = true, config } = cloneDeep(
+            params
+        );
+
         const validationResult = this.validateRequest(options, request);
 
         if (!validationResult.valid) {
@@ -95,14 +91,11 @@ export class EnterpriseDataProvider extends EnterpriseCancellable {
 
         if (cancelTokenUniqueKey) {
             if (!config) config = {};
-            const source = this.handleCancelation(
-                options,
-                cancelTokenUniqueKey
-            );
+            const source = this.handleCancelation(options, cancelTokenUniqueKey);
             config.cancelToken = source.token;
         }
 
-        const response = await this.request<TResponseModel>({
+        const response = await this.baseRequest<TResponseModel>({
             url: options.url,
             data: request,
             config,
@@ -121,7 +114,7 @@ export class EnterpriseDataProvider extends EnterpriseCancellable {
      * @param {string} mustCheckWaitingRequest : default true.
      * Prevents paralel same requests
      */
-    protected async request<TResponseModel>(
+    protected async baseRequest<TResponseModel>(
         options: IEnterpriseRequestOptions
     ): Promise<IApiResponse<TResponseModel>> {
         try {
@@ -129,25 +122,28 @@ export class EnterpriseDataProvider extends EnterpriseCancellable {
 
             return this.createResult(response);
         } catch (e) {
-            const error = e as AxiosError;
+            return this.handleBaseRequestError(e);
+        }
+    }
 
-            if (Axios.isCancel(e)) {
-                return { canceled: true };
-            }
+    protected handleBaseRequestError<TResponseModel>(e: AxiosError): IApiResponse<TResponseModel> {
+        const error = e as AxiosError;
 
-            const createErrorMessagesFunc = this.api.getOptions()
-                .createErrorMessagesFunc;
+        if (Axios.isCancel(e)) {
+            return { canceled: true };
+        }
 
-            if (error.response && createErrorMessagesFunc) {
-                return {
-                    errorMessages: createErrorMessagesFunc(error.response),
-                };
-            }
+        const createErrorMessagesFunc = this.api.getOptions().createErrorMessagesFunc;
 
+        if (error.response && createErrorMessagesFunc) {
             return {
-                errorMessages: { [error.name]: error.message },
+                errorMessages: createErrorMessagesFunc(error.response),
             };
         }
+
+        return {
+            errorMessages: { [error.name]: error.message },
+        };
     }
 
     fileUpload(
@@ -172,41 +168,25 @@ export class EnterpriseDataProvider extends EnterpriseCancellable {
             case EnumRequestMethod.PUT:
                 return this.api.put(options.url, options.data, options.config);
             case EnumRequestMethod.DELETE:
-                return this.api.delete(
-                    options.url,
-                    options.data,
-                    options.config
-                );
+                return this.api.delete(options.url, options.data, options.config);
             default:
                 return this.api.post(options.url, options.data, options.config);
         }
     }
 
-    private async createResponse(
-        options: IEnterpriseRequestOptions
-    ): Promise<AxiosResponse> {
+    private async createResponse(options: IEnterpriseRequestOptions): Promise<AxiosResponse> {
         let mustCheckWaitingRequest = options.mustCheckWaitingRequest ?? true;
 
         let response: AxiosResponse<any>;
         let request: AxiosPromise;
 
-        const key = EnterpriseApiHelper.createUniqueKey(
-            options.url,
-            options.data,
-            options.method
-        );
+        const key = EnterpriseApiHelper.createUniqueKey(options.url, options.data, options.method);
 
-        if (!mustCheckWaitingRequest) {
+        if (mustCheckWaitingRequest) {
+            request = this.checkWaitinRequest(key, options);
+        } else {
             request = this.createRequest(options);
             this.waitingRequests.set(key, request);
-        } else {
-            const waitingRequest = this.waitingRequests.get(key);
-            if (waitingRequest) {
-                request = waitingRequest;
-            } else {
-                request = this.createRequest(options);
-                this.waitingRequests.set(key, request);
-            }
         }
 
         response = await request;
@@ -215,30 +195,47 @@ export class EnterpriseDataProvider extends EnterpriseCancellable {
         return response;
     }
 
-    protected createResult<TResponseModel>(
-        response: AxiosResponse<any>
-    ): IApiResponse<TResponseModel> {
-        const data = this.api.dataField
-            ? response.data[this.api.dataField]
-            : response.data;
+    private checkWaitinRequest(key: string, options: IEnterpriseRequestOptions): AxiosPromise {
+        let request: AxiosPromise;
 
-        if (!HTTP_SUCCESS_CODES.includes(response.status)) {
-            const createErrorMessagesFunc = this.api.getOptions()
-                .createErrorMessagesFunc;
+        const waitingRequest = this.waitingRequests.get(key);
+        if (waitingRequest) {
+            request = waitingRequest;
+        } else {
+            request = this.createRequest(options);
+            this.waitingRequests.set(key, request);
+        }
 
-            if (response && createErrorMessagesFunc) {
-                return {
-                    errorMessages: createErrorMessagesFunc(response),
-                };
-            }
+        return request;
+    }
 
+    protected createResult<TResponseModel>(response: AxiosResponse<any>): IApiResponse<TResponseModel> {
+        const data = this.api.dataField ? response.data[this.api.dataField] : response.data;
+
+        const isSuccess = HTTP_SUCCESS_CODES.includes(response.status);
+
+        if (isSuccess)
             return {
-                errorMessages: { "server error": data },
+                data: data as TResponseModel,
+            };
+
+        return this.createNotSuccessResult(response, data);
+    }
+
+    protected createNotSuccessResult<TResponseModel>(
+        response: AxiosResponse<any>,
+        data: any
+    ): IApiResponse<TResponseModel> {
+        const createErrorMessagesFunc = this.api.getOptions().createErrorMessagesFunc;
+
+        if (response && createErrorMessagesFunc) {
+            return {
+                errorMessages: createErrorMessagesFunc(response),
             };
         }
 
         return {
-            data: data as TResponseModel,
+            errorMessages: { "server error": data },
         };
     }
 }

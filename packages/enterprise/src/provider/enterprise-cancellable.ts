@@ -2,25 +2,18 @@ import { CancelTokenSource } from "axios";
 import { IApiRequestOptions } from ".";
 import { EnterpriseApiHelper } from "../api";
 
-export class EnterpriseCancellable{
+export class EnterpriseCancellable {
     protected cancelTokens: Map<string, CancelTokenSource[]>;
 
-    constructor(){
+    constructor() {
         this.cancelTokens = new Map();
     }
-    
-    protected createCancelTokenKey(
-        options: IApiRequestOptions,
-        uniqueKey: string
-    ) {
-        const requestHash = EnterpriseApiHelper.createRequestHash(
-            options.url,
-            options.method
-        );
+
+    protected createCancelTokenKey(options: IApiRequestOptions, uniqueKey: string) {
+        const requestHash = EnterpriseApiHelper.createRequestHash(options.url, options.method);
         return `${uniqueKey}_${requestHash}`;
     }
 
-    
     protected cancelPreviousPromises(key: string) {
         const tokenList = this.cancelTokens.get(key);
         if (!tokenList) return;
@@ -29,15 +22,12 @@ export class EnterpriseCancellable{
             token.cancel();
         });
     }
-    
-    protected deleteCancelTokens(
-        options: IApiRequestOptions,
-        uniqueKey: string
-    ) {
+
+    protected deleteCancelTokens(options: IApiRequestOptions, uniqueKey: string) {
         const key = this.createCancelTokenKey(options, uniqueKey);
         this.cancelTokens.delete(key);
     }
-    
+
     protected registerCancelToken(token: CancelTokenSource, key: string) {
         if (!this.cancelTokens.has(key)) {
             this.cancelTokens.set(key, []);
@@ -49,10 +39,7 @@ export class EnterpriseCancellable{
         }
     }
 
-    protected handleCancelation(
-        options: IApiRequestOptions,
-        uniqueKey: string
-    ): CancelTokenSource {
+    protected handleCancelation(options: IApiRequestOptions, uniqueKey: string): CancelTokenSource {
         const source = EnterpriseApiHelper.createCancelToken();
 
         const key = this.createCancelTokenKey(options, uniqueKey);
@@ -60,5 +47,4 @@ export class EnterpriseCancellable{
         this.registerCancelToken(source, key);
         return source;
     }
-
 }

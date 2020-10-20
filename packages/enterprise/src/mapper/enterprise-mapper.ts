@@ -1,5 +1,5 @@
-import { EnterpriseMapperOptions } from "./enterprise-mapper.options";
-import { MapOptions } from "./map-options.interface";
+import { EnterpriseMapperOptions } from "./types/enterprise-mapper.options";
+import { MapOptions } from "./types/map-options.interface";
 import cloneDeep from "lodash.clonedeep";
 
 export class EnterpriseMapper<TModel, TViewModel> {

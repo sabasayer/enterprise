@@ -14,24 +14,36 @@ import {
     GetCollectionOptions,
     IApiResponse,
 } from "../../index";
+import { IEnterpriseCollectionLogic } from "./enterprise-collection-logic.interface";
 
 new ExtendArray();
 
 export class EnterpriseCollectionLogic<
-    TModel,
-    TCollectionProvider extends EnterpriseCollectionProvider<
         TModel,
-        TGetRequest,
-        ServiceRequest<TSaveRequest, TSaveResponse>,
-        ServiceRequest<TDeleteRequest, TDeleteResponse>
-    >,
-    TViewModel = undefined,
-    TGetRequest = ExtractGetRequest<TCollectionProvider>,
-    TSaveRequest = ExtractSaveRequest<TCollectionProvider>,
-    TSaveResponse = ExtractSaveResponse<TCollectionProvider>,
-    TDeleteRequest = ExtractDeleteRequest<TCollectionProvider>,
-    TDeleteResponse = ExtractDeleteResponse<TCollectionProvider>
-> extends EnterpriseLogic {
+        TCollectionProvider extends EnterpriseCollectionProvider<
+            TModel,
+            TGetRequest,
+            ServiceRequest<TSaveRequest, TSaveResponse>,
+            ServiceRequest<TDeleteRequest, TDeleteResponse>
+        >,
+        TViewModel = undefined,
+        TGetRequest = ExtractGetRequest<TCollectionProvider>,
+        TSaveRequest = ExtractSaveRequest<TCollectionProvider>,
+        TSaveResponse = ExtractSaveResponse<TCollectionProvider>,
+        TDeleteRequest = ExtractDeleteRequest<TCollectionProvider>,
+        TDeleteResponse = ExtractDeleteResponse<TCollectionProvider>
+    >
+    extends EnterpriseLogic
+    implements
+        IEnterpriseCollectionLogic<
+            TModel,
+            TViewModel,
+            TGetRequest,
+            TSaveRequest,
+            TSaveResponse,
+            TDeleteRequest,
+            TDeleteResponse
+        > {
     protected provider: TCollectionProvider;
     protected mapper?: EnterpriseMapper<TModel, TViewModel>;
     protected vmIdField?: keyof TViewModel;

@@ -22,7 +22,10 @@ describe("Enterprise Data Provider", () => {
     });
 
     it("should return data", async () => {
-        const request = provider.apiRequest({ url: "patient" }, { id: 1 });
+        const request = provider.apiRequest({
+            options: { url: "patient" },
+            request: { id: 1 },
+        });
 
         expect(mockAxios.post).toHaveBeenCalledWith(
             "patient",
@@ -40,13 +43,17 @@ describe("Enterprise Data Provider", () => {
     });
 
     it("should call post with cancelToken", async () => {
-        const request = provider.apiRequest({ url: "patient" }, { id: 1 }, "1");
+        const request = provider.apiRequest({
+            options: { url: "patient" },
+            request: { id: 1 },
+            cancelTokenUniqueKey: "1",
+        });
 
-        const request2 = provider.apiRequest(
-            { url: "patient" },
-            { id: 2 },
-            "1"
-        );
+        const request2 = provider.apiRequest({
+            options: { url: "patient" },
+            request: { id: 2 },
+            cancelTokenUniqueKey: "1",
+        });
 
         const result1 = await request;
 
@@ -54,9 +61,18 @@ describe("Enterprise Data Provider", () => {
     });
 
     it("should prevent multiple same request", () => {
-        provider.apiRequest({ url: "patient" }, { id: 1 });
-        provider.apiRequest({ url: "patient" }, { id: 1 });
-        provider.apiRequest({ url: "patient" }, { id: 1 });
+        provider.apiRequest({
+            options: { url: "patient" },
+            request: { id: 1 },
+        });
+        provider.apiRequest({
+            options: { url: "patient" },
+            request: { id: 1 },
+        });
+        provider.apiRequest({
+            options: { url: "patient" },
+            request: { id: 1 },
+        });
 
         expect(mockAxios.post).toHaveBeenCalledTimes(1);
     });
@@ -71,7 +87,10 @@ describe("Enterprise Data Provider", () => {
 
         provider = new EnterpriseDataProvider(api);
 
-        const request = provider.apiRequest({ url: "test" }, {});
+        const request = provider.apiRequest({
+            options: { url: "test" },
+            request: {},
+        });
 
         const errorMessage = {
             error: "Error message",

@@ -1,12 +1,14 @@
 import { IEnterpriseSubscription } from "./enterprise-subscription.interface";
 import { ExtendArray } from "@sabasayer/utils";
 import { EnterpriseObservableHouse } from "./enterprise-observable-house";
+import { IEnterpriseObservable } from "./enterprise-observable.interface";
 new ExtendArray();
 
 /**
  * Enables syncing different ui parts that uses same type of collection data
  */
-export class EnterpriseObservable<TModel> {
+export class EnterpriseObservable<TModel>
+    implements IEnterpriseObservable<TModel> {
     private subscriptions: IEnterpriseSubscription<TModel>[] = [];
     private type: string = "";
 
@@ -43,7 +45,7 @@ export class EnterpriseObservable<TModel> {
         ids.forEach((id) => this.removed(id));
     }
 
-    sideEffected(){
+    sideEffected() {
         this.subscriptions.forEach((sub) => sub.sideEffected());
     }
 

@@ -1,11 +1,13 @@
-import { EnterpriseCollectionOptions } from "../../provider/collection/enterprise-collection.options";
+import { EnterpriseCollectionOptions } from "../../provider/collection/types/enterprise-collection.options";
 import { EnterpriseCollectionCacheOptions } from "./enterprise-collection-cache.options";
 import { EnterpriseDataHouse } from "../enterprise-data-house";
 import { EnumProvideFromCacheStrategy } from "../../provider/collection/enums/provide-from-cache-strategy.enum";
 import { EnumCacheType } from "@sabasayer/utils";
-import { GetCollectionOptions } from "../../provider/collection/get-collection.options";
+import { GetCollectionOptions } from "../../provider/collection/types/get-collection.options";
+import { IEnterpriseCollectionCacheProvider } from "./enterprise-collection-cache-provider.interface";
 
-export class EnterpriseCollectionCacheProvider<TModel> {
+export class EnterpriseCollectionCacheProvider<TModel>
+    implements IEnterpriseCollectionCacheProvider<TModel> {
     protected options: EnterpriseCollectionOptions<TModel>;
 
     constructor(options: EnterpriseCollectionCacheOptions<TModel>) {
@@ -110,6 +112,14 @@ export class EnterpriseCollectionCacheProvider<TModel> {
         );
     }
 
+    getIdFromItem(item: TModel) {
+        this.checkIdOptions();
+
+        return this.options.idField
+            ? item[this.options.idField]
+            : this.options.getIdField?.(item);
+    }
+
     protected isCacheResultLacking(
         result: TModel[],
         getOptions?: GetCollectionOptions<TModel>
@@ -169,13 +179,5 @@ export class EnterpriseCollectionCacheProvider<TModel> {
     protected checkIdOptions(): never | void {
         if (!this.options.idField && !this.options.getIdField)
             throw new Error("idField or getIdField function must be defined");
-    }
-
-    getIdFromItem(item: TModel) {
-        this.checkIdOptions();
-
-        return this.options.idField
-            ? item[this.options.idField]
-            : this.options.getIdField?.(item);
     }
 }

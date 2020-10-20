@@ -1,6 +1,7 @@
 import { isDevelopment } from "../helpers";
 import cloneDeep from "lodash.clonedeep";
 import { CacheUtil, EnumCacheType, cache, ExtendArray } from "@sabasayer/utils";
+import { IEnterpriseDataHouse } from "./enterprise-data-house.interface";
 
 new ExtendArray();
 
@@ -10,7 +11,7 @@ declare global {
     }
 }
 
-export class EnterpriseDataHouse {
+export class EnterpriseDataHouse implements IEnterpriseDataHouse {
     static instance: EnterpriseDataHouse;
     private collections: Map<string, any[]> = new Map();
 
@@ -102,7 +103,7 @@ export class EnterpriseDataHouse {
         type: EnumCacheType,
         typename: string,
         filterFunc: (item: TModel) => boolean
-    ):void {
+    ): void {
         if (type == EnumCacheType.Memory) {
             const collection = this.getFromInMemoryCache(typename, false);
             collection.findRemove(filterFunc);
