@@ -1,0 +1,17 @@
+import { IApiRequestOptions } from "@sabasayer/enterprise";
+
+export interface GetTenantsRequest {
+    keys?:number[]
+}
+
+export interface TenantModel {
+    id:number
+    parent?: TenantModel
+    parentId: number
+    name: string
+    applicationKey: string
+}
+
+export const getTenantsRequestOptions: IApiRequestOptions = {
+    url: 'core/getTenants'
+}

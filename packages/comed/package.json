@@ -1,0 +1,22 @@
+{
+    "name": "comed",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+        "start": "parcel index.html --open"
+    },
+    "devDependencies": {
+        "parcel-bundler": "^1.12.4"
+    },
+    "alias": {
+        "enterprise": "../../"
+    },
+    "dependencies": {
+        "@sabasayer/enterprise": "^1.0.16",
+        "enterprise": "^0.0.3"
+    },
+    "browsetslist": [
+        "since 2017-06"
+    ]
+}
