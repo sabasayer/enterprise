@@ -9,10 +9,12 @@ import { EnterpriseApiHelper } from "../../api/enterprise-api.helper";
 import { EnterpriseObservable, IEnterpriseSubscription } from "../../data-house/observable";
 import { EnterpriseObservableHouse } from "../../data-house/observable/enterprise-observable-house";
 import { ExtractRequest, ExtractResult, IEnterpriseApi } from "../../api";
+import { EnterpriseCancellable } from "../enterprise-cancellable";
 
 interface EnterpriseCollectionProvider<TModel, TGetRequest, TSaveServiceRequest, TDeleteServiceRequest>
     extends EnterpriseCollectionCacheProvider<TModel>,
-        EnterpriseDataProvider {}
+        EnterpriseDataProvider,
+        EnterpriseCancellable {}
 
 class EnterpriseCollectionProvider<
     TModel,
@@ -179,6 +181,10 @@ class EnterpriseCollectionProvider<
     }
 }
 
-applyMixins(EnterpriseCollectionProvider, [EnterpriseDataProvider, EnterpriseCollectionCacheProvider]);
+applyMixins(EnterpriseCollectionProvider, [
+    EnterpriseDataProvider,
+    EnterpriseCollectionCacheProvider,
+    EnterpriseCancellable,
+]);
 
 export { EnterpriseCollectionProvider };

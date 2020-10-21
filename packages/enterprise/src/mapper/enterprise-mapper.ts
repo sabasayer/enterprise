@@ -24,7 +24,7 @@ export class EnterpriseMapper<TModel, TViewModel> {
 
     mapToModel(model: TViewModel): TModel {
         return this.map(model, this.options.toModel);
-    }
+    } 
 
     private map<TModel1, TModel2>(
         model: TModel1,

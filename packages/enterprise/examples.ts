@@ -46,6 +46,7 @@ class TestLogic extends EnterpriseCollectionLogic<Model, TestProvider> {
     constructor(api: IEnterpriseApi) {
         super(api, TestProvider);
     }
+    
 }
 
 TestLogic.instance.get({});

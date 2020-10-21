@@ -1,5 +1,5 @@
 import { EnterpriseLogic } from "./enterprise-logic";
-import {  IEnterpriseApi } from "../api";
+import { IEnterpriseApi } from "../api";
 
 export abstract class EnterpriseLogicBoot {
     private static api: IEnterpriseApi;
@@ -17,13 +17,16 @@ export abstract class EnterpriseLogicBoot {
             this.initalizeLogic(logic, api);
         });
 
+        this.collection.forEach(this.runReadyMethods);
+
         this.collection = [];
     }
 
-    private static initalizeLogic(
-        logic: typeof EnterpriseLogic,
-        api: IEnterpriseApi
-    ) {
+    private static runReadyMethods(logic: typeof EnterpriseLogic) {
+        logic.instance?.ready?.();
+    }
+
+    private static initalizeLogic(logic: typeof EnterpriseLogic, api: IEnterpriseApi) {
         logic.instance = new logic(api);
     }
 }

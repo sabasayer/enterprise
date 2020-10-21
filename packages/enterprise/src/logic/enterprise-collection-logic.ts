@@ -14,7 +14,8 @@ import {
     GetCollectionOptions,
     IApiResponse,
 } from "../../index";
-import { IEnterpriseCollectionLogic } from "./enterprise-collection-logic.interface";
+import { IEnterpriseCollectionLogic } from "./types/enterprise-collection-logic.interface";
+import cloneDeep from "lodash/cloneDeep";
 
 new ExtendArray();
 
@@ -68,13 +69,32 @@ export class EnterpriseCollectionLogic<
         this.provider.unsubscribe(id);
     }
 
+    beforeGet?(request: TGetRequest): TGetRequest | Promise<TGetRequest>;
+
     async get(
         request: TGetRequest,
         getOptions?: GetCollectionOptions<TModel>
-    ): Promise<
-        IApiResponse<(TViewModel extends undefined ? TModel : TViewModel)[]>
-    > {
-        const result = await this.provider.get(request, getOptions);
+    ): Promise<IApiResponse<(TViewModel extends undefined ? TModel : TViewModel)[]>> {
+        let clone = cloneDeep(request);
+
+        if (this.beforeGet) clone = await this.beforeGet(clone);
+
+        const providerResult = await this.provider.get(clone, getOptions);
+
+        const result = this.createGetResult(providerResult);
+
+        await this.afterGet?.(result);
+
+        return result;
+    }
+
+    afterGet?(
+        result: IApiResponse<(TViewModel extends undefined ? TModel : TViewModel)[]>
+    ): void | Promise<void>;
+
+    private createGetResult(
+        result: IApiResponse<TModel[]>
+    ): IApiResponse<(TViewModel extends undefined ? TModel : TViewModel)[]> {
         if (result.canceled || result.errorMessages)
             return {
                 canceled: result.canceled,
@@ -84,25 +104,19 @@ export class EnterpriseCollectionLogic<
         if (this.mapper) {
             const mappedValues = this.mapper.mapListToVm(result.data);
             return {
-                data: mappedValues as (TViewModel extends undefined
-                    ? TModel
-                    : TViewModel)[],
+                data: mappedValues as (TViewModel extends undefined ? TModel : TViewModel)[],
             };
         }
 
         return {
-            data: result.data as (TViewModel extends undefined
-                ? TModel
-                : TViewModel)[],
+            data: result.data as (TViewModel extends undefined ? TModel : TViewModel)[],
         };
     }
 
     async getOne(
         request: TGetRequest,
         getOptions?: GetCollectionOptions<TModel>
-    ): Promise<
-        IApiResponse<TViewModel extends undefined ? TModel : TViewModel>
-    > {
+    ): Promise<IApiResponse<TViewModel extends undefined ? TModel : TViewModel>> {
         if (!this.get) throw new Error("get method is not defined!");
 
         const result = await this.get(request, getOptions);
@@ -159,9 +173,7 @@ export class EnterpriseCollectionLogic<
         model: TViewModel extends undefined ? TModel : TViewModel,
         createSaveRequest: (model: TModel) => TSaveRequest
     ): Promise<IApiResponse<TSaveResponse>> {
-        const result = await this.save([model], (models) =>
-            createSaveRequest(models[0])
-        );
+        const result = await this.save([model], (models) => createSaveRequest(models[0]));
 
         if (result.canceled || result.errorMessages)
             return {
@@ -174,29 +186,54 @@ export class EnterpriseCollectionLogic<
         };
     }
 
+    beforeSave?(
+        models: (TViewModel extends undefined ? TModel : TViewModel)[]
+    ):
+        | (TViewModel extends undefined ? TModel : TViewModel)[]
+        | Promise<(TViewModel extends undefined ? TModel : TViewModel)[]>;
+
     async save(
         models: (TViewModel extends undefined ? TModel : TViewModel)[],
         createSaveRequest: (models: TModel[]) => TSaveRequest
     ): Promise<IApiResponse<TSaveResponse>> {
+        let clone = cloneDeep(models);
+
+        if (this.beforeSave) clone = await this.beforeSave(clone);
+
         if (this.validate) {
-            const validationResult = await this.validateMany(models);
-            if (!validationResult.valid)
-                return { errorMessages: validationResult.errorMessages };
+            const validationResult = await this.validateMany(clone);
+            if (!validationResult.valid) return { errorMessages: validationResult.errorMessages };
         }
+
+        let response: IApiResponse<TSaveResponse>;
 
         if (this.mapper) {
-            const mappedModels = this.mapper.mapListToModel(
-                models as TViewModel[]
-            );
-            return this.provider.save(createSaveRequest(mappedModels));
+            const mappedModels = this.mapper.mapListToModel(clone as TViewModel[]);
+            response = await this.provider.save(createSaveRequest(mappedModels));
+        } else {
+            response = await this.provider.save(createSaveRequest(clone as TModel[]));
         }
 
-        return this.provider.save(createSaveRequest(models as TModel[]));
+        await this.afterSave?.(response);
+
+        return response;
     }
 
-    async delete(
-        options: TDeleteRequest
-    ): Promise<IApiResponse<TDeleteResponse>> {
-        return this.provider.delete(options);
+    afterSave?(result: IApiResponse<TSaveResponse>): void | Promise<void>;
+
+    beforeDelete?(options: TDeleteRequest): TDeleteRequest | Promise<TDeleteRequest>;
+
+    async delete(options: TDeleteRequest): Promise<IApiResponse<TDeleteResponse>> {
+        let clone = cloneDeep(options);
+
+        if (this.beforeDelete) clone = await this.beforeDelete(clone);
+
+        const result = await this.provider.delete(clone);
+
+        await this.afterDelete?.(result);
+
+        return result;
     }
+
+    afterDelete?(options: IApiResponse<TDeleteResponse>): void | Promise<void>;
 }
