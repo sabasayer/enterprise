@@ -1,10 +1,7 @@
-import { EnterpriseApi, IEnterpriseApi } from "../../api";
+import { EnterpriseApi, IEnterpriseApi, ServiceRequest } from "../../api";
 import { EnterpriseCollectionProvider } from "../../provider/collection";
 import { IMockData } from "../../data-house/mocks/mock";
-import {
-    EnterpriseCollectionLogic,
-    IValidationResult,
-} from "..";
+import { EnterpriseCollectionLogic, IValidationResult } from "..";
 import { EnterpriseMapper } from "../../mapper";
 
 class MockMapper extends EnterpriseMapper<IMockData, IMockVmData> {
@@ -23,7 +20,7 @@ class MockMapper extends EnterpriseMapper<IMockData, IMockVmData> {
 class MockCollectionProvider extends EnterpriseCollectionProvider<
     IMockData,
     {},
-    {}
+    ServiceRequest<IMockData[], IMockData[]>
 > {
     constructor(api: IEnterpriseApi) {
         super(api, {
@@ -36,13 +33,10 @@ class MockCollectionProvider extends EnterpriseCollectionProvider<
 
 export interface IMockVmData {
     testField: string;
+    otherField?: string;
 }
 
-export class MockLogic extends EnterpriseCollectionLogic<
-    IMockData,
-    MockCollectionProvider,
-    IMockVmData
-> {
+export class MockLogic extends EnterpriseCollectionLogic<IMockData, MockCollectionProvider, IMockVmData> {
     static instance: MockLogic;
 
     constructor(api: EnterpriseApi) {

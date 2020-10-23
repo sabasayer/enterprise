@@ -1,6 +1,7 @@
 export interface IMockData {
-    id: number
+    id?: number
     name: string
+    otherField?:string
 }
 
 

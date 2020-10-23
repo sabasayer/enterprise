@@ -21,9 +21,7 @@ describe("Enterprise Collection Logic", () => {
 
         const res = await req;
 
-        expect(res?.data?.every((d) => d.testField.includes("test"))).toBe(
-            true
-        );
+        expect(res?.data?.every((d) => d.testField.includes("test"))).toBe(true);
     });
 
     it("should getOne", async () => {
@@ -44,10 +42,7 @@ describe("Enterprise Collection Logic", () => {
     });
 
     it("should validate before save", async () => {
-        const res = await MockLogic.instance.saveOne?.(
-            { testField: "ali" },
-            (model) => model
-        );
+        const res = await MockLogic.instance.saveOne?.({ testField: "ali" }, (model) => [model]);
 
         const errorMessageKeys = Object.keys(res?.errorMessages ?? {});
 
@@ -64,4 +59,5 @@ describe("Enterprise Collection Logic", () => {
 
         expect(errorMessageKeys).toHaveLength(2);
     });
+
 });

@@ -205,10 +205,13 @@ export class EnterpriseCollectionLogic<
             if (!validationResult.valid) return { errorMessages: validationResult.errorMessages };
         }
 
+
         let response: IApiResponse<TSaveResponse>;
 
         if (this.mapper) {
             const mappedModels = this.mapper.mapListToModel(clone as TViewModel[]);
+            console.log('mapped',mappedModels);
+
             response = await this.provider.save(createSaveRequest(mappedModels));
         } else {
             response = await this.provider.save(createSaveRequest(clone as TModel[]));
