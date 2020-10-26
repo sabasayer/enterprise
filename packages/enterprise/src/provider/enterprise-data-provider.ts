@@ -146,8 +146,8 @@ export class EnterpriseDataProvider extends EnterpriseCancellable implements IEn
     /**
      * override for extra validation. Dont forget to call super()
      */
-    protected validateRequest<TRequest>(
-        requestOptions: IApiRequestOptions,
+    protected validateRequest<TRequest, TResponse>(
+        requestOptions: IApiRequestOptions<TResponse>,
         request: TRequest
     ): IApiRequestValidationResult {
         if (!requestOptions.validationRules)
@@ -158,17 +158,29 @@ export class EnterpriseDataProvider extends EnterpriseCancellable implements IEn
         return validateRequest(requestOptions.validationRules, request);
     }
 
+    protected validateResponse<TResponse = undefined>(
+        requestOptions: IApiRequestOptions<TResponse>,
+        response?: TResponse
+    ): IApiRequestValidationResult {
+        if (!requestOptions.responseValidationFn)
+            return {
+                valid: true,
+            };
+
+        return requestOptions.responseValidationFn(response);
+    }
+
     /**
      * Returns cancel token and response.
      */
-    cancellableApiRequest<TRequest, TResponseModel>(
-        options: IApiRequestOptions,
+    cancellableApiRequest<TRequest, TResponse = undefined>(
+        options: IApiRequestOptions<TResponse>,
         request: TRequest,
         mustCheckWaitingRequest: boolean = true
-    ): ICancellableApiResponse<TResponseModel> {
+    ): ICancellableApiResponse<TResponse> {
         const source = EnterpriseApiHelper.createCancelToken();
 
-        const response = this.apiRequest<TRequest, TResponseModel>({
+        const response = this.apiRequest<TRequest, TResponse>({
             options,
             request,
             mustCheckWaitingRequest,
@@ -183,9 +195,9 @@ export class EnterpriseDataProvider extends EnterpriseCancellable implements IEn
      * @param cancelTokenUniqueKey Unique string for grouping sameRequest. Cancels existing waiting promises with same unique key and request.
      * @param mustCheckWaitingRequest Prevents paralel same request
      */
-    async apiRequest<TRequest, TResponseModel>(
-        params: IApiRequestParams<TRequest>
-    ): Promise<IApiResponse<TResponseModel>> {
+    async apiRequest<TRequest, TResponse>(
+        params: IApiRequestParams<TRequest, TResponse>
+    ): Promise<IApiResponse<TResponse>> {
         let { options, request, cancelTokenUniqueKey, mustCheckWaitingRequest = true, config } = cloneDeep(
             params
         );
@@ -204,13 +216,20 @@ export class EnterpriseDataProvider extends EnterpriseCancellable implements IEn
             config.cancelToken = source.token;
         }
 
-        const response = await this.baseRequest<TResponseModel>({
+        let response = await this.baseRequest<TResponse>({
             url: options.url,
             data: request,
             config,
             method: options.method,
             mustCheckWaitingRequest,
         });
+        
+
+        const responseValidationResult = this.validateResponse<TResponse>(options, response.data);
+
+        if (!responseValidationResult.valid) {
+            response.errorMessages = responseValidationResult.errorMessages;
+        }
 
         if (cancelTokenUniqueKey) {
             this.deleteCancelTokens(options, cancelTokenUniqueKey);

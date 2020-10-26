@@ -4,18 +4,18 @@ import { IApiRequestOptions } from "./api-request-options.interface";
 import { IApiRequestParams } from "./api-request-params.interface";
 
 export interface IEnterpriseDataProvider {
-    cancellableApiRequest<TRequest, TResponseModel>(
-        options: IApiRequestOptions,
+    cancellableApiRequest<TRequest, TResponse>(
+        options: IApiRequestOptions<TResponse>,
         request: TRequest,
         mustCheckWaitingRequest: boolean
-    ): ICancellableApiResponse<TResponseModel>;
+    ): ICancellableApiResponse<TResponse>;
 
-    apiRequest<TRequest, TResponseModel>(
-        params: IApiRequestParams<TRequest>
-    ): Promise<IApiResponse<TResponseModel>>;
+    apiRequest<TRequest, TResponse>(
+        params: IApiRequestParams<TRequest, TResponse>
+    ): Promise<IApiResponse<TResponse>>;
 
     fileUpload(
         options: IEnterpriseRequestOptions,
         onUploadProgress?: (progressEvent: ProgressEvent) => void
-    ): Promise<AxiosResponse<any>> 
+    ): Promise<AxiosResponse<any>>;
 }

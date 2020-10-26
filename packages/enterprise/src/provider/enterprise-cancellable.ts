@@ -9,7 +9,10 @@ export class EnterpriseCancellable {
         this.cancelTokens = new Map();
     }
 
-    protected createCancelTokenKey(options: IApiRequestOptions, uniqueKey: string) {
+    protected createCancelTokenKey<TResponse = undefined>(
+        options: IApiRequestOptions<TResponse>,
+        uniqueKey: string
+    ) {
         const requestHash = EnterpriseApiHelper.createRequestHash(options.url, options.method);
         return `${uniqueKey}_${requestHash}`;
     }
@@ -23,7 +26,10 @@ export class EnterpriseCancellable {
         });
     }
 
-    protected deleteCancelTokens(options: IApiRequestOptions, uniqueKey: string) {
+    protected deleteCancelTokens<TResponse = undefined>(
+        options: IApiRequestOptions<TResponse>,
+        uniqueKey: string
+    ) {
         const key = this.createCancelTokenKey(options, uniqueKey);
         this.cancelTokens.delete(key);
     }
@@ -39,7 +45,10 @@ export class EnterpriseCancellable {
         }
     }
 
-    protected handleCancelation(options: IApiRequestOptions, uniqueKey: string): CancelTokenSource {
+    protected handleCancelation<TResponse = undefined>(
+        options: IApiRequestOptions<TResponse>,
+        uniqueKey: string
+    ): CancelTokenSource {
         const source = EnterpriseApiHelper.createCancelToken();
 
         const key = this.createCancelTokenKey(options, uniqueKey);

@@ -1,8 +1,8 @@
 import { AxiosRequestConfig } from "axios";
 import { IApiRequestOptions } from "./api-request-options.interface";
 
-export interface IApiRequestParams<TRequest> {
-    options: IApiRequestOptions;
+export interface IApiRequestParams<TRequest,TResponse = undefined> {
+    options: IApiRequestOptions<TResponse>;
     request: TRequest;
     /**
      * unique string for grouping request

@@ -210,7 +210,6 @@ export class EnterpriseCollectionLogic<
 
         if (this.mapper) {
             const mappedModels = this.mapper.mapListToModel(clone as TViewModel[]);
-            console.log('mapped',mappedModels);
 
             response = await this.provider.save(createSaveRequest(mappedModels));
         } else {
