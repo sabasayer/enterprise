@@ -104,8 +104,8 @@ class EnterpriseCollectionProvider<
                 },
             };
 
-        return this.apiRequest({
-            options: this.options.getRequestOptions,
+        return this.apiRequest<TGetRequest, TModel[]>({
+            options: this.options.getRequestOptions as any,
             request,
             cancelTokenUniqueKey,
         });
@@ -127,7 +127,7 @@ class EnterpriseCollectionProvider<
             };
 
         const result = await this.apiRequest<TSaveRequest, TSaveResponse>({
-            options: this.options.saveRequestOptions,
+            options: this.options.saveRequestOptions as any,
             request,
         });
 
@@ -166,7 +166,7 @@ class EnterpriseCollectionProvider<
             };
 
         const result = await this.apiRequest<TDeleteRequest, TDeleteResponse>({
-            options: this.options.deleteRequestOptions,
+            options: this.options.deleteRequestOptions as any,
             request,
         });
 

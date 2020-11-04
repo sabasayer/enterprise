@@ -223,7 +223,6 @@ export class EnterpriseDataProvider extends EnterpriseCancellable implements IEn
             method: options.method,
             mustCheckWaitingRequest,
         });
-        
 
         const responseValidationResult = this.validateResponse<TResponse>(options, response.data);
 

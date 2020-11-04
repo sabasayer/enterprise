@@ -1,4 +1,4 @@
-import { EnterpriseApi, IEnterpriseApi, ServiceRequest } from "../../api";
+import {  IEnterpriseApi, ServiceRequest } from "../../api";
 import { EnterpriseCollectionProvider } from "../../provider/collection";
 import { IMockData } from "../../data-house/mocks/mock";
 import { EnterpriseCollectionLogic, IValidationResult } from "..";
@@ -39,7 +39,7 @@ export interface IMockVmData {
 export class MockLogic extends EnterpriseCollectionLogic<IMockData, MockCollectionProvider, IMockVmData> {
     static instance: MockLogic;
 
-    constructor(api: EnterpriseApi) {
+    constructor(api: IEnterpriseApi) {
         super(api, MockCollectionProvider, MockMapper, "testField");
     }
 

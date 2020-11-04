@@ -1,25 +1,16 @@
-import mockAxios from "jest-mock-axios";
-import { enterpirseBoot } from "../../enterpirse.boot";
 import { createMock } from "../../data-house/mocks/mock";
 import { MockLogic, IMockVmData } from "../mocks/enterprise-logic.mock";
+import { MockEnterpriseApi } from "../../api/mocks/mock";
+import { EnterpriseLogicBoot } from "../enterprise-logic.boot";
 
 describe("Enterprise Collection Logic", () => {
-    enterpirseBoot({
-        baseUrl: "test",
-    });
-
-    afterEach(() => {
-        mockAxios.reset();
-    });
+    const api = new MockEnterpriseApi();
+    EnterpriseLogicBoot.initialize(api);
 
     it("should map after get", async () => {
         const mockData = createMock(1);
 
-        const req = MockLogic.instance.get?.({});
-
-        mockAxios.mockResponse({ data: mockData });
-
-        const res = await req;
+        const res = await MockLogic.instance.get?.(mockData);
 
         expect(res?.data?.every((d) => d.testField.includes("test"))).toBe(true);
     });
@@ -27,16 +18,14 @@ describe("Enterprise Collection Logic", () => {
     it("should getOne", async () => {
         const mockData = createMock(1);
 
-        const req = MockLogic.instance.getOne?.({});
-
-        mockAxios.mockResponse({ data: mockData });
-
-        const res = await req;
+        const res = await MockLogic.instance.getOne?.(mockData);
 
         const firstData = mockData[0];
         const expected: IMockVmData = {
             testField: `${firstData.id}_${firstData.name}`,
         };
+
+        console.log({ res });
 
         expect(res?.data).toEqual(expected);
     });
@@ -59,5 +48,4 @@ describe("Enterprise Collection Logic", () => {
 
         expect(errorMessageKeys).toHaveLength(2);
     });
-
 });
