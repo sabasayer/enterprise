@@ -1,7 +1,7 @@
 import { createMock } from "../../data-house/mocks/mock";
 import { MockLogic, IMockVmData } from "../mocks/enterprise-logic.mock";
 import { MockEnterpriseApi } from "../../api/mocks/mock";
-import { EnterpriseLogicBoot } from "../enterprise-logic.boot";
+import { EnterpriseLogicBoot } from "../dependency-injection/enterprise-logic.boot";
 
 describe("Enterprise Collection Logic", () => {
     const api = new MockEnterpriseApi();
@@ -24,8 +24,6 @@ describe("Enterprise Collection Logic", () => {
         const expected: IMockVmData = {
             testField: `${firstData.id}_${firstData.name}`,
         };
-
-        console.log({ res });
 
         expect(res?.data).toEqual(expected);
     });

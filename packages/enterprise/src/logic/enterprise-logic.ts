@@ -1,5 +1,5 @@
 import { IEnterpriseApi } from "../api";
-import { EnterpriseLogicBoot } from "./enterprise-logic.boot";
+import { EnterpriseLogicBoot } from "./dependency-injection/enterprise-logic.boot";
 import { IEnterpriseLogic } from "./types/enterprise-logic.interface";
 
 export class EnterpriseLogic implements IEnterpriseLogic {

@@ -1,5 +1,5 @@
-import { EnterpriseLogic } from "./enterprise-logic";
-import { IEnterpriseApi } from "../api";
+import { EnterpriseLogic } from "../enterprise-logic";
+import { IEnterpriseApi } from "../../api";
 
 export abstract class EnterpriseLogicBoot {
     private static api: IEnterpriseApi;
