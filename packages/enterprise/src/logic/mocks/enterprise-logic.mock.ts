@@ -3,6 +3,7 @@ import { EnterpriseCollectionProvider } from "../../provider/collection";
 import { IMockData } from "../../data-house/mocks/mock";
 import { EnterpriseCollectionLogic, IValidationResult } from "..";
 import { EnterpriseMapper } from "../../mapper";
+import { logic } from "../dependency-injection/logic.decorator";
 
 class MockMapper extends EnterpriseMapper<IMockData, IMockVmData> {
     constructor() {
@@ -36,6 +37,7 @@ export interface IMockVmData {
     otherField?: string;
 }
 
+@logic
 export class MockLogic extends EnterpriseCollectionLogic<IMockData, MockCollectionProvider, IMockVmData> {
     static instance: MockLogic;
 
@@ -55,4 +57,3 @@ export class MockLogic extends EnterpriseCollectionLogic<IMockData, MockCollecti
     }
 }
 
-MockLogic.register();
