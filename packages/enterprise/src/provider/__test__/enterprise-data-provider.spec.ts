@@ -47,7 +47,7 @@ describe("Enterprise Data Provider", () => {
             cancelTokenUniqueKey: "1",
         });
 
-        provider.apiRequest({
+        const request2 = provider.apiRequest({
             options: { url: "patient" },
             request: { id: 2 },
             cancelTokenUniqueKey: "1",
@@ -55,8 +55,36 @@ describe("Enterprise Data Provider", () => {
 
         const result1 = await request;
 
+        mockAxios.mockResponse({ data: 1 });
+
+        const result2 = await request2;
+
         expect(result1.canceled).toBeTruthy();
+        expect(result2.canceled).toBeFalsy();
     });
+
+    it("should not cancel the same second request",async () => {
+        const request = provider.apiRequest({
+            options: { url: "patient" },
+            request: { id: 23 },
+            cancelTokenUniqueKey: "1111",
+        });
+
+        const request2 = provider.apiRequest({
+            options: { url: "patient" },
+            request: { id: 23 },
+            cancelTokenUniqueKey: "1111",
+        });
+
+        const result1 = await request;
+
+        mockAxios.mockResponse({ data: 1 });
+
+        const result2 = await request2;
+
+        expect(result1.canceled).toBeTruthy();
+        expect(result2.canceled).toBeFalsy();
+    })
 
     it("should prevent multiple same request", () => {
         provider.apiRequest({

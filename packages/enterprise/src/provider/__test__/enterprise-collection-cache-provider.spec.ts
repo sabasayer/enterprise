@@ -15,10 +15,7 @@ describe("Enterprise Collection Cache Provider", () => {
         });
 
         cacheProvider.setCache(data);
-        const cachedData = EnterpriseDataHouse.instance.get(
-            EnumCacheType.Memory,
-            "test"
-        );
+        const cachedData = EnterpriseDataHouse.instance.get(EnumCacheType.Memory, "test");
         const getDataResult = cacheProvider.getFromCache();
 
         expect(data).toEqual(cachedData);
@@ -35,10 +32,7 @@ describe("Enterprise Collection Cache Provider", () => {
         cacheProvider.setCache(data);
         cacheProvider.clearCache();
 
-        const cachedData = EnterpriseDataHouse.instance.get(
-            EnumCacheType.Memory,
-            "test"
-        );
+        const cachedData = EnterpriseDataHouse.instance.get(EnumCacheType.Memory, "test");
 
         expect(cachedData).toHaveLength(0);
     });
@@ -53,8 +47,7 @@ describe("Enterprise Collection Cache Provider", () => {
         const cacheProvider = new EnterpriseCollectionCacheProvider<IMockData>({
             typename: "test",
             cacheStrategy: EnumCacheType.Memory,
-            provideFromCacheStrategy:
-                EnumProvideFromCacheStrategy.RequestParamsHash,
+            provideFromCacheStrategy: EnumProvideFromCacheStrategy.RequestParamsHash,
         });
 
         cacheProvider.setCache(data, uniqueCacheKey);
@@ -73,15 +66,14 @@ describe("Enterprise Collection Cache Provider", () => {
         const cacheProvider = new EnterpriseCollectionCacheProvider<IMockData>({
             typename: "test",
             cacheStrategy: EnumCacheType.Memory,
-            provideFromCacheStrategy:
-                EnumProvideFromCacheStrategy.RequestParamsHash,
+            provideFromCacheStrategy: EnumProvideFromCacheStrategy.RequestParamsHash,
         });
 
         const uniqueCacheKey = "unique";
         cacheProvider.setCache(data, uniqueCacheKey);
 
         const cachedData = cacheProvider.getFromCache(
-            { filterFunc: (model) => model.id < 4 },
+            { filterFunc: (model) => (model.id ?? 0) < 4 },
             uniqueCacheKey
         );
 
@@ -100,7 +92,7 @@ describe("Enterprise Collection Cache Provider", () => {
         });
 
         cacheProvider.setCache(data);
-        const cachedData = cacheProvider.getFromCache({ ids: [lastData.id] });
+        const cachedData = cacheProvider.getFromCache({ ids: [lastData.id ?? 0] });
 
         expect(cachedData).toEqual([lastData]);
     });
@@ -117,7 +109,7 @@ describe("Enterprise Collection Cache Provider", () => {
         });
 
         cacheProvider.setCache(data);
-        cacheProvider.removeItemsFromCache([firstData.id]);
+        cacheProvider.removeItemsFromCache([firstData.id ?? 0]);
 
         const cachedData = cacheProvider.getFromCache();
 

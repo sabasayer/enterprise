@@ -50,34 +50,61 @@ export class EnterpriseDataProvider extends EnterpriseCancellable implements IEn
         let mustCheckWaitingRequest = options.mustCheckWaitingRequest ?? true;
 
         let response: AxiosResponse<any>;
-        let request: AxiosPromise;
 
         const key = EnterpriseApiHelper.createUniqueKey(options.url, options.data, options.method);
 
         if (mustCheckWaitingRequest) {
-            request = this.checkWaitinRequest(key, options);
+            response = await this.checkWaitingRequests(key, options);
         } else {
-            request = this.createRequest(options);
-            this.waitingRequests.set(key, request);
+            response = await this.createNewRequest(key, options);
         }
 
-        response = await request;
         this.waitingRequests.delete(key);
 
         return response;
     }
 
-    protected checkWaitinRequest(key: string, options: IEnterpriseRequestOptions): AxiosPromise {
-        let request: AxiosPromise;
+    protected async checkWaitingRequests(
+        key: string,
+        options: IEnterpriseRequestOptions
+    ): Promise<AxiosResponse> {
+        let response: AxiosResponse<any>;
 
         const waitingRequest = this.waitingRequests.get(key);
         if (waitingRequest) {
-            request = waitingRequest;
+            response = await this.handleWaitingRequests(waitingRequest, key, options);
         } else {
-            request = this.createRequest(options);
-            this.waitingRequests.set(key, request);
+            response = await this.createNewRequest(key, options);
         }
 
+        return response;
+    }
+
+    /**
+     * If waiting request is canceled, new request is created anyway
+     */
+    protected async handleWaitingRequests(
+        waitingRequest: AxiosPromise,
+        key: string,
+        options: IEnterpriseRequestOptions
+    ): Promise<AxiosResponse> {
+        let response: AxiosResponse<any>;
+
+        try {
+            response = await waitingRequest;
+        } catch (e) {
+            const result = this.handleBaseRequestError(e);
+            if (result.canceled) {
+                response = await this.createNewRequest(key, options);
+            } else throw e;
+        }
+
+        return response;
+    }
+
+    protected createNewRequest(key: string, options: IEnterpriseRequestOptions) {
+        const request = this.createRequest(options);
+        this.waitingRequests.set(key, request);
         return request;
     }
 
