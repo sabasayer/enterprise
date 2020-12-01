@@ -105,7 +105,8 @@
 			<section class="tsd-panel">
 				<h3>Implements</h3>
 				<ul class="tsd-hierarchy">
-					<li><a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html" class="tsd-signature-type">IEnterpriseCollectionLogic</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/_src_logic_mocks_enterprise_logic_mock_.imockvmdata.html" class="tsd-signature-type">IMockVmData</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TGetRequest</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TSaveRequest</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TSaveResponse</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TDeleteRequest</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TDeleteResponse</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li><a href="../interfaces/_src_logic_types_enterprise_logic_interface_.ienterpriselogic.html" class="tsd-signature-type">IEnterpriseLogic</a></li>
+					<li><a href="../interfaces/_src_logic_types_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html" class="tsd-signature-type">IEnterpriseCollectionLogic</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_data_house_mocks_mock_.imockdata.html" class="tsd-signature-type">IMockData</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/_src_logic_mocks_enterprise_logic_mock_.imockvmdata.html" class="tsd-signature-type">IMockVmData</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TGetRequest</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TSaveRequest</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TSaveResponse</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TDeleteRequest</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TDeleteResponse</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -130,10 +131,17 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_src_logic_mocks_enterprise_logic_mock_.mocklogic.html#afterdelete" class="tsd-kind-icon">after<wbr>Delete</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_src_logic_mocks_enterprise_logic_mock_.mocklogic.html#afterget" class="tsd-kind-icon">after<wbr>Get</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_src_logic_mocks_enterprise_logic_mock_.mocklogic.html#aftersave" class="tsd-kind-icon">after<wbr>Save</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_src_logic_mocks_enterprise_logic_mock_.mocklogic.html#beforedelete" class="tsd-kind-icon">before<wbr>Delete</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_src_logic_mocks_enterprise_logic_mock_.mocklogic.html#beforeget" class="tsd-kind-icon">before<wbr>Get</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_src_logic_mocks_enterprise_logic_mock_.mocklogic.html#beforesave" class="tsd-kind-icon">before<wbr>Save</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_src_logic_mocks_enterprise_logic_mock_.mocklogic.html#delete" class="tsd-kind-icon">delete</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_src_logic_mocks_enterprise_logic_mock_.mocklogic.html#get" class="tsd-kind-icon">get</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_src_logic_mocks_enterprise_logic_mock_.mocklogic.html#getidfromitem" class="tsd-kind-icon">get<wbr>IdFrom<wbr>Item</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_src_logic_mocks_enterprise_logic_mock_.mocklogic.html#getone" class="tsd-kind-icon">get<wbr>One</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_src_logic_mocks_enterprise_logic_mock_.mocklogic.html#ready" class="tsd-kind-icon">ready</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_src_logic_mocks_enterprise_logic_mock_.mocklogic.html#save" class="tsd-kind-icon">save</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_src_logic_mocks_enterprise_logic_mock_.mocklogic.html#saveone" class="tsd-kind-icon">save<wbr>One</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_src_logic_mocks_enterprise_logic_mock_.mocklogic.html#subscribe" class="tsd-kind-icon">subscribe</a></li>
@@ -152,20 +160,20 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Mock<wbr>Logic<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><a href="_src_api_enterpise_api_.enterpriseapi.html" class="tsd-signature-type">EnterpriseApi</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_logic_mocks_enterprise_logic_mock_.mocklogic.html" class="tsd-signature-type">MockLogic</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Mock<wbr>Logic<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_api_types_enterprise_api_interface_.ienterpriseapi.html" class="tsd-signature-type">IEnterpriseApi</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_logic_mocks_enterprise_logic_mock_.mocklogic.html" class="tsd-signature-type">MockLogic</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html">EnterpriseCollectionLogic</a>.<a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/mocks/enterprise-logic.mock.ts#L46">src/logic/mocks/enterprise-logic.mock.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/226e2f7/packages/enterprise/src/logic/mocks/enterprise-logic.mock.ts#L42">src/logic/mocks/enterprise-logic.mock.ts:42</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>api: <a href="_src_api_enterpise_api_.enterpriseapi.html" class="tsd-signature-type">EnterpriseApi</a></h5>
+									<h5>api: <a href="../interfaces/_src_api_types_enterprise_api_interface_.ienterpriseapi.html" class="tsd-signature-type">IEnterpriseApi</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_src_logic_mocks_enterprise_logic_mock_.mocklogic.html" class="tsd-signature-type">MockLogic</a></h4>
@@ -182,7 +190,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html">EnterpriseCollectionLogic</a>.<a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html#mapper">mapper</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-collection-logic.ts#L48">src/logic/enterprise-collection-logic.ts:48</a></li>
+							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/226e2f7/packages/enterprise/src/logic/enterprise-collection-logic.ts#L49">src/logic/enterprise-collection-logic.ts:49</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -193,7 +201,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html">EnterpriseCollectionLogic</a>.<a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html#provider">provider</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-collection-logic.ts#L47">src/logic/enterprise-collection-logic.ts:47</a></li>
+							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/226e2f7/packages/enterprise/src/logic/enterprise-collection-logic.ts#L48">src/logic/enterprise-collection-logic.ts:48</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -204,7 +212,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html">EnterpriseCollectionLogic</a>.<a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html#vmidfield">vmIdField</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-collection-logic.ts#L49">src/logic/enterprise-collection-logic.ts:49</a></li>
+							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/226e2f7/packages/enterprise/src/logic/enterprise-collection-logic.ts#L50">src/logic/enterprise-collection-logic.ts:50</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -215,13 +223,163 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="_src_logic_enterprise_logic_.enterpriselogic.html">EnterpriseLogic</a>.<a href="_src_logic_enterprise_logic_.enterpriselogic.html#instance">instance</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/mocks/enterprise-logic.mock.ts#L46">src/logic/mocks/enterprise-logic.mock.ts:46</a></li>
+							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/226e2f7/packages/enterprise/src/logic/mocks/enterprise-logic.mock.ts#L42">src/logic/mocks/enterprise-logic.mock.ts:42</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="afterdelete" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> after<wbr>Delete</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">after<wbr>Delete<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDeleteResponse</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_logic_types_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html">IEnterpriseCollectionLogic</a>.<a href="../interfaces/_src_logic_types_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html#afterdelete">afterDelete</a></p>
+								<p>Inherited from <a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html">EnterpriseCollectionLogic</a>.<a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html#afterdelete">afterDelete</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/226e2f7/packages/enterprise/src/logic/enterprise-collection-logic.ts#L240">src/logic/enterprise-collection-logic.ts:240</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>options: <a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDeleteResponse</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="afterget" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> after<wbr>Get</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">after<wbr>Get<span class="tsd-signature-symbol">(</span>result<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_logic_types_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html">IEnterpriseCollectionLogic</a>.<a href="../interfaces/_src_logic_types_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html#afterget">afterGet</a></p>
+								<p>Inherited from <a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html">EnterpriseCollectionLogic</a>.<a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html#afterget">afterGet</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/226e2f7/packages/enterprise/src/logic/enterprise-collection-logic.ts#L91">src/logic/enterprise-collection-logic.ts:91</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>result: <a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="aftersave" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> after<wbr>Save</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">after<wbr>Save<span class="tsd-signature-symbol">(</span>result<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TSaveResponse</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_logic_types_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html">IEnterpriseCollectionLogic</a>.<a href="../interfaces/_src_logic_types_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html#aftersave">afterSave</a></p>
+								<p>Inherited from <a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html">EnterpriseCollectionLogic</a>.<a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html#aftersave">afterSave</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/226e2f7/packages/enterprise/src/logic/enterprise-collection-logic.ts#L224">src/logic/enterprise-collection-logic.ts:224</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>result: <a href="../interfaces/_src_provider_types_api_response_interface_.iapiresponse.html" class="tsd-signature-type">IApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TSaveResponse</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="beforedelete" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> before<wbr>Delete</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">before<wbr>Delete<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TDeleteRequest</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TDeleteRequest</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDeleteRequest</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_logic_types_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html">IEnterpriseCollectionLogic</a>.<a href="../interfaces/_src_logic_types_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html#beforedelete">beforeDelete</a></p>
+								<p>Inherited from <a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html">EnterpriseCollectionLogic</a>.<a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html#beforedelete">beforeDelete</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/226e2f7/packages/enterprise/src/logic/enterprise-collection-logic.ts#L226">src/logic/enterprise-collection-logic.ts:226</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>options: <span class="tsd-signature-type">TDeleteRequest</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TDeleteRequest</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDeleteRequest</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="beforeget" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> before<wbr>Get</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">before<wbr>Get<span class="tsd-signature-symbol">(</span>request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TGetRequest</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TGetRequest</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TGetRequest</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_logic_types_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html">IEnterpriseCollectionLogic</a>.<a href="../interfaces/_src_logic_types_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html#beforeget">beforeGet</a></p>
+								<p>Inherited from <a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html">EnterpriseCollectionLogic</a>.<a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html#beforeget">beforeGet</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/226e2f7/packages/enterprise/src/logic/enterprise-collection-logic.ts#L72">src/logic/enterprise-collection-logic.ts:72</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>request: <span class="tsd-signature-type">TGetRequest</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TGetRequest</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TGetRequest</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="beforesave" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> before<wbr>Save</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">before<wbr>Save<span class="tsd-signature-symbol">(</span>models<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_logic_types_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html">IEnterpriseCollectionLogic</a>.<a href="../interfaces/_src_logic_types_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html#beforesave">beforeSave</a></p>
+								<p>Inherited from <a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html">EnterpriseCollectionLogic</a>.<a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html#beforesave">beforeSave</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/226e2f7/packages/enterprise/src/logic/enterprise-collection-logic.ts#L189">src/logic/enterprise-collection-logic.ts:189</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>models:</h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="delete" class="tsd-anchor"></a>
 					<h3>delete</h3>
@@ -231,10 +389,10 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html">IEnterpriseCollectionLogic</a>.<a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html#delete">delete</a></p>
+								<p>Implementation of <a href="../interfaces/_src_logic_types_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html">IEnterpriseCollectionLogic</a>.<a href="../interfaces/_src_logic_types_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html#delete">delete</a></p>
 								<p>Inherited from <a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html">EnterpriseCollectionLogic</a>.<a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html#delete">delete</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-collection-logic.ts#L197">src/logic/enterprise-collection-logic.ts:197</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/226e2f7/packages/enterprise/src/logic/enterprise-collection-logic.ts#L228">src/logic/enterprise-collection-logic.ts:228</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -256,10 +414,10 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html">IEnterpriseCollectionLogic</a>.<a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html#get">get</a></p>
+								<p>Implementation of <a href="../interfaces/_src_logic_types_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html">IEnterpriseCollectionLogic</a>.<a href="../interfaces/_src_logic_types_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html#get">get</a></p>
 								<p>Inherited from <a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html">EnterpriseCollectionLogic</a>.<a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html#get">get</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-collection-logic.ts#L71">src/logic/enterprise-collection-logic.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/226e2f7/packages/enterprise/src/logic/enterprise-collection-logic.ts#L74">src/logic/enterprise-collection-logic.ts:74</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -286,7 +444,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html">EnterpriseCollectionLogic</a>.<a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html#getidfromitem">getIdFromItem</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-collection-logic.ts#L153">src/logic/enterprise-collection-logic.ts:153</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/226e2f7/packages/enterprise/src/logic/enterprise-collection-logic.ts#L167">src/logic/enterprise-collection-logic.ts:167</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -308,10 +466,10 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html">IEnterpriseCollectionLogic</a>.<a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html#getone">getOne</a></p>
+								<p>Implementation of <a href="../interfaces/_src_logic_types_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html">IEnterpriseCollectionLogic</a>.<a href="../interfaces/_src_logic_types_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html#getone">getOne</a></p>
 								<p>Inherited from <a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html">EnterpriseCollectionLogic</a>.<a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html#getone">getOne</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-collection-logic.ts#L100">src/logic/enterprise-collection-logic.ts:100</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/226e2f7/packages/enterprise/src/logic/enterprise-collection-logic.ts#L116">src/logic/enterprise-collection-logic.ts:116</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -328,6 +486,25 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="ready" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> ready</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">ready<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_logic_types_enterprise_logic_interface_.ienterpriselogic.html">IEnterpriseLogic</a>.<a href="../interfaces/_src_logic_types_enterprise_logic_interface_.ienterpriselogic.html#ready">ready</a></p>
+								<p>Inherited from <a href="_src_logic_enterprise_logic_.enterpriselogic.html">EnterpriseLogic</a>.<a href="_src_logic_enterprise_logic_.enterpriselogic.html#ready">ready</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/226e2f7/packages/enterprise/src/logic/enterprise-logic.ts#L10">src/logic/enterprise-logic.ts:10</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="save" class="tsd-anchor"></a>
 					<h3>save</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
@@ -338,7 +515,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html">EnterpriseCollectionLogic</a>.<a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html#save">save</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-collection-logic.ts#L177">src/logic/enterprise-collection-logic.ts:177</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/226e2f7/packages/enterprise/src/logic/enterprise-collection-logic.ts#L195">src/logic/enterprise-collection-logic.ts:195</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -383,7 +560,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html">EnterpriseCollectionLogic</a>.<a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html#saveone">saveOne</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-collection-logic.ts#L158">src/logic/enterprise-collection-logic.ts:158</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/226e2f7/packages/enterprise/src/logic/enterprise-collection-logic.ts#L172">src/logic/enterprise-collection-logic.ts:172</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -426,10 +603,10 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html">IEnterpriseCollectionLogic</a>.<a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html#subscribe">subscribe</a></p>
+								<p>Implementation of <a href="../interfaces/_src_logic_types_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html">IEnterpriseCollectionLogic</a>.<a href="../interfaces/_src_logic_types_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html#subscribe">subscribe</a></p>
 								<p>Inherited from <a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html">EnterpriseCollectionLogic</a>.<a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html#subscribe">subscribe</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-collection-logic.ts#L63">src/logic/enterprise-collection-logic.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/226e2f7/packages/enterprise/src/logic/enterprise-collection-logic.ts#L64">src/logic/enterprise-collection-logic.ts:64</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -451,10 +628,10 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html">IEnterpriseCollectionLogic</a>.<a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html#unsubscribe">unsubscribe</a></p>
+								<p>Implementation of <a href="../interfaces/_src_logic_types_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html">IEnterpriseCollectionLogic</a>.<a href="../interfaces/_src_logic_types_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html#unsubscribe">unsubscribe</a></p>
 								<p>Inherited from <a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html">EnterpriseCollectionLogic</a>.<a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html#unsubscribe">unsubscribe</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-collection-logic.ts#L67">src/logic/enterprise-collection-logic.ts:67</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/226e2f7/packages/enterprise/src/logic/enterprise-collection-logic.ts#L68">src/logic/enterprise-collection-logic.ts:68</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -478,7 +655,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html">EnterpriseCollectionLogic</a>.<a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html#validate">validate</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/mocks/enterprise-logic.mock.ts#L52">src/logic/mocks/enterprise-logic.mock.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/226e2f7/packages/enterprise/src/logic/mocks/enterprise-logic.mock.ts#L48">src/logic/mocks/enterprise-logic.mock.ts:48</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -500,10 +677,10 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html">IEnterpriseCollectionLogic</a>.<a href="../interfaces/_src_logic_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html#validatemany">validateMany</a></p>
+								<p>Implementation of <a href="../interfaces/_src_logic_types_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html">IEnterpriseCollectionLogic</a>.<a href="../interfaces/_src_logic_types_enterprise_collection_logic_interface_.ienterprisecollectionlogic.html#validatemany">validateMany</a></p>
 								<p>Inherited from <a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html">EnterpriseCollectionLogic</a>.<a href="_src_logic_enterprise_collection_logic_.enterprisecollectionlogic.html#validatemany">validateMany</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-collection-logic.ts#L125">src/logic/enterprise-collection-logic.ts:125</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/226e2f7/packages/enterprise/src/logic/enterprise-collection-logic.ts#L139">src/logic/enterprise-collection-logic.ts:139</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -527,7 +704,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_src_logic_enterprise_logic_.enterpriselogic.html">EnterpriseLogic</a>.<a href="_src_logic_enterprise_logic_.enterpriselogic.html#register">register</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/logic/enterprise-logic.ts#L15">src/logic/enterprise-logic.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/226e2f7/packages/enterprise/src/logic/enterprise-logic.ts#L18">src/logic/enterprise-logic.ts:18</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -581,6 +758,24 @@
 								<a href="_src_logic_mocks_enterprise_logic_mock_.mocklogic.html#instance" class="tsd-kind-icon">instance</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_src_logic_mocks_enterprise_logic_mock_.mocklogic.html#afterdelete" class="tsd-kind-icon">after<wbr>Delete</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_src_logic_mocks_enterprise_logic_mock_.mocklogic.html#afterget" class="tsd-kind-icon">after<wbr>Get</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_src_logic_mocks_enterprise_logic_mock_.mocklogic.html#aftersave" class="tsd-kind-icon">after<wbr>Save</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_src_logic_mocks_enterprise_logic_mock_.mocklogic.html#beforedelete" class="tsd-kind-icon">before<wbr>Delete</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_src_logic_mocks_enterprise_logic_mock_.mocklogic.html#beforeget" class="tsd-kind-icon">before<wbr>Get</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_src_logic_mocks_enterprise_logic_mock_.mocklogic.html#beforesave" class="tsd-kind-icon">before<wbr>Save</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_src_logic_mocks_enterprise_logic_mock_.mocklogic.html#delete" class="tsd-kind-icon">delete</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
@@ -591,6 +786,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_src_logic_mocks_enterprise_logic_mock_.mocklogic.html#getone" class="tsd-kind-icon">get<wbr>One</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_src_logic_mocks_enterprise_logic_mock_.mocklogic.html#ready" class="tsd-kind-icon">ready</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_src_logic_mocks_enterprise_logic_mock_.mocklogic.html#save" class="tsd-kind-icon">save</a>
