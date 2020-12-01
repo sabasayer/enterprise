@@ -33,6 +33,14 @@ export class EnterpriseDataProvider extends EnterpriseCancellable implements IEn
         this.cancelTokens = new Map();
     }
 
+    protected deleteWaitingRequests(key: string) {
+        this.waitingRequests.delete(key);
+    }
+
+    protected addWaitingRequest(key: string, request: AxiosPromise<any>) {
+        this.waitingRequests.set(key, request);
+    }
+
     protected createRequest(options: IEnterpriseRequestOptions): AxiosPromise {
         switch (options.method) {
             case EnumRequestMethod.GET:
@@ -51,30 +59,34 @@ export class EnterpriseDataProvider extends EnterpriseCancellable implements IEn
 
         let response: AxiosResponse<any>;
 
-        const key = EnterpriseApiHelper.createUniqueKey(options.url, options.data, options.method);
+        const waitingRequestKey = EnterpriseApiHelper.createUniqueKey(
+            options.url,
+            options.data,
+            options.method
+        );
 
         if (mustCheckWaitingRequest) {
-            response = await this.checkWaitingRequests(key, options);
+            response = await this.checkWaitingRequests(waitingRequestKey, options);
         } else {
-            response = await this.createNewRequest(key, options);
+            response = await this.createNewRequest(waitingRequestKey, options);
         }
 
-        this.waitingRequests.delete(key);
+        this.deleteWaitingRequests(waitingRequestKey);
 
         return response;
     }
 
     protected async checkWaitingRequests(
-        key: string,
+        waitingRequestKey: string,
         options: IEnterpriseRequestOptions
     ): Promise<AxiosResponse> {
         let response: AxiosResponse<any>;
 
-        const waitingRequest = this.waitingRequests.get(key);
+        const waitingRequest = this.waitingRequests.get(waitingRequestKey);
         if (waitingRequest) {
-            response = await this.handleWaitingRequests(waitingRequest, key, options);
+            response = await this.handleWaitingRequests(waitingRequest, waitingRequestKey, options);
         } else {
-            response = await this.createNewRequest(key, options);
+            response = await this.createNewRequest(waitingRequestKey, options);
         }
 
         return response;
@@ -94,6 +106,7 @@ export class EnterpriseDataProvider extends EnterpriseCancellable implements IEn
             response = await waitingRequest;
         } catch (e) {
             const result = this.handleBaseRequestError(e);
+            this.deleteWaitingRequests(key);
             if (result.canceled) {
                 response = await this.createNewRequest(key, options);
             } else throw e;
@@ -102,9 +115,9 @@ export class EnterpriseDataProvider extends EnterpriseCancellable implements IEn
         return response;
     }
 
-    protected createNewRequest(key: string, options: IEnterpriseRequestOptions) {
+    protected createNewRequest(waitingRequestKey: string, options: IEnterpriseRequestOptions) {
         const request = this.createRequest(options);
-        this.waitingRequests.set(key, request);
+        this.addWaitingRequest(waitingRequestKey, request);
         return request;
     }
 
@@ -116,6 +129,12 @@ export class EnterpriseDataProvider extends EnterpriseCancellable implements IEn
 
             return this.createResult(response);
         } catch (e) {
+            const waitingRequestKey = EnterpriseApiHelper.createUniqueKey(
+                options.url,
+                options.data,
+                options.method
+            );
+            this.deleteWaitingRequests(waitingRequestKey);
             return this.handleBaseRequestError(e);
         }
     }

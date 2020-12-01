@@ -62,13 +62,21 @@
 					<a href="_src_provider_types_api_request_options_interface_.iapirequestoptions.html">IApiRequestOptions</a>
 				</li>
 			</ul>
-			<h1>Interface IApiRequestOptions</h1>
+			<h1>Interface IApiRequestOptions&lt;TResponse&gt;</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>TResponse</h4>
+					</li>
+				</ul>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -85,6 +93,7 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_provider_types_api_request_options_interface_.iapirequestoptions.html#method" class="tsd-kind-icon">method</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_provider_types_api_request_options_interface_.iapirequestoptions.html#responsevalidationfn" class="tsd-kind-icon">response<wbr>Validation<wbr>Fn</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_provider_types_api_request_options_interface_.iapirequestoptions.html#url" class="tsd-kind-icon">url</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_provider_types_api_request_options_interface_.iapirequestoptions.html#validationrules" class="tsd-kind-icon">validation<wbr>Rules</a></li>
 							</ul>
@@ -100,7 +109,17 @@
 					<div class="tsd-signature tsd-kind-icon">method<span class="tsd-signature-symbol">:</span> <a href="../enums/_src_api_enums_request_method_enum_.enumrequestmethod.html" class="tsd-signature-type">EnumRequestMethod</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/types/api-request-options.interface.ts#L7">src/provider/types/api-request-options.interface.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/226e2f7/packages/enterprise/src/provider/types/api-request-options.interface.ts#L8">src/provider/types/api-request-options.interface.ts:8</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="responsevalidationfn" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> response<wbr>Validation<wbr>Fn</h3>
+					<div class="tsd-signature tsd-kind-icon">response<wbr>Validation<wbr>Fn<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>response<span class="tsd-signature-symbol">?: </span><a href="" class="tsd-signature-type">TResponse</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="_src_provider_types_api_request_validation_result_interface_.iapirequestvalidationresult.html" class="tsd-signature-type">IApiRequestValidationResult</a><span class="tsd-signature-symbol">)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/226e2f7/packages/enterprise/src/provider/types/api-request-options.interface.ts#L9">src/provider/types/api-request-options.interface.ts:9</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -110,7 +129,7 @@
 					<div class="tsd-signature tsd-kind-icon">url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/types/api-request-options.interface.ts#L5">src/provider/types/api-request-options.interface.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/226e2f7/packages/enterprise/src/provider/types/api-request-options.interface.ts#L6">src/provider/types/api-request-options.interface.ts:6</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -120,7 +139,7 @@
 					<div class="tsd-signature tsd-kind-icon">validation<wbr>Rules<span class="tsd-signature-symbol">:</span> <a href="_src_provider_types_api_request_validation_rule_interface_.iapivalidationrule.html" class="tsd-signature-type">IApiValidationRule</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/d68f5a1/packages/enterprise/src/provider/types/api-request-options.interface.ts#L6">src/provider/types/api-request-options.interface.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/sabasayer/enterprise/blob/226e2f7/packages/enterprise/src/provider/types/api-request-options.interface.ts#L7">src/provider/types/api-request-options.interface.ts:7</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -141,11 +160,14 @@
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-module">
+					<li class="current tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter">
 						<a href="_src_provider_types_api_request_options_interface_.iapirequestoptions.html" class="tsd-kind-icon">IApi<wbr>Request<wbr>Options</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_src_provider_types_api_request_options_interface_.iapirequestoptions.html#method" class="tsd-kind-icon">method</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_src_provider_types_api_request_options_interface_.iapirequestoptions.html#responsevalidationfn" class="tsd-kind-icon">response<wbr>Validation<wbr>Fn</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_src_provider_types_api_request_options_interface_.iapirequestoptions.html#url" class="tsd-kind-icon">url</a>
